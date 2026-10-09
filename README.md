@@ -4,7 +4,7 @@ Trabalho de grupo da cadeira de Engenharia de Software (UBI, 2026/27). Neste rep
 
 ## Equipa
 
-- Filipe Fogaça
+- Felipe Fogaça
 - João Vitor
 - Marcus Bernardo
 - Rui Machado
