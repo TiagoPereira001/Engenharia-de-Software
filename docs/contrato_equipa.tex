@@ -1,0 +1,271 @@
+\documentclass[11pt,a4paper]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage[portuguese]{babel}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+
+\definecolor{azul}{RGB}{31,56,100}
+
+\setlist{nosep, leftmargin=*, itemsep=3pt}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\pagestyle{fancy}
+\setlength{\headheight}{14pt}
+\fancyhf{}
+\renewcommand{\headrulewidth}{0pt}
+\fancyfoot[L]{\small Contrato de Equipa \textperiodcentered{} Engenharia de Software 2026/27}
+\fancyfoot[R]{\small \thepage}
+
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+
+\begin{document}
+
+\begin{center}
+  {\large Universidade da Beira Interior}\\[2pt]
+  {\small Faculdade de Engenharia \textperiodcentered{} Departamento de Informática}\\[2pt]
+  {\small Engenharia de Software \textperiodcentered{} 2026/27}\\[1.4em]
+  {\LARGE\bfseries\color{azul} Contrato de Equipa}\\[4pt]
+  {\large\color{azul} Team Contract}
+\end{center}
+
+\vspace{0.5em}
+
+Este contrato regista o que combinámos para trabalhar bem juntos durante o projeto de Engenharia de Software, que decorre em cinco sprints, de 21 de setembro a 11 de dezembro de 2026. Não queremos que seja burocracia. Serve para evitar mal-entendidos, para cada um saber o que se espera de si e para termos um sítio a que recorrer quando houver dúvidas. Está também no quadro Jira, na secção \textit{Team Contract}.
+
+\section*{Equipa}
+
+\renewcommand{\arraystretch}{2.1}
+\begin{tabularx}{\textwidth}{@{}X L{5cm}@{}}
+  \toprule
+  \textbf{Nome} & \textbf{N.º de aluno} \\
+  \midrule
+  Filipe Fogaça   & \\ \midrule[0.3pt]
+  João Vitor      & \\ \midrule[0.3pt]
+  Marcus Bernardo & \\ \midrule[0.3pt]
+  Rui Machado     & \\ \midrule[0.3pt]
+  Tiago Pereira   & \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+
+%--------------------------------------------------------------------
+\section{Reuniões}
+
+\subsection{As reuniões que fazemos}
+
+Seguimos o Scrum e fazemos as reuniões habituais. As durações são máximos: se acabarmos mais cedo, melhor.
+
+\renewcommand{\arraystretch}{1.3}
+\begin{tabularx}{\textwidth}{@{}L{2.7cm} L{3.4cm} L{1.8cm} X@{}}
+  \toprule
+  \textbf{Reunião} & \textbf{Quando} & \textbf{Duração} & \textbf{O que fazemos} \\
+  \midrule
+  Sprint Planning & No primeiro dia de cada sprint & até 1h30 &
+    O Product Owner traz o backlog já priorizado. Definimos o objetivo do sprint, escolhemos os itens que cabem, dividimos em tarefas, estimamos em story points e cada tarefa fica com um responsável. \\[4pt]
+  Daily Scrum & Todos os dias úteis, à hora fixa que combinarmos no Planning & 15 min &
+    Cada um diz o que fez desde o último daily, o que vai fazer hoje e o que o está a bloquear. Fazemo-lo em pé e sem discussões longas; o que for mais demorado fica para depois. \\[4pt]
+  Refinement & Uma vez por semana, a meio da semana & 30 min &
+    O Product Owner e a equipa afinam os próximos itens do backlog: critérios de aceitação, estimativas e dúvidas. \\[4pt]
+  Sprint Review & No fim do sprint, antes da apresentação oral & até 1h &
+    Mostramos o que ficou pronto e vemos se o objetivo do sprint foi cumprido. O Product Owner aceita (ou não) os itens. Aproveitamos para preparar o resumo que apresentamos na última semana do sprint. \\[4pt]
+  Retrospetiva & Logo a seguir à Review & 45 min &
+    Falamos do que correu bem, do que correu mal e escolhemos duas ou três melhorias concretas para o sprint seguinte, cada uma com um responsável. \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+
+No Sprint 5, que dura quatro semanas, fazemos ainda um ponto de situação de 30 minutos a meio, para perceber se estamos dentro do plano.
+
+\subsection{Como registamos no Jira}
+
+O enunciado pede provas de que cumprimos o Scrum, por isso tudo fica escrito na secção \textit{Daily SCRUM} do quadro:
+
+\begin{itemize}
+  \item \textbf{Daily:} cada um escreve as suas três linhas (feito, a fazer, bloqueios), com a data. O Scrum Master confirma, até ao fim do dia, que está tudo escrito.
+  \item \textbf{Planning, Review e Retrospetiva:} o Scrum Master escreve uma ata curta (data, quem esteve, decisões e ações com responsável) e junta uma captura do quadro quando fizer sentido.
+\end{itemize}
+
+\subsection{Presenças}
+
+\begin{itemize}
+  \item Chegamos a horas, com 5 minutos de tolerância.
+  \item Se alguém não puder estar, avisa no grupo com pelo menos 2 horas de antecedência (24 horas no caso do Planning, da Review e da Retrospetiva).
+  \item Quem falta lê o registo no Jira e escreve o seu contributo no mesmo dia.
+  \item Se não der para estarmos juntos no daily, fazemo-lo por escrito no Jira, nesse dia.
+  \item Durante as reuniões falamos um de cada vez, deixamos o telemóvel de lado e o que fugir ao tema fica anotado para depois.
+  \item As aulas presenciais também contam: contamos estar todos, como o enunciado pede.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Responsabilidades}
+
+\subsection{Da equipa}
+
+\begin{itemize}
+  \item Entregar, no fim de cada sprint, um incremento que funcione e apresentá-lo oralmente na última semana do sprint.
+  \item Manter o quadro Jira atualizado (\textit{Product Backlog}, \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Artifacts}, \textit{Daily SCRUM} e \textit{Team Contract}), com acesso para os docentes.
+  \item Decidir por consenso. Se não chegarmos lá, votamos e vale a maioria simples (3 em 5); a decisão fica registada no Jira.
+  \item Repartir o trabalho de forma justa. O projeto tem \textit{back-end} e \textit{front-end} e a ideia é que toda a gente passe pelos dois, para nos podermos cobrir uns aos outros.
+  \item Garantir que todos percebem o que está a ser feito: qualquer um de nós tem de saber explicar o projeto nas apresentações.
+\end{itemize}
+
+\subsection{De cada elemento}
+
+\begin{itemize}
+  \item Ir às reuniões e às aulas presenciais.
+  \item Fazer as suas tarefas dentro do prazo e mover o cartão no Jira no momento em que o estado muda.
+  \item Avisar cedo quando está bloqueado ou vai atrasar-se, pelo menos 24 horas antes do prazo. Pedir ajuda não é falhar.
+  \item Rever os \textit{pull requests} dos colegas em 24 a 48 horas.
+  \item Cumprir a Definição de Concluído e as regras deste contrato.
+  \item Obter o certificado Scrum Foundation Professional e colocá-lo no repositório do grupo.
+\end{itemize}
+
+\subsection{Product Owner e Scrum Master (Team Captain)}
+
+Em cada sprint há um Product Owner e um Scrum Master. Ambos continuam a desenvolver como os outros; no Planning ajustamos a carga de tarefas para lhes sobrar tempo para o papel.
+
+\textbf{Product Owner}
+\begin{itemize}
+  \item Gere e prioriza o Product Backlog, com o que traz mais valor no topo da lista.
+  \item Explica os itens à equipa e ajuda a escrever os critérios de aceitação.
+  \item Está disponível durante o sprint para tirar dúvidas.
+  \item Na Review decide se o objetivo do sprint foi cumprido e aceita ou recusa os itens.
+  \item Não mexe no sprint backlog a meio do sprint sem falar com a equipa.
+\end{itemize}
+
+\textbf{Scrum Master}
+\begin{itemize}
+  \item Garante que as reuniões acontecem, a horas, e que ficam registadas no Jira.
+  \item Ajuda a equipa a usar bem o Scrum. É um apoio para a equipa e não um chefe.
+  \item Ajuda a remover os obstáculos que apareçam e leva aos docentes o que a equipa não conseguir resolver sozinha.
+  \item Faz de mediador quando há desacordos.
+  \item Coordena o resumo para a apresentação oral do sprint.
+\end{itemize}
+
+\subsection{Rotação nos cinco sprints}
+
+Cada elemento é Product Owner uma vez e Scrum Master uma vez, e ninguém tem os dois papéis no mesmo sprint.
+
+\renewcommand{\arraystretch}{1.4}
+\begin{tabularx}{\textwidth}{@{}L{1.8cm} L{4.2cm} X X@{}}
+  \toprule
+  \textbf{Sprint} & \textbf{Datas} & \textbf{Product Owner} & \textbf{Scrum Master} \\
+  \midrule
+  1 & 21 de setembro a 2 de outubro   & Filipe Fogaça   & João Vitor \\
+  2 & 5 a 16 de outubro               & João Vitor      & Marcus Bernardo \\
+  3 & 19 a 30 de outubro              & Marcus Bernardo & Rui Machado \\
+  4 & 2 a 13 de novembro              & Rui Machado     & Tiago Pereira \\
+  5 & 16 de novembro a 11 de dezembro & Tiago Pereira   & Filipe Fogaça \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+
+Só trocamos de papéis se todos estiverem de acordo, e a troca fica registada no Jira antes do Sprint Planning.
+
+%--------------------------------------------------------------------
+\section{Conflitos}
+
+Vamos ter opiniões diferentes, é normal. O que queremos é discutir o trabalho e as ideias, não as pessoas, e partir do princípio de que ninguém tem má intenção.
+
+\subsection{Como os resolvemos}
+
+\begin{enumerate}
+  \item \textbf{Falar diretamente.} As pessoas envolvidas conversam com calma e o mais cedo possível, no máximo até 48 horas depois de o problema surgir.
+  \item \textbf{Levar à equipa.} Se não se resolver, trazemos o assunto para uma reunião curta ou para a Retrospetiva, com o Scrum Master como mediador. Se for o Scrum Master a estar envolvido, quem medeia é o Product Owner.
+  \item \textbf{Decidir.} Procuramos consenso. Se não houver, votamos (maioria simples) e a decisão fica no Jira. Todos cumprem o que ficou decidido, mesmo quem votou contra.
+  \item \textbf{Pedir ajuda.} Se o problema continuar ou se repetir, falamos com os docentes.
+\end{enumerate}
+
+Nas discussões técnicas, quando não houver acordo, preferimos experimentar durante uma ou duas horas a continuar a discutir.
+
+\subsection{Quando alguém não cumpre}
+
+Falhas que contam: faltar a reuniões ou aulas sem justificação, não entregar tarefas sem avisar, não atualizar o Jira ou não respeitar as regras do GitHub e a Definição de Concluído. Doença, exames ou entregas de outras cadeiras e imprevistos pessoais, quando avisados, são justificações válidas.
+
+\begin{enumerate}
+  \item \textbf{Primeira vez:} conversa informal com o Scrum Master para recordar o que combinámos. Fica uma nota curta no Jira.
+  \item \textbf{Segunda vez:} aviso escrito no Jira com um novo prazo. A tarefa pode ser passada a outro colega e a pessoa compensa com trabalho no sprint seguinte.
+  \item \textbf{Terceira vez:} informamos os docentes. A contribuição de cada um está documentada no Jira e no GitHub, por isso a avaliação individual fica justa para quem cumpriu.
+\end{enumerate}
+
+Não queremos chegar a este ponto, mas fica escrito para ser justo com quem está a trabalhar. A equipa não exclui ninguém do grupo; essa decisão é dos docentes.
+
+%--------------------------------------------------------------------
+\section{Outras regras}
+
+\subsection{Comunicação}
+
+\begin{itemize}
+  \item Usamos um grupo de WhatsApp para o dia a dia e avisos rápidos, e chamadas online (Teams ou Discord, o que for mais prático) quando não estamos juntos.
+  \item Tudo o que seja decisão, tarefa ou requisito passa para o Jira. O que ficar só na conversa pode perder-se.
+  \item Respondemos às mensagens em 24 horas nos dias úteis. Se for urgente, ligamos ou mencionamos a pessoa.
+  \item Evitamos mensagens à noite e ao fim de semana, a não ser que seja mesmo necessário.
+\end{itemize}
+
+\subsection{Prazos}
+
+\begin{itemize}
+  \item As datas dos sprints são as do enunciado e a entrega final é a 11 de dezembro de 2026.
+  \item Damos o trabalho por fechado um dia útil antes do fim do sprint, para haver tempo para a Review, a Retrospetiva e a apresentação oral.
+  \item Uma tarefa só entra em \textit{In Progress} depois de ter responsável e estimativa, e ninguém tem mais de duas tarefas abertas ao mesmo tempo.
+  \item Se um item não ficar pronto, não prolongamos o sprint: volta ao Product Backlog e o Product Owner volta a priorizá-lo.
+\end{itemize}
+
+\subsection{Definição de Concluído}
+
+Um item só passa a \textit{Done} quando:
+
+\begin{enumerate}
+  \item cumpre os critérios de aceitação combinados com o Product Owner;
+  \item o código foi revisto por pelo menos outro elemento da equipa (\textit{pull request} aprovado);
+  \item tem testes (unitários e, quando fizer sentido, de integração) e todos passam;
+  \item está integrado na branch \texttt{dev} sem quebrar o build nem a integração contínua;
+  \item a documentação necessária está atualizada e os artefactos estão ligados no Jira;
+  \item o Product Owner aceitou o item;
+  \item o cartão no Jira está em \textit{Done}, com a ligação para o \textit{pull request}.
+\end{enumerate}
+
+\subsection{Uso do GitHub}
+
+\begin{itemize}
+  \item Temos um repositório da equipa, ligado no Jira na secção \textit{Artifacts}.
+  \item A \texttt{main} guarda as versões estáveis e só recebe código no fim do sprint, depois da Review. A \texttt{dev} é onde integramos o trabalho.
+  \item Cada tarefa tem a sua branch, criada a partir da \texttt{dev}, com o código do cartão no nome (por exemplo \texttt{feature/PROJ-12-login}).
+  \item Ninguém faz \textit{push} direto para a \texttt{main} nem para a \texttt{dev}. Tudo passa por \textit{pull request}, com pelo menos uma aprovação de outra pessoa; ninguém aprova o seu próprio.
+  \item Fazemos commits pequenos e frequentes, com mensagens curtas que digam o que mudou.
+  \item Passwords, chaves de API e dados pessoais não entram no repositório.
+  \item Antes de começar a trabalhar fazemos \textit{pull} da \texttt{dev}. Quem abre o \textit{pull request} resolve os conflitos.
+  \item Se a integração contínua falhar, corrigir isso passa à frente do resto.
+\end{itemize}
+
+\subsection{Uso responsável de IA}
+
+O projeto incentiva o uso de ferramentas de IA e nós vamos usá-las, mas com regras:
+
+\begin{itemize}
+  \item A equipa escolhe pelo menos uma ferramenta de IA para apoiar a programação e regista no Jira qual é. Para levantar requisitos usamos o Character.ai, como o enunciado pede.
+  \item A IA ajuda, mas não decide por nós. Só entra no projeto o que percebemos e conseguimos explicar nas apresentações: cada um responde pelo que entrega.
+  \item O que for gerado por IA é revisto e testado como qualquer outro código ou texto, e passa pela mesma Definição de Concluído.
+  \item Não pomos passwords, chaves, dados pessoais nem informação que não possamos partilhar em ferramentas de IA.
+  \item Verificamos sempre a informação e o código que a IA sugere, incluindo licenças e fontes.
+  \item Registamos de forma simples onde e para quê usámos IA, e assumimos quando algo foi gerado.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Alterações ao contrato}
+
+Revemos este contrato nas retrospetivas. Qualquer alteração precisa da concordância de todos e fica registada no Jira. Ao colocar este contrato no quadro, cada elemento da equipa confirma que o leu e que está de acordo.
+
+\vspace{1.5em}
+Covilhã, \underline{\hspace{1cm}} de outubro de 2026
+
+\end{document}
