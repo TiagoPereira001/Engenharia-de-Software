@@ -69,17 +69,21 @@
 % ---------- entradas do registo ----------
 \newcommand{\linha}[1]{\rule[-2pt]{#1}{0.4pt}}
 \newcommand{\claude}{Claude (Anthropic), via Claude Code}
-% \entrada{data}{onde}{ferramenta}{para quê}
-\newcommand{\entrada}[4]{%
+% Se o campo vier vazio desenha uma linha para escrever à mão; se tiver texto, mostra o texto.
+\newcommand{\campo}[2]{\def\conteudo{#1}\ifx\conteudo\empty\linha{#2}\else #1\fi}
+% \entrada{data}{onde}{ferramenta}{para quê}{revisto por}{data da revisão}{}{}
+% Os dois últimos ficam {}{} até alguém rever. Depois escreve-se lá o nome e a data.
+\newcommand{\entrada}[6]{%
   \begin{tcolorbox}[caixa, title={#1 \textperiodcentered{} #2}]
     \renewcommand{\arraystretch}{1.45}%
     \begin{tabularx}{\linewidth}{@{}N{2.5cm} Y@{}}
       Ferramenta & #3 \\
       Para quê & #4 \\
-      Revisto por & \linha{6.2cm}\hspace{1.2em}Data\hspace{0.5em}\linha{2.4cm} \\
+      Revisto por & \campo{#5}{6.2cm}\hspace{1.2em}Data\hspace{0.5em}\campo{#6}{2.4cm} \\
     \end{tabularx}
   \end{tcolorbox}%
 }
+% Caixa em branco, para quem prefere preencher à mão depois de imprimir.
 \newcommand{\entradavazia}{%
   \begin{tcolorbox}[caixa, title={Nova entrada}]
     \renewcommand{\arraystretch}{1.9}%
@@ -120,21 +124,64 @@ Este ficheiro cumpre o que combinámos no Contrato de Equipa: dizer, de forma si
 
 \begin{tcolorbox}[caixa, title={Como se preenche}, colback=azulclaro!60]
   \begin{enumerate}
-    \item Quem usou a IA acrescenta uma entrada nova no fim, com a data, o sítio onde usou, a ferramenta e para quê. Há caixas em branco no fim desta secção.
-    \item Outro elemento da equipa lê o que a IA fez, confirma que está certo e escreve o seu nome e a data em \textbf{Revisto por}, no fim da caixa.
-    \item Enquanto não houver nome ali, a entrada ainda não foi revista.
+    \item Quem usou a IA acrescenta uma entrada nova no fim, com a data, o sítio onde usou, a ferramenta e para quê. No código há um modelo comentado: tira o \texttt{\%} do início das linhas e muda os textos. Há também caixas em branco no fim desta secção, para preencher à mão.
+    \item Outro elemento da equipa lê o que a IA fez e confirma que está certo. Depois escreve o nome e a data nas duas últimas chavetas da entrada, no código.
+    \item Enquanto essas chavetas estiverem vazias, aparece uma linha em branco e a entrada ainda não foi revista.
   \end{enumerate}
 \end{tcolorbox}
 
-\entrada{09/10/2026}{Contrato de Equipa}{\claude}{Estrutura, primeira versão do texto, aspeto do documento e valores sugeridos (reuniões, rotação de PO e SM, consequências).}
+% =====================================================================
+% COMO ACRESCENTAR UMA ENTRADA
+% 1. Copia as 7 linhas do modelo abaixo para o fim das entradas (antes das
+%    caixas em branco) e tira o % do início de cada uma.
+% 2. Muda só o que está dentro das chavetas. Não apagues as chavetas.
+% 3. Deixa as duas últimas chavetas vazias: {}
+% QUANDO ALGUÉM REVER: escreve o nome e a data nas duas últimas chavetas,
+%    por exemplo {Nome Apelido} e {dd/mm/aaaa}.
+% =====================================================================
+%
+% \entrada%
+%   {dd/mm/aaaa} % data
+%   {Onde} % onde (documento, código, Jira...)
+%   {\claude} % ferramenta (\claude já escreve "Claude (Anthropic), via Claude Code")
+%   {Para quê} % para quê
+%   {} % revisto por
+%   {} % data da revisão
+%
+% =====================================================================
 
-\entrada{09/10/2026}{Registo de Uso de IA (este ficheiro)}{\claude}{Primeira versão do texto e, mais tarde, uma organização mais clara das entradas.}
+\entrada%
+  {09/10/2026} % data
+  {Contrato de Equipa} % onde (documento, código, Jira...)
+  {\claude} % ferramenta
+  {Estrutura, primeira versão do texto, aspeto do documento e valores sugeridos (reuniões, rotação de PO e SM, consequências).} % para quê
+  {Tiago Pereira} % revisto por (fica {} até alguém rever)
+  {09/10/2026} % data da revisão (fica {} até alguém rever)
 
-\entrada{09/10/2026}{Guia de Jira}{\claude}{Pesquisa dos passos do Jira, primeira versão do guia e reescrita para a equipa começar a usar (também em página do Confluence).}
+\entrada%
+  {09/10/2026} % data
+  {Registo de Uso de IA (este ficheiro)} % onde (documento, código, Jira...)
+  {\claude} % ferramenta
+  {Primeira versão do texto e, mais tarde, uma organização mais clara das entradas.} % para quê
+  {} % revisto por (fica {} até alguém rever)
+  {} % data da revisão (fica {} até alguém rever)
 
-\entrada{09/10/2026}{Jira (estrutura e textos)}{\claude}{Primeira versão da estrutura e dos textos: epics, cartões, sprints, presenças e faltas, papéis, páginas do Confluence e ligação ao GitHub.}
+\entrada%
+  {09/10/2026} % data
+  {Guia de Jira} % onde (documento, código, Jira...)
+  {\claude} % ferramenta
+  {Pesquisa dos passos do Jira, primeira versão do guia e reescrita para a equipa começar a usar (também em página do Confluence).} % para quê
+  {} % revisto por (fica {} até alguém rever)
+  {} % data da revisão (fica {} até alguém rever)
 
-\entrada{09/10/2026}{Análise do Produto (Sprint 1)}{\claude}{Reescrita do texto do PDF da equipa para ficar mais natural, e correção de gralhas. O conteúdo (personas, cenários, histórias e prioridades) é da equipa.}
+\entrada%
+  {09/10/2026} % data
+  {Jira (estrutura e textos)} % onde (documento, código, Jira...)
+  {\claude} % ferramenta
+  {Primeira versão da estrutura e dos textos: epics, cartões, sprints, presenças e faltas, papéis, páginas do Confluence e ligação ao GitHub.} % para quê
+  {} % revisto por (fica {} até alguém rever)
+  {} % data da revisão (fica {} até alguém rever)
+
 
 \entradavazia
 
