@@ -1,0 +1,150 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- fontes e língua ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{tgpagella}
+\usepackage{tgheros}
+\usepackage[portuguese]{babel}
+\usepackage{microtype}
+
+% ---------- página e cores ----------
+\usepackage[a4paper,top=2.6cm,bottom=2.4cm,left=2.4cm,right=2.4cm]{geometry}
+\usepackage[table]{xcolor}
+\definecolor{azul}{RGB}{28,62,112}
+\definecolor{azulclaro}{RGB}{226,234,246}
+\definecolor{cinza}{RGB}{95,102,115}
+
+% ---------- tabelas, listas, caixas ----------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\setlist{nosep, leftmargin=*, itemsep=3pt}
+\setlist[itemize]{label=\textcolor{azul}{\textbullet}}
+\setlist[enumerate]{label=\textcolor{azul}{\sffamily\bfseries\arabic*.}}
+
+\titleformat{\section}{\sffamily\Large\bfseries\color{azul}}{\thesection}{0.7em}{}[{\color{azul}\titlerule[0.6pt]}]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{azul}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.3em}
+
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\renewcommand{\headrule}{{\color{azul}\hrule width\headwidth height\headrulewidth}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\sffamily\small\color{cinza} Universidade da Beira Interior}
+\fancyhead[R]{\sffamily\small\color{cinza} Engenharia de Software \textperiodcentered{} 2026/27}
+\fancyfoot[L]{\sffamily\small\color{cinza} Registo de Uso de IA}
+\fancyfoot[R]{\sffamily\small\color{cinza} Página \thepage\ de \pageref{LastPage}}
+
+\fancypagestyle{primeira}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[L]{\sffamily\small\color{cinza} Registo de Uso de IA}%
+  \fancyfoot[R]{\sffamily\small\color{cinza} Página \thepage\ de \pageref{LastPage}}%
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{N}[1]{>{\raggedright\arraybackslash\sffamily\bfseries}p{#1}}
+\newcommand{\th}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+
+\tcbset{
+  caixa/.style={colback=white, colframe=azul, coltitle=white, colbacktitle=azul,
+    fonttitle=\sffamily\bfseries, arc=3pt, boxrule=0.6pt,
+    left=9pt, right=9pt, top=6pt, bottom=6pt}
+}
+
+\begin{document}
+\thispagestyle{primeira}
+
+% ---------- cabeçalho do documento ----------
+\begin{tcolorbox}[colback=azul, colframe=azul, coltext=white, arc=3pt, boxrule=0pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt]
+  \sffamily
+  {\footnotesize\bfseries\MakeUppercase{Universidade da Beira Interior}}\\[2pt]
+  {\footnotesize Faculdade de Engenharia \textperiodcentered{} Departamento de Informática}\\[16pt]
+  {\fontsize{28}{32}\selectfont\bfseries Registo de Uso de IA}\\[4pt]
+  {\large Onde e para quê usamos IA no projeto \textperiodcentered{} Engenharia de Software 2026/27}
+\end{tcolorbox}
+
+Este ficheiro cumpre o que combinámos no Contrato de Equipa: dizer, de forma simples, onde e para quê usamos ferramentas de IA no projeto. Vamos atualizá-lo sempre que usarmos IA em algo novo. Está ligado no quadro Jira, na secção \textit{Artifacts}.
+
+\begin{tcolorbox}[caixa, title={Declaração}, colback=azulclaro!60]
+  A base do Contrato de Equipa foi feita com apoio de IA. Usámos o Claude, da Anthropic, através do Claude Code, para propor a estrutura do documento, escrever a primeira versão do texto em LaTeX, desenhar o aspeto do documento e sugerir alguns valores por omissão: a duração das reuniões, a rotação de Product Owner e Scrum Master e a escala de consequências.
+
+  A partir daí, o contrato é da equipa. Lemos, ajustamos o que não fizer sentido para nós e respondemos por tudo o que lá está.
+\end{tcolorbox}
+
+%--------------------------------------------------------------------
+\section{Registo}
+
+Cada linha é uma coisa que fizemos com ajuda de IA. A última coluna serve para dizer quem leu e validou o resultado.
+
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{L{2.0cm} L{2.7cm} L{2.7cm} Y L{2.0cm}}
+  \rowcolor{azul} \th{Data} & \th{Onde} & \th{Ferramenta} & \th{Para quê} & \th{Revisto por} \\
+  \rowcolor{azulclaro!55}
+  09/10/2026 & Contrato de Equipa & Claude (Anthropic), via Claude Code &
+    Estrutura, primeira versão do texto, aspeto do documento e valores sugeridos (reuniões, rotação de PO e SM, consequências). & \\
+  \rowcolor{white}
+  09/10/2026 & Registo de Uso de IA (este ficheiro) & Claude (Anthropic), via Claude Code &
+    Primeira versão do texto. & \\
+  \rowcolor{azulclaro!55} \rule{0pt}{2.2em} & & & & \\
+  \rowcolor{white}        \rule{0pt}{2.2em} & & & & \\
+  \rowcolor{azulclaro!55} \rule{0pt}{2.2em} & & & & \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+\normalsize
+
+%--------------------------------------------------------------------
+\section{Ferramentas}
+
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{N{4.4cm} Y L{3.2cm}}
+  \rowcolor{azul} \th{Ferramenta} & \th{Para que a usamos} & \th{Estado} \\
+  \rowcolor{azulclaro!55}
+  Claude (Anthropic), via Claude Code & Texto e LaTeX dos documentos da equipa. & Em uso \\
+  \rowcolor{white}
+  Character.ai & Levantar requisitos, como o enunciado pede. & Por registar quando for usado \\
+  \rowcolor{azulclaro!55}
+  Ferramenta de IA para programar & Apoio ao código. A equipa escolhe pelo menos uma e regista aqui qual é e porquê. & Por escolher \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+\normalsize
+
+%--------------------------------------------------------------------
+\section{O que registamos}
+
+\begin{itemize}
+  \item Tudo o que a IA tenha influenciado naquilo que entregamos: texto, código, diagramas, requisitos, personas, testes.
+  \item Em cada linha: a data, onde foi usada, a ferramenta, para quê e quem reviu o resultado.
+  \item Quando for código, juntamos a ligação para o \textit{pull request}.
+  \item Dúvidas pontuais e pesquisas que não mudaram nada no que entregamos não precisam de linha.
+\end{itemize}
+
+\section{Como garantimos que a IA não decide por nós}
+
+\begin{itemize}
+  \item Só entra no projeto o que percebemos e conseguimos explicar nas apresentações. Cada um responde pelo que entrega.
+  \item O que é gerado por IA passa pela mesma revisão, pelos mesmos testes e pela mesma Definição de Concluído que o resto.
+  \item Não pomos passwords, chaves, dados pessoais nem informação que não possamos partilhar em ferramentas de IA.
+  \item Verificamos a informação, as fontes e as licenças do que a IA nos sugere.
+\end{itemize}
+
+\end{document}
