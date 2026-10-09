@@ -1,0 +1,247 @@
+\documentclass[11pt,a4paper]{article}
+
+% ---------- fontes e língua ----------
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+\usepackage{tgpagella}
+\usepackage{tgheros}
+\usepackage[portuguese]{babel}
+\usepackage{microtype}
+
+% ---------- página e cores ----------
+\usepackage[a4paper,top=2.6cm,bottom=2.4cm,left=2.4cm,right=2.4cm]{geometry}
+\usepackage[table]{xcolor}
+\definecolor{azul}{RGB}{28,62,112}
+\definecolor{azulclaro}{RGB}{226,234,246}
+\definecolor{cinza}{RGB}{95,102,115}
+
+% ---------- tabelas, listas, caixas ----------
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage{titlesec}
+\usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
+
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{6pt}
+
+\setlist{nosep, leftmargin=*, itemsep=3pt}
+\setlist[itemize]{label=\textcolor{azul}{\textbullet}}
+\setlist[enumerate]{label=\textcolor{azul}{\sffamily\bfseries\arabic*.}}
+
+\titleformat{\section}{\sffamily\Large\bfseries\color{azul}}{\thesection}{0.7em}{}[{\color{azul}\titlerule[0.6pt]}]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{azul}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.3em}
+
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\renewcommand{\headrule}{{\color{azul}\hrule width\headwidth height\headrulewidth}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\sffamily\small\color{cinza} Universidade da Beira Interior}
+\fancyhead[R]{\sffamily\small\color{cinza} Engenharia de Software \textperiodcentered{} 2026/27}
+\fancyfoot[L]{\sffamily\small\color{cinza} Análise do Produto \textperiodcentered{} Sprint 1}
+\fancyfoot[R]{\sffamily\small\color{cinza} Página \thepage\ de \pageref{LastPage}}
+
+\fancypagestyle{primeira}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[L]{\sffamily\small\color{cinza} Análise do Produto \textperiodcentered{} Sprint 1}%
+  \fancyfoot[R]{\sffamily\small\color{cinza} Página \thepage\ de \pageref{LastPage}}%
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+\newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{N}[1]{>{\raggedright\arraybackslash\sffamily\bfseries}p{#1}}
+\newcommand{\th}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+
+\tcbset{
+  caixa/.style={colback=white, colframe=azul, coltitle=white, colbacktitle=azul,
+    fonttitle=\sffamily\bfseries, arc=3pt, boxrule=0.6pt,
+    left=9pt, right=9pt, top=6pt, bottom=6pt}
+}
+
+\begin{document}
+\thispagestyle{primeira}
+
+% ---------- cabeçalho do documento ----------
+\begin{tcolorbox}[colback=azul, colframe=azul, coltext=white, arc=3pt, boxrule=0pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt]
+  \sffamily
+  {\footnotesize\bfseries\MakeUppercase{Universidade da Beira Interior}}\\[2pt]
+  {\footnotesize Faculdade de Engenharia \textperiodcentered{} Departamento de Informática}\\[16pt]
+  {\fontsize{28}{32}\selectfont\bfseries Análise do Produto}\\[4pt]
+  {\large Aplicação Universitária UBI \textperiodcentered{} Sprint 1 \textperiodcentered{} 28/09}
+\end{tcolorbox}
+
+%--------------------------------------------------------------------
+\section{Visão e âmbito}
+
+A informação e os serviços da universidade estão espalhados por vários sítios, o que complica o dia a dia e a orientação no campus. A ideia é juntar tudo numa só aplicação, pensada para estudantes, docentes e funcionários.
+
+Para já, o âmbito inicial (ainda por confirmar) é este:
+
+\begin{itemize}
+  \item consultar horários e salas;
+  \item receber avisos quando há alterações;
+  \item permitir a comunicação entre docentes e estudantes.
+\end{itemize}
+
+As restantes funcionalidades ficam para versões futuras, conforme as prioridades, as dependências e a opinião de quem usar a aplicação.
+
+%--------------------------------------------------------------------
+\section{Stakeholders}
+
+\begin{itemize}
+  \item \textbf{Estudantes:} são os utilizadores principais. Consultam horários, notas, refeitório e transportes.
+  \item \textbf{Docentes:} dão as aulas, tratam das avaliações e falam com as turmas.
+  \item \textbf{Funcionários administrativos:} tratam das inscrições, das propinas e dos processos administrativos.
+  \item \textbf{Serviços Académicos (SASUBI/Reitoria):} responsáveis pelos processos e pelas regras de negócio.
+  \item \textbf{Equipa de TI da UBI:} manutenção, suporte técnico e integração.
+  \item \textbf{Serviços de Ação Social:} bolsas, refeitório e residências.
+  \item \textbf{Segurança/Portaria:} controlo de acessos aos edifícios, se for preciso.
+  \item \textbf{Fornecedores externos:} empresas que podem ser integradas, como a cantina e os transportes.
+  \item \textbf{Visitantes/Candidatos:} acesso limitado à informação pública e às candidaturas.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Funcionalidades identificadas}
+
+\begin{enumerate}
+  \item Consulta de horários e salas
+  \item Consulta de notas
+  \item Consulta de propinas
+  \item Notificações sobre alterações de aulas e frequências
+  \item Reservas de espaços (salas de estudo, anfiteatros, entre outros)
+  \item Mapa interativo da universidade, com salas e serviços da UBI
+  \item Comunicação entre docentes e estudantes
+  \item Gestão de pedidos de documentos
+\end{enumerate}
+
+%--------------------------------------------------------------------
+\section{Personas}
+
+\begin{tcolorbox}[caixa, title={Inês Carvalho \textperiodcentered{} estudante}]
+  19 anos, frequenta o 1.\textordmasculine{} ano de Engenharia Informática. É de Viseu, estuda na Covilhã e vive numa residência. Usa o telemóvel para quase tudo.
+
+  Quer ver o horário, as salas e as notas num só sítio, consultar o menu da cantina e orientar-se pelos vários polos. Frustra-se por andar de site em site e por não saber a quem recorrer nos assuntos administrativos.
+\end{tcolorbox}
+
+\begin{tcolorbox}[caixa, title={Professora Helena Duarte \textperiodcentered{} docente}]
+  52 anos, dá aulas de Matemática há mais de 20. Tem conhecimentos tecnológicos medianos e prefere ferramentas simples.
+
+  Quer comunicar depressa com os alunos, lançar sumários e notas, e reservar salas e equipamentos. Frustra-se com tarefas repetitivas e com tantos sites diferentes.
+\end{tcolorbox}
+
+\begin{tcolorbox}[caixa, title={Paula Rodrigues \textperiodcentered{} funcionária dos Serviços Académicos}]
+  45 anos, atende estudantes presencialmente e por email. O volume de pedidos sobe no início do semestre e nas inscrições para exames.
+
+  Quer reduzir os pedidos repetitivos e tratar dos processos de forma digital. Frustra-se com as filas, com os pedidos incompletos e com perguntas cuja resposta já está publicada.
+\end{tcolorbox}
+
+\begin{tcolorbox}[caixa, title={João Almeida \textperiodcentered{} estudante com mobilidade reduzida}]
+  20 anos, estuda Marketing e desloca-se em cadeira de rodas.
+
+  Quer consultar percursos e edifícios acessíveis, reservar apoio e receber avisos quando um elevador está avariado. Frustra-se quando só descobre no local que um acesso não está disponível.
+\end{tcolorbox}
+
+%--------------------------------------------------------------------
+\section{Cenários de utilização}
+
+\subsection{Cenário 1: consultar o horário e chegar à aula}
+
+Todas as manhãs a Inês acorda sem saber se o horário mudou. Abre a aplicação e vê as aulas do dia, com horas e salas, e confirma se há alguma notificação de alteração antes de sair de casa. Já na universidade, vê onde fica a sala e segue para a aula. Se a informação estiver desatualizada ou a sala não estiver identificada, a aplicação avisa que não tem os dados e indica um contacto.
+
+\subsection{Cenário 2: avisar a turma de uma alteração}
+
+A professora Helena tem de avisar a turma de que a aula mudou de sala. Na funcionalidade de comunicação escolhe a turma e a aula, escreve a alteração e confirma o envio. Os estudantes recebem uma notificação com o essencial e a Helena consegue ver que a mensagem foi enviada. Se não tiver autorização, ou se a turma não estiver disponível, o sistema explica o problema e não envia nada.
+
+\subsection{Cenário 3: pedir um documento académico}
+
+A Paula recebe muitos pedidos de declarações e alguns chegam sem os dados necessários. Na aplicação, o estudante vê os documentos disponíveis, escolhe o que quer e preenche os campos obrigatórios. Antes de enviar, revê o pedido. O sistema confirma a submissão e mostra um número ou um estado para acompanhar o pedido. Se faltar algum dado, assinala os campos a corrigir.
+
+\subsection{Cenário 4: encontrar um percurso acessível}
+
+O João tem de chegar a um edifício num polo que não conhece. Abre o mapa, procura o edifício e escolhe a opção de percurso acessível. A aplicação mostra um percurso com entradas acessíveis. Se um elevador estiver avariado, o aviso aparece bem à vista e, quando existir, é apresentada uma alternativa. Se não existir, a aplicação diz que não consegue garantir um percurso acessível.
+
+\subsection{Cenário 5: consultar uma nota ou as propinas}
+
+A Inês quer confirmar uma nota que saiu ou ver informação sobre as propinas. Abre a secção certa e vê os dados da sua conta. A aplicação separa o que é atual do que não está disponível ou ainda não foi publicado, e nunca mostra dados de outros estudantes.
+
+%--------------------------------------------------------------------
+\section{User stories iniciais}
+
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{N{1.3cm} L{3.0cm} Y}
+  \rowcolor{azul} \th{ID} & \th{Tema} & \th{História} \\
+  \rowcolor{azulclaro!55}
+  US01 & Horário &
+    Como estudante, quero ver o meu horário e as salas, para planear o dia sem andar de site em site. \\
+  \rowcolor{white}
+  US02 & Notificações &
+    Como estudante, quero receber avisos quando uma aula ou uma frequência muda, para agir com informação atualizada. \\
+  \rowcolor{azulclaro!55}
+  US03 & Comunicação &
+    Como docente, quero avisar a turma de uma alteração, para os estudantes ficarem a saber a tempo. \\
+  \rowcolor{white}
+  US04 & Percurso acessível &
+    Como estudante com mobilidade reduzida, quero ver percursos acessíveis e avisos sobre elevadores, para planear a deslocação. \\
+  \rowcolor{azulclaro!55}
+  US05 & Pedido de documento &
+    Como estudante, quero submeter um pedido de documento e acompanhá-lo, para evitar deslocações e saber em que estado está. \\
+  \rowcolor{white}
+  US06 & Gestão de pedidos &
+    Como funcionária dos Serviços Académicos, quero receber os pedidos com os campos necessários, para haver menos pedidos incompletos. \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+\normalsize
+
+São histórias candidatas ao Product Backlog. Ainda falta refiná-las, dar-lhes prioridade e escolher as que cabem no sprint, com critérios de aceitação combinados.
+
+%--------------------------------------------------------------------
+\section{Priorização preliminar}
+
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{N{0.9cm} L{4.6cm} L{1.9cm} Y}
+  \rowcolor{azul} \th{N.\textordmasculine} & \th{Funcionalidade} & \th{Prioridade} & \th{Justificação} \\
+  \rowcolor{azulclaro!55}
+  1 & Horários e salas & Alta & Usa-se todos os dias e é informação essencial para os estudantes. \\
+  \rowcolor{white}
+  2 & Notas & Alta & Ajuda a acompanhar o semestre. \\
+  \rowcolor{azulclaro!55}
+  3 & Propinas & Média & É importante, mas consulta-se menos vezes. \\
+  \rowcolor{white}
+  4 & Notificações de alterações & Alta & Ajuda a reagir às mudanças e evita deslocações ou faltas. \\
+  \rowcolor{azulclaro!55}
+  5 & Reservas de espaços & Baixa & É útil, mas a prioridade tem de ser validada com os utilizadores e com o âmbito. \\
+  \rowcolor{white}
+  6 & Mapa interativo & Baixa & Pode ser mais valioso para os novos alunos, os visitantes e as pessoas com necessidades de acessibilidade. \\
+  \rowcolor{azulclaro!55}
+  7 & Comunicação docente--estudante & Alta & Facilita a comunicação direta sobre aulas e atividades. \\
+  \rowcolor{white}
+  8 & Pedidos de documentos & Média & Pode reduzir o trabalho administrativo e os pedidos repetitivos. \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+\normalsize
+
+%--------------------------------------------------------------------
+\section{Por confirmar}
+
+\begin{itemize}
+  \item O âmbito, o nome oficial do produto e os utilizadores-alvo. E também se a aplicação se liga a sistemas que já existem ou se só junta ligações e informação.
+  \item As personas e os cenários têm de ser validados com estudantes, docentes e funcionários. Até lá são suposições nossas (proto-personas), não factos.
+  \item Como vamos obter os horários, as notas, as propinas, os dados de acessibilidade e o estado dos elevadores, e quem mantém esses dados.
+  \item As prioridades: o que é muito importante para poucas pessoas (como a acessibilidade) não deve ficar para trás só porque a maioria o usa menos.
+  \item Os critérios de aceitação das histórias escolhidas, ligados às funcionalidades. Não vamos pôr tudo no Sprint 1.
+\end{itemize}
+
+\end{document}
