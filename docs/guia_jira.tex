@@ -167,7 +167,7 @@ Esta parte faz-se uma única vez e por \textbf{uma pessoa}. Sugerimos o Product 
   \item Escolhe o modelo \btn{Scrum}.
   \item Se o Jira perguntar o tipo, escolhe \btn{Team-managed} (gerido pela equipa). É mais simples de configurar e é o que recomendamos.
   \item Dá o nome \textit{Engenharia de Software} ou outro que o grupo prefira.
-  \item Escolhe a \textbf{key}: 2 a 5 letras maiúsculas, por exemplo \texttt{ES}. É ela que dá o código aos cartões (\texttt{ES-1}, \texttt{ES-2}, \dots) e que depois usamos nas branches do GitHub. Pensa bem, porque é difícil mudar mais tarde.
+  \item Escolhe a \textbf{key}: 2 a 5 letras maiúsculas. A nossa é \texttt{EDS}. É ela que dá o código aos cartões (\texttt{EDS-1}, \texttt{EDS-2}, \dots) e que depois usamos nas branches do GitHub. Pensa bem, porque é difícil mudar mais tarde.
   \item No acesso, deixa o projeto \textbf{Private}, para só entrar quem convidarmos.
   \item Cria. O Jira abre no Backlog.
 \end{enumerate}
@@ -284,7 +284,7 @@ Quando abres um cartão, vês estes campos:
 \tabelaini
 \begin{tabularx}{\textwidth}{N{3.4cm} Y L{3.4cm}}
   \rowcolor{azul} \th{Campo} & \th{O que é} & \th{Quem preenche} \\
-  Key (ex.: ES-12) & O código único do cartão. Usamo-lo no GitHub. & O Jira \\
+  Key (ex.: EDS-12) & O código único do cartão. Usamo-lo no GitHub. & O Jira \\
   Summary & O título, curto e claro. & Quem cria \\
   Description & O que é para fazer, a user story e os critérios de aceitação. & Quem cria, com o PO \\
   Status & Em que coluna está: \textit{To Do}, \textit{In Progress} ou \textit{Done}. & Quem trabalha nele \\
@@ -315,7 +315,7 @@ Quando abres um cartão, vês estes campos:
 
 \subsection{Os estados}
 
-O ciclo de vida de um cartão tem três passos:
+O nosso Jira está em português, por isso as colunas chamam-se \textit{A fazer}, \textit{Fazendo} e \textit{Feito}, e os tipos de cartão \textit{Tarefa} e \textit{História}. É o mesmo que \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Task} e \textit{Story}. O ciclo de vida de um cartão tem três passos:
 
 \begin{itemize}
   \item \textbf{To Do:} está no sprint mas ainda ninguém começou.
@@ -449,21 +449,21 @@ O enunciado avalia o Scrum através do que fica registado, por isso cada sprint 
 %--------------------------------------------------------------------
 \section{Jira e GitHub juntos}
 
-Cada cartão tem um código (\textit{key}), por exemplo \texttt{ES-12}. Se o escrevermos nos sítios certos, o Jira liga o trabalho ao cartão sozinho.
+Cada cartão tem um código (\textit{key}), por exemplo \texttt{EDS-12}. Se o escrevermos nos sítios certos, o Jira liga o trabalho ao cartão sozinho.
 
 \begin{itemize}
-  \item \textbf{Branch:} começa pela key, em maiúsculas, dentro do nome da branch: \texttt{feature/ES-12-login}.
-  \item \textbf{Commit:} começa com a key, seguida de uma frase curta: \texttt{ES-12 faz o ecrã de entrada}.
+  \item \textbf{Branch:} começa pela key, em maiúsculas, dentro do nome da branch: \texttt{feature/EDS-12-login}.
+  \item \textbf{Commit:} começa com a key, seguida de uma frase curta: \texttt{EDS-12 faz o ecrã de entrada}.
   \item \textbf{Pull request:} a key vai no título, e a descrição diz o que foi feito.
 \end{itemize}
 
 \begin{codigo}
 git switch dev\\
 git pull\\
-git switch -c feature/ES-12-login
+git switch -c feature/EDS-12-login
 \end{codigo}
 
-A key tem de estar em maiúsculas (\texttt{ES-12}, e não \texttt{es-12}). Depois de fazeres \textit{push}, a ligação pode demorar alguns minutos a aparecer no cartão. Nenhum pull request é aprovado por quem o escreveu, como o contrato diz.
+A key tem de estar em maiúsculas (\texttt{EDS-12}, e não \texttt{eds-12}). Depois de fazeres \textit{push}, a ligação pode demorar alguns minutos a aparecer no cartão. Nenhum pull request é aprovado por quem o escreveu, como o contrato diz.
 
 %--------------------------------------------------------------------
 \section{Quem faz o quê}
@@ -546,7 +546,7 @@ A key tem de estar em maiúsculas (\texttt{ES-12}, e não \texttt{es-12}). Depoi
   Burndown chart & Gráfico que mostra o trabalho que falta ao longo do sprint. \\
   Epic & Cartão grande que agrupa outros cartões. \\
   Flag & Marca que destaca um cartão bloqueado. \\
-  Key & Código único de um cartão, por exemplo ES-12. \\
+  Key & Código único de um cartão, por exemplo EDS-12. \\
   Label & Etiqueta livre para organizar cartões. \\
   Sprint & Período fechado, com objetivo, para fazer parte do backlog. \\
   Sprint goal & O objetivo do sprint, numa frase. \\
