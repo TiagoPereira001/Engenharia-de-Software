@@ -232,13 +232,13 @@ O que pomos em cada um:
 \begin{itemize}
   \item \textbf{Team Contract:} na descrição, uma linha a dizer desde quando está em vigor. Anexa o PDF do contrato e o do Registo de Uso de IA (abre o epic e arrasta os ficheiros, ou usa o clipe, \btn{Attach}). Sempre que o contrato mudar, anexamos a nova versão e comentamos o que mudou e porquê.
   \item \textbf{Artifacts:} ligações para o repositório do GitHub, os wireframes, os mockups e os diagramas. Podes colar os links na descrição. Para cada artefacto grande, cria um cartão filho (por exemplo \textit{Wireframes v1}) com o link ou o ficheiro.
-  \item \textbf{Daily SCRUM:} um cartão filho por sprint para os dailies (\textit{Daily – Sprint 1}) e um para cada cerimónia (\textit{Planning – Sprint 1}, \textit{Review – Sprint 1}, \textit{Retrospetiva – Sprint 1}). São só registos: \textbf{não os metas dentro do sprint}.
+  \item \textbf{Daily SCRUM:} um cartão filho por sprint para os dailies (\textit{Daily – Sprint 1}) e um para cada cerimónia (\textit{Planning – Sprint 1}, \textit{Review – Sprint 1}, \textit{Retrospetiva – Sprint 1}). Cada um fica dentro do sprint a que pertence e passa a \textit{Feito} quando a reunião acontece e fica registada.
 \end{itemize}
 
 Para criar um cartão filho dentro de um epic, abre o epic e usa o botão para adicionar um cartão filho (\textit{child}). Se não o encontrares, cria o cartão normalmente e escolhe o epic no campo \btn{Parent}.
 
 \begin{tcolorbox}[dica, title={Dica: links úteis na barra lateral}]
-  Se na barra lateral aparecer \btn{Add shortcut} ou \btn{Add link}, usa-o para pôr lá o link do repositório do GitHub. Fica sempre à mão. Se o teu Jira também tiver \btn{Pages} ou algo parecido, podes escrever lá as atas em vez de usar cartões.
+  Se na barra lateral aparecer \btn{Add shortcut} ou \btn{Add link}, usa-o para pôr lá o link do repositório do GitHub. Fica sempre à mão. O Jira criou também um espaço no Confluence com o mesmo nome do projeto (\texttt{EDS}). Tem páginas para o contrato, a equipa, o SCRUM e os artefactos. As atas ficam nos cartões e as páginas servem de resumo.
 \end{tcolorbox}
 
 \subsection{Ligar o Jira ao GitHub (recomendado)}
@@ -252,6 +252,29 @@ Quando a ligação está feita, o Jira mostra dentro de cada cartão as branches
 \end{enumerate}
 
 Se o assistente der problemas, não bloqueia nada: o que importa é seguirmos a regra do ponto 5 (escrever a key do cartão nos nomes). A ligação só torna isso visível no Jira.
+
+\subsection{Montar o painel (opcional)}
+
+O enunciado fala em criar um «dashboard» com as secções \textit{Product Backlog}, \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Artifacts}, \textit{Daily SCRUM} e \textit{Team Contract}. Uma forma de o ter num só ecrã é guardar um filtro por secção e pôr cada um num painel.
+
+\begin{enumerate}
+  \item No Jira, abre a pesquisa avançada (\btn{Filters}), cola a pesquisa da tabela, carrega em \btn{Save as} e dá o nome da secção.
+  \item Depois abre \btn{Dashboards}, cria um painel novo e acrescenta, para cada filtro, o gadget \btn{Filter Results}.
+\end{enumerate}
+
+\tabelaini
+\begin{tabularx}{\textwidth}{N{3.2cm} Y}
+  \rowcolor{azul} \th{Secção} & \th{Pesquisa} \\
+  Product Backlog & \small\texttt{project = EDS AND issuetype != Epic AND sprint is EMPTY AND statusCategory != Done ORDER BY Rank} \\
+  To Do & \small\texttt{project = EDS AND sprint in openSprints() AND statusCategory = 'To Do'} \\
+  In Progress & \small\texttt{project = EDS AND sprint in openSprints() AND statusCategory = 'In Progress'} \\
+  Done & \small\texttt{project = EDS AND sprint in openSprints() AND statusCategory = Done} \\
+  Artifacts & \small\texttt{project = EDS AND parent = EDS-2} \\
+  Daily SCRUM & \small\texttt{project = EDS AND parent = EDS-3} \\
+  Team Contract & \small\texttt{project = EDS AND parent = EDS-1} \\
+  \bottomrule
+\end{tabularx}
+\tabelafim
 
 %--------------------------------------------------------------------
 \section{Conhecer o ecrã}
@@ -508,7 +531,7 @@ A key tem de estar em maiúsculas (\texttt{EDS-12}, e não \texttt{eds-12}). Dep
   \item Criar o projeto com o modelo Scrum, \textit{team-managed}, e escolher a key.
   \item Convidar a equipa (\textit{Member}) e os docentes (\textit{Viewer}).
   \item Dar \textit{Administrator} a mais uma pessoa.
-  \item Criar os três epics: \textit{Team Contract}, \textit{Artifacts} e \textit{Daily SCRUM}.
+  \item Criar os epics: \textit{Team Contract}, \textit{Artifacts}, \textit{Daily SCRUM}, \textit{Presenças e faltas} e \textit{Equipa e papéis}.
   \item Anexar o contrato e o registo de uso de IA ao epic \textit{Team Contract}.
   \item Ligar ao GitHub (opcional) e pôr o link do repositório no epic \textit{Artifacts}.
 \end{itemize}
@@ -531,7 +554,7 @@ A key tem de estar em maiúsculas (\texttt{EDS-12}, e não \texttt{eds-12}). Dep
   \item Backlog ordenado pelo Product Owner.
   \item Sprint criado, com datas oficiais, objetivo, PO e SM.
   \item Cartões do sprint com responsável.
-  \item Cartões \textit{Planning}, \textit{Daily}, \textit{Review} e \textit{Retrospetiva} criados dentro do epic \textit{Daily SCRUM}.
+  \item Cartões \textit{Planning}, \textit{Daily}, \textit{Review} e \textit{Retrospetiva} criados dentro do epic \textit{Daily SCRUM} e do sprint.
 \end{itemize}
 
 %--------------------------------------------------------------------
