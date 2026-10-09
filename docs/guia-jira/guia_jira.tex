@@ -95,171 +95,351 @@
   {\footnotesize\bfseries\MakeUppercase{Universidade da Beira Interior}}\\[2pt]
   {\footnotesize Faculdade de Engenharia \textperiodcentered{} Departamento de Informática}\\[16pt]
   {\fontsize{28}{32}\selectfont\bfseries Guia de Jira}\\[4pt]
-  {\large Do zero ao primeiro sprint \textperiodcentered{} Engenharia de Software 2026/27}
+  {\large Como começar a usar o nosso Jira \textperiodcentered{} Engenharia de Software 2026/27}
 \end{tcolorbox}
 
-Nenhum de nós usou Jira antes, e isso não é problema. Este guia explica tudo desde o princípio: o que é o Jira, como o montar, como usá-lo todos os dias e o que tem de ficar lá registado para o Scrum contar na avaliação. Não precisas de ler tudo de seguida. Faz a parte 2 uma vez (uma pessoa só) e volta à parte 4 sempre que tiveres dúvidas durante um sprint.
+O Jira da equipa já está montado. Este guia é para quem vai usá-lo todos os dias e nunca o tinha visto: como entrar, onde está cada coisa, o que fazer em cada situação e o que tem de ficar escrito lá para o Scrum contar na avaliação. Não precisas de ler tudo. Faz primeiro os «primeiros 15 minutos» e volta aqui sempre que tiveres uma dúvida.
 
 \begin{tcolorbox}[caixa, title={O essencial em poucas linhas}, colback=azulclaro!60]
   \begin{itemize}
     \item Cada coisa que há para fazer é um \textbf{cartão}. Se não está num cartão, para o Jira não existe.
-    \item Os cartões vivem no \textbf{Backlog}. No Planning escolhemos quais entram no sprint.
-    \item Durante o sprint trabalhamos no \textbf{Board}: arrastas o cartão de \textit{To Do} para \textit{In Progress} e, no fim, para \textit{Done}.
-    \item Todos os cartões têm responsável, estimativa e descrição clara.
-    \item Os registos do Scrum (dailies, planning, review, retrospetiva) também ficam no Jira. O enunciado pede essas provas.
-    \item O que decidirmos fica escrito. O que ficar só numa conversa de WhatsApp perde-se.
+    \item O trabalho do sprint está no \textbf{Quadro}, em três colunas: \textit{A fazer}, \textit{Fazendo} e \textit{Feito}.
+    \item Pegas num cartão, pões lá o teu nome, arrastas para \textit{Fazendo} e, quando estiver mesmo pronto, para \textit{Feito}.
+    \item Escreves a tua daily num comentário, todos os dias úteis.
+    \item O que decidimos fica escrito no Jira. O que fica só no WhatsApp perde-se.
+    \item Dúvidas de acesso ou de funcionamento: fala com o Tiago, que é o administrador do Jira.
   \end{itemize}
 \end{tcolorbox}
 
 %--------------------------------------------------------------------
-\section{Antes de começar}
+\section{Os primeiros 15 minutos}
 
-\subsection{O que é o Jira}
-
-O Jira é uma ferramenta para organizar trabalho em equipa. Pensa num quadro de post-its muito organizado: cada post-it é um cartão com uma tarefa, alguém responsável e um estado (por fazer, a fazer, feito). O Jira junta a isso tudo o que o Scrum precisa: lista de prioridades (backlog), sprints, quadro e relatórios.
-
-\subsection{Os nomes mudam, a ideia é a mesma}
-
-O Jira muda os nomes das coisas de vez em quando e pode aparecer em português ou em inglês. Se um menu tiver outro nome, procura pela função e não pela palavra exata. Neste guia usamos estes nomes:
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{2.6cm} L{4.4cm} Y}
-  \rowcolor{azul} \th{No guia} & \th{Pode aparecer como} & \th{O que é} \\
-  Projeto & \textit{Project}, \textit{Space} (espaço) & A «casa» onde vive tudo o que é da equipa. \\
-  Cartão & \textit{Issue}, \textit{Work item} & Uma coisa para fazer ou para registar. \\
-  Tipo de cartão & \textit{Issue type}, \textit{Work type} & Epic, Story, Task, Bug ou Subtask. \\
-  Backlog & \textit{Backlog} & A lista de tudo o que falta fazer, por ordem de prioridade. \\
-  Sprint & \textit{Sprint} & Um período fechado, com objetivo, em que fazemos parte do backlog. \\
-  Quadro & \textit{Board} & As colunas \textit{To Do}, \textit{In Progress} e \textit{Done} com os cartões do sprint. \\
-  Responsável & \textit{Assignee} & A pessoa que vai fazer o cartão. \\
-  Estimativa & \textit{Story point estimate} & Um número que mede o esforço do cartão. \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-\begin{tcolorbox}[dica, title={Dica: mudar a língua do Jira}]
-  Clica na tua fotografia ou nas iniciais, no canto superior direito, e procura as definições pessoais (\textit{Personal settings} ou \textit{Account settings}). Lá há uma opção de idioma. Recomendamos inglês, porque é como o enunciado e os slides falam, mas cada um escolhe o que lhe for mais confortável.
-\end{tcolorbox}
-
-%--------------------------------------------------------------------
-\section{Montar o Jira (só uma vez)}
-
-Esta parte faz-se uma única vez e por \textbf{uma pessoa}. Sugerimos o Product Owner do Sprint 1. Os restantes só precisam de aceitar o convite no ponto 2.3.
-
-\subsection{Criar a conta e o site}
+\subsection{Entrar no Jira}
 
 \begin{enumerate}
-  \item Abre o site do Jira (\texttt{atlassian.com/software/jira}) e carrega no botão para começar de graça (\btn{Get it free}).
-  \item Regista-te com um email que não vás perder. Uma conta pessoal serve; o email da UBI também.
-  \item O Jira pede um nome para o \textbf{site}. Fica com o endereço \texttt{nome.atlassian.net}. Escolhe algo simples e sem nomes de pessoas, por exemplo o nome da equipa.
-  \item Escolhe o produto \textbf{Jira} e o plano \textbf{Free}. Não deves precisar de cartão de crédito. Se pedirem, pára e confirma que escolheste mesmo o plano gratuito.
-  \item Guarda bem o email e a palavra-passe desta conta. É a conta «dona» do site.
+  \item Procura na tua caixa de email uma mensagem da Atlassian com o convite do Tiago para o Jira. Se não a vires, olha também para o spam.
+  \item Abre-a e carrega no botão para aceitar o convite. Se ainda não tens conta Atlassian, o Jira pede-te para a criares: usa o teu email e escolhe uma palavra-passe só tua, que não partilhas com ninguém.
+  \item Depois de entrares, abre o endereço do nosso Jira: \texttt{ubi-team-ebw5rr6y.atlassian.net}.
+  \item No menu \btn{Projetos}, escolhe \textit{Engenharia de Software}. A chave do projeto é \texttt{EDS}, por isso os cartões chamam-se \texttt{EDS-1}, \texttt{EDS-2}, e assim por diante.
+  \item Guarda o endereço nos favoritos do browser, ou marca o projeto com a estrela, para o encontrares sempre à mão.
 \end{enumerate}
 
-\begin{tcolorbox}[atencao, title={Atenção}]
-  O plano gratuito aceita até 10 utilizadores. Somos 5 alunos e mais os docentes, por isso chega. A Atlassian pode desativar sites gratuitos que fiquem muito tempo sem atividade, por isso entrem no Jira regularmente.
+\begin{tcolorbox}[atencao, title={Não recebeste o convite?}]
+  Diz ao Tiago o email com que queres entrar. Ele convida-te de novo em \btn{Acesso}, nas definições do projeto. Quando o convite chega, tem de ser aceite com esse mesmo email.
 \end{tcolorbox}
 
-\subsection{Criar o projeto}
-
-\begin{enumerate}
-  \item No Jira, abre o menu \btn{Projects} (ou \btn{Spaces}) e escolhe \btn{Create project} (ou \btn{Create space}).
-  \item Escolhe o modelo \btn{Scrum}.
-  \item Se o Jira perguntar o tipo, escolhe \btn{Team-managed} (gerido pela equipa). É mais simples de configurar e é o que recomendamos.
-  \item Dá o nome \textit{Engenharia de Software} ou outro que o grupo prefira.
-  \item Escolhe a \textbf{key}: 2 a 5 letras maiúsculas. A nossa é \texttt{EDS}. É ela que dá o código aos cartões (\texttt{EDS-1}, \texttt{EDS-2}, \dots) e que depois usamos nas branches do GitHub. Pensa bem, porque é difícil mudar mais tarde.
-  \item No acesso, deixa o projeto \textbf{Private}, para só entrar quem convidarmos.
-  \item Cria. O Jira abre no Backlog.
-\end{enumerate}
-
-\begin{tcolorbox}[dica, title={Dica: se não vês Backlog ou Sprints}]
-  Abre as definições do projeto (\btn{Space settings} ou \btn{Project settings}, na barra lateral) e procura \btn{Features}. Liga \btn{Backlog} e \btn{Sprints}. O modelo Scrum costuma trazer isto ligado.
-\end{tcolorbox}
-
-\subsection{Convidar a equipa e os docentes}
-
-O enunciado exige que os docentes tenham acesso ao Jira, por isso este passo conta para a nota.
-
-\begin{enumerate}
-  \item Na barra lateral, abre as definições do projeto e escolhe \btn{Access}.
-  \item Carrega em \btn{Add people}, escreve o email de cada pessoa e escolhe a função.
-  \item Cada pessoa recebe um email com o convite. Tem de o aceitar e, se não tiver conta Atlassian, criar uma. Se o email não chegar, vê o spam.
-  \item No fim, cada um confirma que consegue abrir o Backlog e o Board.
-\end{enumerate}
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{2.8cm} Y L{4.6cm}}
-  \rowcolor{azul} \th{Função} & \th{O que pode fazer} & \th{Quem} \\
-  Administrator & Mexer nas definições, nos acessos e até apagar o projeto. & Só duas pessoas: o PO e o SM do Sprint 1. \\
-  Member & Criar, editar, comentar e mover cartões. & Toda a equipa. \\
-  Viewer & Ver o projeto e os cartões, e pouco mais. & Os docentes. Se quiserem comentar, passam a Member. \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-Pede aos docentes (Nuno Pombo e Carlos Cunha) o email que usam para o convite.
-
-\begin{tcolorbox}[atencao, title={Atenção}]
-  Quanto menos administradores, melhor: quem é Administrator pode apagar o projeto inteiro. Duas pessoas chegam e assim há sempre uma de reserva.
-\end{tcolorbox}
-
-\subsection{Montar a estrutura que o enunciado pede}
-
-O enunciado sugere sete «quadros»: \textit{Product Backlog}, \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Artifacts}, \textit{Daily SCRUM} e \textit{Team Contract}. Os primeiros quatro já existem no Jira. Para os outros três usamos \textbf{epics}, que funcionam como pastas.
-
-\tabelaini
-\begin{tabularx}{\textwidth}{L{4.2cm} Y}
-  \rowcolor{azul} \th{O enunciado pede} & \th{Como fazemos no Jira} \\
-  Product Backlog & O ecrã \btn{Backlog}. Já existe. \\
-  To Do, In Progress, Done & As três colunas do \btn{Board}. Já existem. \\
-  Team Contract & Um epic chamado \textit{Team Contract}. \\
-  Artifacts & Um epic chamado \textit{Artifacts}. \\
-  Daily SCRUM & Um epic chamado \textit{Daily SCRUM}. \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-Para criar cada epic:
-
-\begin{enumerate}
-  \item Carrega em \btn{Create} (botão azul no topo).
-  \item Em tipo de cartão, escolhe \btn{Epic}.
-  \item Escreve o nome exatamente como na tabela e carrega em \btn{Create}.
-\end{enumerate}
-
-O que pomos em cada um:
+\subsection{Acertar o perfil}
 
 \begin{itemize}
-  \item \textbf{Team Contract:} na descrição, uma linha a dizer desde quando está em vigor. Anexa o PDF do contrato e o do Registo de Uso de IA (abre o epic e arrasta os ficheiros, ou usa o clipe, \btn{Attach}). Sempre que o contrato mudar, anexamos a nova versão e comentamos o que mudou e porquê.
-  \item \textbf{Artifacts:} ligações para o repositório do GitHub, os wireframes, os mockups e os diagramas. Podes colar os links na descrição. Para cada artefacto grande, cria um cartão filho (por exemplo \textit{Wireframes v1}) com o link ou o ficheiro.
-  \item \textbf{Daily SCRUM:} um cartão filho por sprint para os dailies (\textit{Daily – Sprint 1}) e um para cada cerimónia (\textit{Planning – Sprint 1}, \textit{Review – Sprint 1}, \textit{Retrospetiva – Sprint 1}). Cada um fica dentro do sprint a que pertence e passa a \textit{Feito} quando a reunião acontece e fica registada.
+  \item \textbf{O teu nome.} O Jira mostra o nome que está na tua conta Atlassian, não o do contrato. Para toda a gente te reconhecer quando atribui cartões, muda-o para o teu nome real: clica na tua fotografia (ou nas iniciais), no canto superior direito, e procura a gestão da conta e do perfil.
+  \item \textbf{A língua.} O nosso projeto está em português. Se preferires ver o Jira em inglês, nas definições pessoais da conta há uma opção de idioma. Os botões mudam de nome, mas fazem o mesmo (há uma tabela com os dois no ponto 2.2).
 \end{itemize}
 
-Para criar um cartão filho dentro de um epic, abre o epic e usa o botão para adicionar um cartão filho (\textit{child}). Se não o encontrares, cria o cartão normalmente e escolhe o epic no campo \btn{Parent}.
+\subsection{Três coisas para fazeres já}
 
-\begin{tcolorbox}[dica, title={Dica: links úteis na barra lateral}]
-  Se na barra lateral aparecer \btn{Add shortcut} ou \btn{Add link}, usa-o para pôr lá o link do repositório do GitHub. Fica sempre à mão. O Jira criou também um espaço no Confluence com o mesmo nome do projeto (\texttt{EDS}). Tem páginas para o contrato, a equipa, o SCRUM e os artefactos. As atas ficam nos cartões e as páginas servem de resumo.
+São tarefas a sério, não exercícios. Ajudam-te a perceber o Jira e adiantam trabalho da equipa.
+
+\begin{itemize}[label=\textcolor{azul}{$\square$}]
+  \item Abre o \btn{Quadro} e vê as três colunas. Procura os cartões que já têm o teu nome (se houver).
+  \item Abre o cartão \textbf{EDS-24, Membros da equipa}, clica na descrição para a editar e escreve o teu número de aluno ao lado do teu nome.
+  \item Abre o cartão \textbf{EDS-16, Certificado Scrum Foundation Professional}. Anexa lá o teu certificado, ou envia-o ao Tiago, para ir para a pasta \texttt{certificados-scrum} do repositório.
+  \item Lê o contrato de equipa: está anexado ao cartão \textbf{EDS-1, Team Contract}, e o resumo está na página \textit{Team Contract} do Confluence.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Conhecer o nosso Jira}
+
+\subsection{A barra lateral}
+
+Quando entras no projeto, a barra do lado esquerdo tem os sítios principais. Os nomes podem variar um pouco de uma versão para outra.
+
+\tabelaini
+\begin{tabularx}{\textwidth}{N{3cm} Y}
+  \rowcolor{azul} \th{Sítio} & \th{Para que serve} \\
+  Resumo & Visão geral do projeto e da atividade recente. \\
+  Linha do tempo & Os epics numa linha do tempo, tipo roadmap. \\
+  Backlog & A lista de tudo o que falta fazer e o planeamento dos sprints. É o ecrã do Product Owner. \\
+  Quadro & O sprint em curso, com as colunas. É onde passamos o dia a dia. \\
+  Relatórios & Gráficos do sprint (por exemplo o \textit{burndown}). Servem de prova na Review. \\
+  Definições & Acessos e funcionalidades do projeto. Só os administradores mexem aqui. \\
+  \bottomrule
+\end{tabularx}
+\tabelafim
+
+\begin{tcolorbox}[dica, title={Dica: atalhos de teclado}]
+  Dentro do Jira, a tecla \texttt{c} costuma abrir a criação de um cartão e a tecla \texttt{/} abre a pesquisa. A tecla \texttt{[} esconde e mostra a barra lateral.
 \end{tcolorbox}
 
-\subsection{Ligar o Jira ao GitHub (recomendado)}
+\subsection{As palavras do Jira}
 
-Quando a ligação está feita, o Jira mostra dentro de cada cartão as branches, os commits e os \textit{pull requests} que lhe dizem respeito. Isto ajuda a mostrar a rastreabilidade entre o que pedimos e o que foi feito.
+\tabelaini
+\begin{tabularx}{\textwidth}{N{2.8cm} L{3.4cm} Y}
+  \rowcolor{azul} \th{Neste guia} & \th{Em inglês} & \th{O que é} \\
+  Cartão & \textit{Issue}, \textit{Work item} & Uma coisa para fazer ou para registar. \\
+  Tipo de cartão & \textit{Issue type} & \textit{Tarefa}, \textit{História}, \textit{Bug}, \textit{Subtask} ou \textit{Epic}. \\
+  Epic & \textit{Epic} & Um cartão grande que agrupa outros, como uma pasta. \\
+  Backlog & \textit{Backlog} & A lista do que falta fazer, por ordem de prioridade. \\
+  Sprint & \textit{Sprint} & Um período fechado, com objetivo, em que fazemos parte do backlog. \\
+  Quadro & \textit{Board} & As colunas do sprint em curso. \\
+  Responsável & \textit{Assignee} & A pessoa que vai fazer o cartão. \\
+  Estimativa & \textit{Story point estimate} & Um número que mede o esforço do cartão. \\
+  Etiqueta & \textit{Label} & Uma marca livre para filtrar cartões. \\
+  Sinalizar & \textit{Flag} & Destacar um cartão que está bloqueado. \\
+  \bottomrule
+\end{tabularx}
+\tabelafim
+
+\subsection{Como é um cartão}
+
+Quando abres um cartão, vês estes campos. Alguns preenches tu, outros preenche-os o Jira ou o Planning.
+
+\tabelaini
+\begin{tabularx}{\textwidth}{N{3.3cm} Y L{3.3cm}}
+  \rowcolor{azul} \th{Campo} & \th{O que é} & \th{Quem preenche} \\
+  Chave (ex.: EDS-13) & O código único do cartão. Usamo-lo no GitHub. & O Jira \\
+  Resumo & O título, curto e claro. & Quem cria \\
+  Descrição & O que é para fazer, a user story e os critérios de aceitação. & Quem cria, com o PO \\
+  Estado & Em que coluna está: \textit{A fazer}, \textit{Fazendo} ou \textit{Feito}. & Quem trabalha nele \\
+  Responsável & Quem vai fazer o cartão. Uma só pessoa. & No Planning, ou tu ao pegares nele \\
+  Story point estimate & A estimativa do esforço. & A equipa, em conjunto \\
+  Principal (\textit{Parent}) & O epic a que pertence. & Quem cria \\
+  Sprint & O sprint em que está. & No Planning \\
+  Etiquetas & Marcas livres, como \textit{documento} ou \textit{scrum}. & Quem cria \\
+  Comentários & A conversa sobre o cartão. & Todos \\
+  Anexos & Ficheiros anexados: capturas, PDF, imagens. & Todos \\
+  \bottomrule
+\end{tabularx}
+\tabelafim
+
+\subsection{Como o nosso projeto está organizado}
+
+O enunciado pede um Jira com várias secções. No nosso, algumas são ecrãs do próprio Jira e outras são epics com cor própria:
+
+\tabelaini
+\begin{tabularx}{\textwidth}{L{3.6cm} Y}
+  \rowcolor{azul} \th{O enunciado pede} & \th{Onde está} \\
+  Product Backlog & O ecrã \btn{Backlog}. \\
+  To Do, In Progress, Done & As colunas do \btn{Quadro}: \textit{A fazer}, \textit{Fazendo}, \textit{Feito}. \\
+  Team Contract & Epic \textbf{EDS-1} (roxo). Tem o contrato e o registo de uso de IA. \\
+  Artifacts & Epic \textbf{EDS-2} (azul-petróleo). Links e cartões dos wireframes, mockups, arquitetura, modelação e repositório. \\
+  Daily SCRUM & Epic \textbf{EDS-3} (verde). Os registos de Daily, Planning, Review e Retrospetiva. \\
+  Presenças e faltas & Epic \textbf{EDS-17} (laranja). Um cartão por sprint. \\
+  Equipa e papéis & Epic \textbf{EDS-18} (azul). Membros, rotação de PO e SM e certificados. \\
+  Áreas do produto & Epics \textbf{EDS-48 a EDS-54} (vermelho), copiados do enunciado. \\
+  \bottomrule
+\end{tabularx}
+\tabelafim
+
+Em cada sprint há ainda cinco cartões de registo: \textit{Daily}, \textit{Planning}, \textit{Review}, \textit{Retrospetiva} e \textit{Presenças}. Estão dentro do sprint a que pertencem e passam a \textit{Feito} quando a reunião acontece e fica registada.
+
+Os cartões têm etiquetas para filtrar: \textit{scrum}, \textit{presencas}, \textit{contrato}, \textit{ia}, \textit{documento}, \textit{equipa}, \textit{produto} e \textit{enunciado}.
+
+\begin{tcolorbox}[dica, title={Também há o Confluence}]
+  O Jira criou um espaço no Confluence com o nome \textit{Engenharia de Software}. Tem uma página inicial, o resumo do contrato, a equipa e os papéis, o SCRUM e os artefactos. Serve para leres as coisas com calma. O trabalho do dia a dia faz-se no Jira.
+\end{tcolorbox}
+
+\subsection{As colunas e as regras do quadro}
+
+\begin{itemize}
+  \item \textbf{A fazer:} está no sprint, mas ainda ninguém pegou nele.
+  \item \textbf{Fazendo:} alguém está a trabalhar nele. Fica aqui até o \textit{pull request} ser aprovado e integrado.
+  \item \textbf{Feito:} cumpre a nossa Definição de Concluído e o Product Owner aceitou.
+\end{itemize}
+
+O contrato tem duas regras para o quadro: ninguém tem mais de dois cartões abertos ao mesmo tempo, e um cartão só entra em \textit{Fazendo} depois de ter responsável e estimativa. No início ainda estamos a estimar, por isso usamos o bom senso e perguntamos no grupo.
+
+%--------------------------------------------------------------------
+\section{O dia a dia, passo a passo}
+
+\subsection{Encontrar os teus cartões}
+
+No \btn{Quadro}, em cima, vês as fotografias (ou iniciais) das pessoas da equipa. Carrega na tua e o quadro mostra só os cartões que são teus. Se quiseres uma lista, abre a pesquisa avançada (\btn{Filtros}) e cola:
+
+\begin{codigo}
+project = EDS AND assignee = currentUser() AND statusCategory != Done
+\end{codigo}
+
+\subsection{Pegar num cartão}
 
 \begin{enumerate}
-  \item No Jira, abre as aplicações (\btn{Apps}, ou \btn{Explore more apps}) e procura \textbf{GitHub for Jira}.
-  \item Instala a aplicação (\btn{Get app}) e segue o assistente: \btn{Connect GitHub organization}, entra no GitHub e escolhe o repositório da equipa.
-  \item Quem faz esta ligação tem de ter permissões no repositório, por isso é quem o criou.
+  \item Abre o cartão e carrega em \btn{Atribuir a mim}, ao lado de \textit{Responsável}.
+  \item Arrasta-o no quadro de \textit{A fazer} para \textit{Fazendo}. Também podes mudar o estado no botão que está no topo do cartão.
+  \item Se ainda não tem estimativa, diz na conversa do grupo, para a equipa estimar.
 \end{enumerate}
 
-Se o assistente der problemas, não bloqueia nada: o que importa é seguirmos a regra do ponto 5 (escrever a key do cartão nos nomes). A ligação só torna isso visível no Jira.
+\subsection{Atualizar enquanto trabalhas}
 
-\subsection{Montar o painel (opcional)}
+\begin{itemize}
+  \item \textbf{Comenta} o que foste fazendo, mesmo que seja pouco. Quem abrir o cartão percebe logo onde estás.
+  \item \textbf{Anexa} capturas de ecrã, ficheiros e links. Quanto mais claro, mais fácil é o Product Owner aceitar na Review.
+  \item \textbf{Menciona} colegas com \texttt{@nome} para os chamar à conversa. Eles recebem um aviso.
+  \item Se o trabalho tem partes distintas, cria \textbf{subtarefas} e atribui cada uma a quem a vai fazer.
+\end{itemize}
 
-O enunciado fala em criar um «dashboard» com as secções \textit{Product Backlog}, \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Artifacts}, \textit{Daily SCRUM} e \textit{Team Contract}. Uma forma de o ter num só ecrã é guardar um filtro por secção e pôr cada um num painel.
+\subsection{Estás bloqueado?}
+
+Abre o cartão, escreve num comentário o que te está a impedir e menciona quem pode ajudar. Podes ainda destacá-lo com \btn{Sinalizar}, no menu de três pontos do cartão: fica realçado no quadro. Avisa também na daily. Pedir ajuda cedo não é falhar.
+
+\subsection{Acabar um cartão}
+
+Só passes um cartão a \textit{Feito} quando:
+
+\begin{itemize}[label=\textcolor{azul}{$\square$}]
+  \item cumpre os critérios de aceitação combinados com o Product Owner;
+  \item o código foi revisto por outra pessoa da equipa (\textit{pull request} aprovado);
+  \item tem testes e eles passam;
+  \item está integrado na \texttt{main} sem quebrar nada;
+  \item a documentação está atualizada e o Product Owner aceitou.
+\end{itemize}
+
+Se tens dúvidas de que está pronto, pergunta ao Product Owner antes de o arrastares.
+
+\subsection{Criar um cartão novo}
 
 \begin{enumerate}
-  \item No Jira, abre a pesquisa avançada (\btn{Filters}), cola a pesquisa da tabela, carrega em \btn{Save as} e dá o nome da secção.
-  \item Depois abre \btn{Dashboards}, cria um painel novo e acrescenta, para cada filtro, o gadget \btn{Filter Results}.
+  \item Carrega em \btn{Criar}, o botão azul no topo.
+  \item Escolhe o tipo: \btn{Tarefa} para trabalho técnico ou de organização, \btn{História} para uma user story, \btn{Bug} para um erro.
+  \item Escreve o \btn{Resumo}: curto, no formato «verbo + coisa». Por exemplo, \textit{Recuperar palavra-passe}.
+  \item Na \btn{Descrição}, explica o que é para fazer. Se for uma história, usa «Como \dots, quero \dots, para \dots» e acrescenta os critérios de aceitação.
+  \item Em \btn{Principal}, escolhe o epic a que pertence.
+  \item Carrega em \btn{Criar}.
+\end{enumerate}
+
+Deixa o cartão sem sprint e sem responsável: o Product Owner trata da ordem no Backlog e, no Planning, decide-se quem faz o quê. Nunca apagamos cartões. Se foi engano, avisa o Scrum Master.
+
+\begin{tcolorbox}[dica, title={Dica: caixas de verificação}]
+  No editor da descrição, escreve \texttt{[]} seguido de um espaço para criar uma lista com caixas de seleção. É útil para os critérios de aceitação.
+\end{tcolorbox}
+
+\subsection{Estimar com story points}
+
+Nos Plannings estimamos o esforço de cada cartão em \textit{story points}. Não são horas: medem quanto trabalho um cartão dá em comparação com os outros.
+
+\begin{itemize}
+  \item Usamos a escala \textbf{1, 2, 3, 5, 8 e 13}.
+  \item Fazemos \textit{planning poker} simples: cada um pensa num número e todos o mostram ao mesmo tempo. Se houver muita diferença, quem escolheu o mais baixo e o mais alto explica porquê, e repete-se.
+  \item Um cartão com mais de 13 pontos é grande demais. Parte-se em cartões mais pequenos.
+\end{itemize}
+
+Para registar, abre o cartão e preenche \btn{Story point estimate}.
+
+\subsection{Escrever a daily}
+
+Fazemos a daily como o contrato diz: 15 minutos, com o Quadro aberto. A seguir, \textbf{cada um escreve o seu registo} como comentário no cartão \textit{Daily – Sprint N} do sprint em curso (por exemplo o \textbf{EDS-4}, no Sprint 1). Cola este modelo:
+
+\begin{codigo}
+Dia 14/10 - Nome\\
+Feito: o que fiz desde a última daily\\
+A fazer: o que vou fazer hoje\\
+Bloqueios: o que me está a impedir (ou 'nenhum')
+\end{codigo}
+
+Quem não pôde estar escreve na mesma, no mesmo dia. O Scrum Master confirma, até ao fim do dia, que está tudo escrito.
+
+\subsection{Registar uma falta}
+
+As faltas às aulas e às reuniões ficam no cartão \textit{Presenças – Sprint N} (o \textbf{EDS-19}, no Sprint 1). Cada falta é um comentário:
+
+\begin{codigo}
+Data - Aula ou reunião - Quem faltou - Avisou antes? (sim ou não) - Motivo
+\end{codigo}
+
+Quem falta também escreve o seu contributo no Jira nesse dia, como diz o contrato. No fim do sprint, o Scrum Master faz o resumo no mesmo cartão.
+
+%--------------------------------------------------------------------
+\section{Jira e GitHub juntos}
+
+Cada cartão tem uma chave, por exemplo \texttt{EDS-13}. Se a escrevermos nos sítios certos, o Jira liga o trabalho ao cartão e a equipa percebe o que foi feito para cada coisa. A única branch do repositório é a \texttt{main}.
+
+\begin{itemize}
+  \item \textbf{Branch:} uma por cartão, a começar pela chave em maiúsculas: \texttt{feature/EDS-13-personas}.
+  \item \textbf{Commit:} mensagem curta que diz o que mudou, com a chave no princípio: \texttt{EDS-13 acrescenta as personas}.
+  \item \textbf{Pull request:} a chave vai no título e a descrição diz o que foi feito. Outra pessoa da equipa revê antes de integrar.
+\end{itemize}
+
+\begin{codigo}
+git switch main\\
+git pull\\
+git switch -c feature/EDS-13-personas
+\end{codigo}
+
+A chave tem de estar em maiúsculas (\texttt{EDS-13}, e não \texttt{eds-13}). Passwords, chaves de API e dados pessoais nunca entram no repositório.
+
+%--------------------------------------------------------------------
+\section{Se és Product Owner ou Scrum Master}
+
+Cada um de nós é Product Owner num sprint e Scrum Master noutro. A rotação está no contrato e na página \textit{Equipa e papéis} do Confluence. Isto é o que cada papel faz no Jira.
+
+\subsection{Product Owner}
+
+\begin{itemize}
+  \item \textbf{Ordenar o Backlog.} No \btn{Backlog}, arrasta os cartões: o mais importante em cima. Só o Product Owner mexe na ordem; os outros sugerem e ele decide, depois de ouvir a equipa.
+  \item \textbf{Escrever ou rever as user stories} e os critérios de aceitação.
+  \item \textbf{Refinement}, a meio da semana: completar descrições, estimar e partir cartões grandes. Uma nota curta no cartão \textit{Planning} chega.
+  \item \textbf{Aceitar ou recusar} os cartões na Review. O que não for aceite volta para \textit{A fazer} ou \textit{Fazendo}.
+\end{itemize}
+
+\subsection{Scrum Master}
+
+\begin{enumerate}
+  \item \textbf{Planning.} No \btn{Backlog}, confirma que o sprint existe (os cinco já estão criados). Com a equipa, arrasta para ele os cartões escolhidos e define o \btn{Responsável} de cada um.
+  \item Carrega em \btn{Iniciar sprint}. Confirma o nome, ajusta as \textbf{datas} para as oficiais (o Jira preenche com o momento em que clicas) e confirma o objetivo do sprint, que já traz o PO e o SM.
+  \item Preenche a ata no cartão \textit{Planning – Sprint N}: data, quem esteve, objetivo e cartões escolhidos. Junta uma captura do ecrã do sprint.
+  \item \textbf{Durante o sprint}, confirma que as dailies estão escritas até ao fim de cada dia.
+  \item \textbf{Review.} Preenche o cartão \textit{Review – Sprint N}: se o objetivo foi cumprido, o que o PO aceitou e o que volta ao backlog. Anexa capturas do Quadro e dos \btn{Relatórios}.
+  \item \textbf{Retrospetiva.} Escreve no cartão \textit{Retrospetiva – Sprint N} o que correu bem, o que correu mal e duas ou três melhorias, cada uma com responsável.
+  \item \textbf{Fechar.} Carrega em \btn{Concluir sprint}. O Jira pergunta o que fazer aos cartões que não ficaram \textit{Feito}: escolhe o \btn{Backlog}. Como o contrato diz, o que não ficou pronto volta ao Product Backlog e o sprint não se prolonga.
+  \item Passa a \textit{Feito} os cartões de registo (Daily, Planning, Review, Retrospetiva e Presenças) que já estão preenchidos.
+\end{enumerate}
+
+\begin{tcolorbox}[atencao, title={Não inventamos registos}]
+  Se um cartão de registo está vazio, não o passes a \textit{Feito}. Os docentes veem o histórico: o que escrevemos tem de ter acontecido mesmo, no dia em que aconteceu.
+\end{tcolorbox}
+
+\subsection{O que tem de ficar no Jira em cada sprint}
+
+O enunciado avalia o Scrum através do que fica registado:
+
+\begin{itemize}[label=\textcolor{azul}{$\square$}]
+  \item Sprint com nome, datas oficiais e objetivo, com o PO e o SM indicados.
+  \item Cartões do sprint com responsável, estimativa e descrição.
+  \item Ata do Planning, com captura do ecrã.
+  \item Um registo diário de cada pessoa, em cada dia útil.
+  \item Nota do Refinement.
+  \item Review, com captura do Quadro e dos relatórios.
+  \item Retrospetiva, com as melhorias e os responsáveis.
+  \item Presenças e faltas do sprint.
+  \item Backlog atualizado, com o que ficou por fazer.
+\end{itemize}
+
+%--------------------------------------------------------------------
+\section{Problemas comuns}
+
+\tabelaini
+\begin{tabularx}{\textwidth}{L{4.6cm} Y}
+  \rowcolor{azul} \th{O que se passa} & \th{O que fazer} \\
+  Não vejo o projeto & Ainda não aceitaste o convite, ou foste convidado com outro email. Diz ao Tiago o email que usas. \\
+  Não consigo arrastar nem editar nada & Provavelmente tens a função de leitura. Pede ao Tiago para te passar a membro do projeto. \\
+  O Quadro está vazio & O sprint em curso não tem cartões, ou estás a filtrar pelo teu nome e ainda não tens nenhum. Tira o filtro, ou vai ao Backlog. \\
+  Um cartão desapareceu & Pode estar noutro sprint, noutro epic, ou escondido por um filtro. Usa a pesquisa (tecla \texttt{/}) com o nome ou a chave. \\
+  Criei um cartão no sítio errado & Abre-o e corrige os campos \btn{Sprint} e \btn{Principal}, ou arrasta-o no Backlog. \\
+  Apaguei um cartão sem querer & Não dá para desfazer. Por isso não apagamos cartões: se foi engano, avisa o Scrum Master. \\
+  Recebo emails a mais & Nas definições pessoais da conta há opções de notificações. Podes reduzi-las, mas não ignores as menções com \texttt{@}. \\
+  A ligação ao GitHub não aparece & Confirma se a chave está em maiúsculas (\texttt{EDS-13}) e se fizeste \textit{push}. \\
+  Esqueci-me da palavra-passe & Usa a opção «Esqueceste-te da palavra-passe?» no ecrã de entrada da Atlassian. \\
+  Não encontro um botão & Procura pelo que ele faz, não pelo nome. Os nomes mudam. Se continuar a faltar, pergunta no grupo. \\
+  \bottomrule
+\end{tabularx}
+\tabelafim
+
+%--------------------------------------------------------------------
+\section*{Anexo: um painel com as secções do enunciado}
+
+O enunciado fala em criar um «dashboard» com as secções \textit{Product Backlog}, \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Artifacts}, \textit{Daily SCRUM} e \textit{Team Contract}. É opcional, mas dá para o ter num só ecrã: guarda um filtro por secção e põe cada um num painel.
+
+\begin{enumerate}
+  \item Abre a pesquisa avançada (\btn{Filtros}), cola a pesquisa da tabela, carrega em \btn{Guardar como} e dá o nome da secção.
+  \item Depois abre \btn{Painéis}, cria um painel novo e acrescenta, para cada filtro, o gadget \btn{Resultados do filtro}.
 \end{enumerate}
 
 \tabelaini
@@ -272,312 +452,6 @@ O enunciado fala em criar um «dashboard» com as secções \textit{Product Back
   Artifacts & \small\texttt{project = EDS AND parent = EDS-2} \\
   Daily SCRUM & \small\texttt{project = EDS AND parent = EDS-3} \\
   Team Contract & \small\texttt{project = EDS AND parent = EDS-1} \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-%--------------------------------------------------------------------
-\section{Conhecer o ecrã}
-
-\subsection{A barra lateral}
-
-Quando entras no projeto, a barra do lado esquerdo tem os sítios principais. Os nomes podem variar um pouco.
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{3cm} Y}
-  \rowcolor{azul} \th{Sítio} & \th{Para que serve} \\
-  Summary & Resumo do projeto e da atividade recente. \\
-  Timeline & Os epics numa linha do tempo, tipo roadmap. \\
-  Backlog & A lista de tudo o que falta fazer e a preparação dos sprints. É o ecrã do Product Owner. \\
-  Board & O quadro do sprint em curso, com as colunas. É onde passamos o dia a dia. \\
-  Reports & Relatórios do sprint (por exemplo o \textit{burndown}). Servem de prova na Review. \\
-  Settings & Definições do projeto, acessos e funcionalidades. \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-\begin{tcolorbox}[dica, title={Dica: atalhos de teclado}]
-  Dentro do Jira, a tecla \texttt{c} costuma abrir a criação de um cartão e a tecla \texttt{/} abre a pesquisa. A tecla \texttt{[} esconde e mostra a barra lateral.
-\end{tcolorbox}
-
-\subsection{Como é um cartão}
-
-Quando abres um cartão, vês estes campos:
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{3.4cm} Y L{3.4cm}}
-  \rowcolor{azul} \th{Campo} & \th{O que é} & \th{Quem preenche} \\
-  Key (ex.: EDS-12) & O código único do cartão. Usamo-lo no GitHub. & O Jira \\
-  Summary & O título, curto e claro. & Quem cria \\
-  Description & O que é para fazer, a user story e os critérios de aceitação. & Quem cria, com o PO \\
-  Status & Em que coluna está: \textit{To Do}, \textit{In Progress} ou \textit{Done}. & Quem trabalha nele \\
-  Assignee & Quem vai fazer o cartão. Uma só pessoa. & No Planning \\
-  Story point estimate & A estimativa do esforço. & A equipa, em conjunto \\
-  Parent / Epic & O epic a que pertence. & Quem cria \\
-  Sprint & O sprint em que está. & No Planning \\
-  Labels & Etiquetas livres, por exemplo \textit{frontend} ou \textit{backend}. & Quem cria \\
-  Comments & A conversa sobre o cartão. & Todos \\
-  Attachments & Ficheiros anexados (capturas, PDF, imagens). & Todos \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-\subsection{Os tipos de cartão}
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{2.4cm} Y L{4.8cm}}
-  \rowcolor{azul} \th{Tipo} & \th{Quando usar} & \th{Exemplo} \\
-  Epic & Um tema grande, que agrupa muitos cartões. & \textit{Gestão de utilizadores} \\
-  Story & Uma user story, vista do ponto de vista de quem usa. & \textit{Recuperar a palavra-passe} \\
-  Task & Trabalho técnico ou de organização que não é uma user story. & \textit{Configurar a integração contínua} \\
-  Bug & Algo que está errado e tem de ser corrigido. & \textit{O botão «Guardar» não responde} \\
-  Subtask & Um pedaço pequeno de outro cartão. & \textit{Escrever os testes do login} \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-\subsection{Os estados}
-
-O nosso Jira está em português, por isso as colunas chamam-se \textit{A fazer}, \textit{Fazendo} e \textit{Feito}, e os tipos de cartão \textit{Tarefa} e \textit{História}. É o mesmo que \textit{To Do}, \textit{In Progress}, \textit{Done}, \textit{Task} e \textit{Story}. O ciclo de vida de um cartão tem três passos:
-
-\begin{itemize}
-  \item \textbf{To Do:} está no sprint mas ainda ninguém começou.
-  \item \textbf{In Progress:} alguém está a trabalhar nele. Fica aqui até o \textit{pull request} ser aprovado e integrado.
-  \item \textbf{Done:} cumpre a nossa Definição de Concluído e o Product Owner aceitou.
-\end{itemize}
-
-%--------------------------------------------------------------------
-\section{Um sprint, passo a passo}
-
-\subsection{Construir o Backlog: criar cartões}
-
-\begin{enumerate}
-  \item Carrega em \btn{Create}, no topo, ou em \btn{+ Create} no fundo da lista do Backlog.
-  \item Escolhe o tipo (normalmente \btn{Story} ou \btn{Task}).
-  \item Escreve o \btn{Summary}: curto, no formato «verbo + coisa». Por exemplo, \textit{Recuperar palavra-passe}.
-  \item Preenche a \btn{Description} (modelo abaixo).
-  \item Se couber num epic, escolhe-o em \btn{Parent}.
-  \item Deixa o \btn{Assignee} vazio até ao Planning, quando se decide quem faz o quê. Carrega em \btn{Create}.
-\end{enumerate}
-
-Modelo de descrição de uma user story (o exemplo é inventado, só para mostrar o formato):
-
-\begin{codigo}
-Como utilizador registado, quero recuperar a minha palavra-passe, para voltar a entrar quando me esqueço dela.\\[4pt]
-Critérios de aceitação:\\
-- Há uma ligação 'Esqueci-me da palavra-passe' no ecrã de entrada.\\
-- Recebo um email com uma ligação que expira ao fim de uma hora.\\
-- Depois de a mudar, consigo entrar com a nova palavra-passe.
-\end{codigo}
-
-\begin{tcolorbox}[dica, title={Dica: caixas de verificação}]
-  No editor de descrição do Jira, escreve \texttt{[]} seguido de um espaço para criar uma lista com caixas de seleção. É útil para os critérios de aceitação e para a Definição de Concluído.
-\end{tcolorbox}
-
-\subsection{Estimar com story points}
-
-Os story points medem o esforço relativo de um cartão, não horas. Um cartão de 4 pontos dá cerca do dobro do trabalho de um de 2.
-
-\begin{itemize}
-  \item Usamos a escala \textbf{1, 2, 3, 5, 8, 13}.
-  \item Escolhemos um cartão pequeno e consensual como referência (por exemplo, o de 2 pontos) e comparamos os outros com ele.
-  \item Fazemos \textit{planning poker} simples: cada um pensa num número e todos o mostram ao mesmo tempo (dedos, ou mensagem no grupo). Se houver muita diferença, quem escolheu o mais baixo e o mais alto explica porquê, e repetimos.
-  \item Um cartão de mais de 13 pontos é grande demais. Parte-se em cartões mais pequenos.
-\end{itemize}
-
-Para registar, abre o cartão e preenche \btn{Story point estimate}, ou clica na bolinha cinzenta com o número, ao lado do cartão, na lista do Backlog.
-
-\subsection{Priorizar (o trabalho do Product Owner)}
-
-No Backlog, o que está no topo é o que vem primeiro. O Product Owner arrasta os cartões para os pôr por ordem de valor: o mais importante em cima. Só o Product Owner mexe na ordem; os outros sugerem e ele decide, depois de ouvir a equipa.
-
-\subsection{Sprint Planning no Jira}
-
-Este é o primeiro dia do sprint. O Scrum Master conduz a reunião e mexe no ecrã.
-
-\begin{enumerate}
-  \item Abre o \btn{Backlog}. Se ainda não houver um sprint para este período, carrega em \btn{Create sprint}.
-  \item Muda o nome para \textit{Sprint 1}, \textit{Sprint 2}, etc.
-  \item O Product Owner apresenta os cartões de cima do backlog. A equipa discute e decide até onde cabe no sprint.
-  \item Arrasta esses cartões do backlog para o sprint. Vê o total de story points no topo do sprint.
-  \item Em cada cartão do sprint, define o \btn{Assignee}.
-  \item Carrega em \btn{Start sprint}. Confirma o nome, ajusta as \textbf{datas} para as oficiais (a tabela está no contrato) e escreve o \btn{Sprint goal}, o objetivo do sprint numa frase. Termina com «PO: nome, SM: nome», para ficar registado quem tem cada papel.
-  \item Escreve a ata curta no cartão \textit{Planning – Sprint N} (epic \textit{Daily SCRUM}): data, quem esteve, objetivo e cartões escolhidos. Junta uma captura do ecrã do sprint.
-\end{enumerate}
-
-\begin{tcolorbox}[atencao, title={Atenção: as datas}]
-  Ao iniciar o sprint, o Jira preenche as datas com o momento em que clicas. Muda-as para as datas oficiais, senão os relatórios ficam errados.
-\end{tcolorbox}
-
-\begin{tcolorbox}[dica, title={E se já estamos a meio do sprint?}]
-  Começa o sprint com as datas reais e põe lá os cartões do que está em curso. Para o trabalho que já foi feito (por exemplo o contrato), cria o cartão e passa-o para \textit{Done} com um comentário a dizer o que foi feito. Não inventamos registos de dias que já passaram: só escrevemos o que realmente aconteceu.
-\end{tcolorbox}
-
-\subsection{O dia a dia no Board}
-
-Abre o \btn{Board}. Vês as colunas e, em cada uma, os cartões do sprint.
-
-\begin{itemize}
-  \item \textbf{Pegar num cartão:} confirma que és tu o responsável, arrasta-o para \textit{In Progress} e começa.
-  \item \textbf{Acabar:} depois de o \textit{pull request} estar aprovado e integrado e de o Product Owner aceitar, arrasta-o para \textit{Done}.
-  \item \textbf{Atualizar no momento.} Mover o cartão leva dois segundos e evita confusões na daily.
-  \item \textbf{No máximo dois cartões em \textit{In Progress}} por pessoa.
-  \item \textbf{Bloqueado?} Abre o cartão, escreve um comentário a explicar o bloqueio e menciona quem pode ajudar com \texttt{@nome}. Podes ainda marcá-lo com \btn{Add flag} (no menu de três pontos do cartão): fica destacado no quadro.
-  \item \textbf{Dividir o trabalho:} se um cartão tem partes distintas, cria subtasks e atribui cada uma a quem a vai fazer.
-  \item \textbf{Mostrar o trabalho:} anexa capturas de ecrã e links nos comentários do cartão. Quanto mais claro, mais fácil é aceitar na Review.
-\end{itemize}
-
-\subsection{O Daily Scrum e o registo no Jira}
-
-Fazemos a daily como o contrato diz: 15 minutos, em pé, com o Board aberto. O Scrum Master vai passando por cada pessoa e pelos cartões. A seguir, \textbf{cada um escreve o seu registo} no cartão \textit{Daily – Sprint N}, como comentário. Cola este modelo:
-
-\begin{codigo}
-Dia 14/10 - Nome\\
-Feito: o que fiz desde a última daily\\
-A fazer: o que vou fazer hoje\\
-Bloqueios: o que me está a impedir (ou 'nenhum')
-\end{codigo}
-
-Quem não pôde estar escreve na mesma, no mesmo dia. O Scrum Master confirma, até ao fim do dia, que está tudo escrito.
-
-\subsection{Refinement}
-
-A meio da semana, o Product Owner e a equipa abrem o Backlog e olham para os cartões que se seguem. Completam as descrições, acrescentam critérios de aceitação, estimam o que falta e partem os cartões grandes. Registar uma nota curta em \textit{Planning – Sprint N} basta (o que se afinou, o que ficou por decidir).
-
-\subsection{Review, Retrospetiva e fechar o sprint}
-
-\begin{enumerate}
-  \item \textbf{Antes da Review:} no Board, confirma que cada cartão em \textit{Done} cumpre mesmo a Definição de Concluído.
-  \item \textbf{Durante a Review:} mostramos o que ficou pronto. O Product Owner aceita ou não os cartões. Quem não foi aceite volta para \textit{To Do} ou \textit{In Progress}.
-  \item \textbf{Provas:} tira capturas do Board no fim do sprint e dos relatórios (\btn{Reports}, por exemplo o \textit{Sprint report} ou o \textit{Burndown chart}, se existirem). Anexa-as ao cartão \textit{Review – Sprint N}.
-  \item \textbf{Retrospetiva:} no cartão \textit{Retrospetiva – Sprint N}, escrevemos o que correu bem, o que correu mal e duas ou três melhorias para o sprint seguinte. Cada melhoria tem um responsável.
-  \item \textbf{Fechar o sprint:} no Board ou no Backlog, carrega em \btn{Complete sprint}. O Jira pergunta o que fazer aos cartões que não ficaram \textit{Done}. Escolhe \btn{Backlog}: como o contrato diz, o que não ficou pronto volta ao Product Backlog para ser priorizado de novo, e o sprint não se prolonga.
-\end{enumerate}
-
-\subsection{O que tem de ficar no Jira em cada sprint}
-
-O enunciado avalia o Scrum através do que fica registado, por isso cada sprint deve ter:
-
-\begin{itemize}[label=\textcolor{azul}{$\square$}]
-  \item Sprint com nome, datas oficiais e objetivo, com o PO e o SM indicados.
-  \item Cartões do sprint com responsável, estimativa e descrição.
-  \item Ata do Planning, com captura do ecrã.
-  \item Um registo diário de cada pessoa, em cada dia útil, no cartão \textit{Daily – Sprint N}.
-  \item Nota do Refinement.
-  \item Review, com captura do Board e dos relatórios.
-  \item Retrospetiva, com as melhorias e os responsáveis.
-  \item Backlog atualizado, com o que ficou por fazer.
-\end{itemize}
-
-%--------------------------------------------------------------------
-\section{Jira e GitHub juntos}
-
-Cada cartão tem um código (\textit{key}), por exemplo \texttt{EDS-12}. Se o escrevermos nos sítios certos, o Jira liga o trabalho ao cartão sozinho.
-
-\begin{itemize}
-  \item \textbf{Branch:} começa pela key, em maiúsculas, dentro do nome da branch: \texttt{feature/EDS-12-login}.
-  \item \textbf{Commit:} começa com a key, seguida de uma frase curta: \texttt{EDS-12 faz o ecrã de entrada}.
-  \item \textbf{Pull request:} a key vai no título, e a descrição diz o que foi feito.
-\end{itemize}
-
-\begin{codigo}
-git switch main\\
-git pull\\
-git switch -c feature/EDS-12-login
-\end{codigo}
-
-A key tem de estar em maiúsculas (\texttt{EDS-12}, e não \texttt{eds-12}). Depois de fazeres \textit{push}, a ligação pode demorar alguns minutos a aparecer no cartão. Nenhum pull request é aprovado por quem o escreveu, como o contrato diz.
-
-%--------------------------------------------------------------------
-\section{Quem faz o quê}
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{3.2cm} Y}
-  \rowcolor{azul} \th{Papel} & \th{No Jira} \\
-  Product Owner & Mantém o Backlog por ordem de prioridade. Escreve ou revê as user stories e os critérios de aceitação. Aceita (ou recusa) os cartões na Review. \\
-  Scrum Master & Cria o sprint e carrega em \btn{Start sprint} e \btn{Complete sprint}. Confirma que as dailies estão escritas. Escreve as atas e junta as capturas. Medeia se houver dúvidas sobre o uso do Jira. \\
-  Toda a equipa & Cria cartões, estima, escolhe e move os seus cartões, comenta, escreve a sua daily, mantém tudo atualizado e põe a key do cartão no GitHub. \\
-  Administradores & Convidam e retiram pessoas e tratam das definições. Mais nada. \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-%--------------------------------------------------------------------
-\section{Problemas comuns}
-
-\tabelaini
-\begin{tabularx}{\textwidth}{L{4.6cm} Y}
-  \rowcolor{azul} \th{O que se passa} & \th{O que fazer} \\
-  O Board está vazio & O sprint ainda não foi iniciado, ou os cartões estão no backlog e não no sprint. Vai ao Backlog, arrasta os cartões para o sprint e carrega em \btn{Start sprint}. \\
-  Não consigo arrastar nem editar nada & Provavelmente tens a função \textit{Viewer}. Pede a um administrador para te passar a \textit{Member}. \\
-  Um cartão desapareceu & Pode estar noutro sprint, noutro epic, ou escondido por um filtro. Usa a pesquisa (tecla \texttt{/}) com o nome ou a key. \\
-  Criei um cartão no sítio errado & Abre-o e corrige os campos \btn{Sprint} e \btn{Parent}, ou arrasta-o para o sítio certo no Backlog. \\
-  Apaguei um cartão sem querer & Não dá para desfazer. Por isso não apagamos cartões: se for um engano, avisa o Scrum Master. \\
-  O convite não chegou & Procura no spam. Se não estiver lá, o administrador reenvia-o. \\
-  Recebo emails a mais & Nas definições pessoais da tua conta há opções de notificações. Podes reduzi-las, mas não ignores as menções com \texttt{@}. \\
-  A ligação ao GitHub não aparece & Confirma se a key está em maiúsculas, se fizeste \textit{push} e se esperaste uns minutos. \\
-  Não encontro um botão & Procura pelo que ele faz, não pelo nome. Os nomes mudam. Se continuar a faltar, pergunta no grupo. \\
-  \bottomrule
-\end{tabularx}
-\tabelafim
-
-%--------------------------------------------------------------------
-\section{Checklist de arranque}
-
-\subsection{A pessoa que cria o Jira}
-
-\begin{itemize}[label=\textcolor{azul}{$\square$}]
-  \item Criar a conta Atlassian e o site (plano \textit{Free}).
-  \item Criar o projeto com o modelo Scrum, \textit{team-managed}, e escolher a key.
-  \item Convidar a equipa (\textit{Member}) e os docentes (\textit{Viewer}).
-  \item Dar \textit{Administrator} a mais uma pessoa.
-  \item Criar os epics: \textit{Team Contract}, \textit{Artifacts}, \textit{Daily SCRUM}, \textit{Presenças e faltas} e \textit{Equipa e papéis}.
-  \item Anexar o contrato e o registo de uso de IA ao epic \textit{Team Contract}.
-  \item Ligar ao GitHub (opcional) e pôr o link do repositório no epic \textit{Artifacts}.
-\end{itemize}
-
-\subsection{Cada elemento da equipa}
-
-\begin{itemize}[label=\textcolor{azul}{$\square$}]
-  \item Aceitar o convite e criar a conta Atlassian.
-  \item Confirmar que consegue abrir o Backlog e o Board.
-  \item Mudar a língua para a que lhe for mais confortável.
-  \item Treinar num cartão de teste: o Scrum Master cria um, cada um comenta nele e arrasta-o no Board, e no fim o Scrum Master apaga-o.
-  \item Ler as partes 4 e 5 antes do primeiro Planning.
-\end{itemize}
-
-\subsection{Para o primeiro Planning}
-
-\begin{itemize}[label=\textcolor{azul}{$\square$}]
-  \item Backlog com as primeiras user stories, com descrição e critérios de aceitação.
-  \item Cartões estimados em story points.
-  \item Backlog ordenado pelo Product Owner.
-  \item Sprint criado, com datas oficiais, objetivo, PO e SM.
-  \item Cartões do sprint com responsável.
-  \item Cartões \textit{Planning}, \textit{Daily}, \textit{Review} e \textit{Retrospetiva} criados dentro do epic \textit{Daily SCRUM} e do sprint.
-\end{itemize}
-
-%--------------------------------------------------------------------
-\section{Glossário}
-
-\tabelaini
-\begin{tabularx}{\textwidth}{N{3.4cm} Y}
-  \rowcolor{azul} \th{Termo} & \th{Significado} \\
-  Assignee & Responsável por um cartão. \\
-  Backlog & Lista de tudo o que falta fazer, por ordem de prioridade. \\
-  Board & Quadro com as colunas do sprint em curso. \\
-  Burndown chart & Gráfico que mostra o trabalho que falta ao longo do sprint. \\
-  Epic & Cartão grande que agrupa outros cartões. \\
-  Flag & Marca que destaca um cartão bloqueado. \\
-  Key & Código único de um cartão, por exemplo EDS-12. \\
-  Label & Etiqueta livre para organizar cartões. \\
-  Sprint & Período fechado, com objetivo, para fazer parte do backlog. \\
-  Sprint goal & O objetivo do sprint, numa frase. \\
-  Story & Cartão que descreve uma necessidade do ponto de vista de quem usa. \\
-  Story points & Medida relativa do esforço de um cartão. \\
-  Subtask & Parte pequena de outro cartão. \\
-  Velocity & Quantidade de story points que a equipa costuma fechar num sprint. \\
-  Work item & O novo nome de \textit{issue}: o mesmo que cartão. \\
   \bottomrule
 \end{tabularx}
 \tabelafim

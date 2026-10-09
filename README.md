@@ -23,6 +23,7 @@ Trabalhamos na branch `main`.
 
 | Pasta | Conteúdo |
 |---|---|
+| `docs/Sprint 1/` | Análise do produto do Sprint 1 (stakeholders, personas, cenários e user stories) |
 | `docs/contrato/` | Contrato de equipa, em LaTeX e em PDF |
 | `docs/guia-jira/` | Guia para usar o Jira, em LaTeX |
 | `docs/registo-ia/` | Registo de uso de IA, em LaTeX |
