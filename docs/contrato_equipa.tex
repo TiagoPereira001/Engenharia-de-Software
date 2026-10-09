@@ -1,61 +1,112 @@
 \documentclass[11pt,a4paper]{article}
 
+% ---------- fontes e língua ----------
 \usepackage[T1]{fontenc}
 \usepackage[utf8]{inputenc}
 \usepackage{lmodern}
+\usepackage{tgpagella}
+\usepackage{tgheros}
 \usepackage[portuguese]{babel}
-\usepackage[margin=2.5cm]{geometry}
+\usepackage{microtype}
+
+% ---------- página e cores ----------
+\usepackage[a4paper,top=2.6cm,bottom=2.4cm,left=2.4cm,right=2.4cm]{geometry}
+\usepackage[table]{xcolor}
+\definecolor{azul}{RGB}{28,62,112}
+\definecolor{azulclaro}{RGB}{226,234,246}
+\definecolor{cinza}{RGB}{95,102,115}
+
+% ---------- tabelas, listas, caixas ----------
 \usepackage{booktabs}
 \usepackage{array}
 \usepackage{tabularx}
 \usepackage{enumitem}
-\usepackage{xcolor}
+\usepackage{amssymb}
+\usepackage{titlesec}
 \usepackage{fancyhdr}
+\usepackage{lastpage}
+\usepackage{tcolorbox}
 
-\definecolor{azul}{RGB}{31,56,100}
-
-\setlist{nosep, leftmargin=*, itemsep=3pt}
 \setlength{\parindent}{0pt}
 \setlength{\parskip}{6pt}
 
-\pagestyle{fancy}
-\setlength{\headheight}{14pt}
-\fancyhf{}
-\renewcommand{\headrulewidth}{0pt}
-\fancyfoot[L]{\small Contrato de Equipa \textperiodcentered{} Engenharia de Software 2026/27}
-\fancyfoot[R]{\small \thepage}
+\setlist{nosep, leftmargin=*, itemsep=3pt}
+\setlist[itemize]{label=\textcolor{azul}{\textbullet}}
+\setlist[enumerate]{label=\textcolor{azul}{\sffamily\bfseries\arabic*.}}
 
+\titleformat{\section}{\sffamily\Large\bfseries\color{azul}}{\thesection}{0.7em}{}[{\color{azul}\titlerule[0.6pt]}]
+\titleformat{\subsection}{\sffamily\large\bfseries\color{azul}}{\thesubsection}{0.6em}{}
+\titlespacing*{\section}{0pt}{1.6em}{0.8em}
+\titlespacing*{\subsection}{0pt}{1.1em}{0.3em}
+
+\pagestyle{fancy}
+\setlength{\headheight}{15pt}
+\fancyhf{}
+\renewcommand{\headrule}{{\color{azul}\hrule width\headwidth height\headrulewidth}}
+\renewcommand{\headrulewidth}{0.4pt}
+\fancyhead[L]{\sffamily\small\color{cinza} Universidade da Beira Interior}
+\fancyhead[R]{\sffamily\small\color{cinza} Engenharia de Software \textperiodcentered{} 2026/27}
+\fancyfoot[L]{\sffamily\small\color{cinza} Contrato de Equipa}
+\fancyfoot[R]{\sffamily\small\color{cinza} Página \thepage\ de \pageref{LastPage}}
+
+\fancypagestyle{primeira}{%
+  \fancyhf{}%
+  \renewcommand{\headrulewidth}{0pt}%
+  \fancyfoot[L]{\sffamily\small\color{cinza} Contrato de Equipa}%
+  \fancyfoot[R]{\sffamily\small\color{cinza} Página \thepage\ de \pageref{LastPage}}%
+}
+
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
 \newcolumntype{L}[1]{>{\raggedright\arraybackslash}p{#1}}
+\newcolumntype{N}[1]{>{\raggedright\arraybackslash\sffamily\bfseries}p{#1}}
+\newcommand{\th}[1]{\textcolor{white}{\sffamily\bfseries #1}}
+
+\tcbset{
+  caixa/.style={colback=white, colframe=azul, coltitle=white, colbacktitle=azul,
+    fonttitle=\sffamily\bfseries, arc=3pt, boxrule=0.6pt,
+    left=9pt, right=9pt, top=6pt, bottom=6pt}
+}
 
 \begin{document}
+\thispagestyle{primeira}
 
-\begin{center}
-  {\large Universidade da Beira Interior}\\[2pt]
-  {\small Faculdade de Engenharia \textperiodcentered{} Departamento de Informática}\\[2pt]
-  {\small Engenharia de Software \textperiodcentered{} 2026/27}\\[1.4em]
-  {\LARGE\bfseries\color{azul} Contrato de Equipa}\\[4pt]
-  {\large\color{azul} Team Contract}
-\end{center}
-
-\vspace{0.5em}
+% ---------- cabeçalho do documento ----------
+\begin{tcolorbox}[colback=azul, colframe=azul, coltext=white, arc=3pt, boxrule=0pt,
+    left=16pt, right=16pt, top=14pt, bottom=14pt]
+  \sffamily
+  {\footnotesize\bfseries\MakeUppercase{Universidade da Beira Interior}}\\[2pt]
+  {\footnotesize Faculdade de Engenharia \textperiodcentered{} Departamento de Informática}\\[16pt]
+  {\fontsize{28}{32}\selectfont\bfseries Contrato de Equipa}\\[4pt]
+  {\large Team Contract \textperiodcentered{} Engenharia de Software 2026/27}
+\end{tcolorbox}
 
 Este contrato regista o que combinámos para trabalhar bem juntos durante o projeto de Engenharia de Software, que decorre em cinco sprints a partir de 21 de setembro de 2026. Não queremos que seja burocracia. Serve para evitar mal-entendidos, para cada um saber o que se espera de si e para termos um sítio a que recorrer quando houver dúvidas. Está também no quadro Jira, na secção \textit{Team Contract}.
 
-\section*{Equipa}
+\begin{tcolorbox}[caixa, title={Em resumo}, colback=azulclaro!60]
+  \begin{itemize}
+    \item Daily Scrum todos os dias úteis (15 minutos), Planning no primeiro dia do sprint, Review e Retrospetiva no fim.
+    \item Em cada sprint há um Product Owner e um Scrum Master, e todos passamos pelos dois papéis.
+    \item Decidimos por consenso. Se não der, votamos e vale a maioria.
+    \item Nada fica \textit{Done} sem revisão, testes e aceitação do Product Owner.
+    \item Tudo passa por \textit{pull request} na \texttt{dev}; a \texttt{main} só recebe código no fim do sprint.
+    \item A IA ajuda, mas cada um responde pelo que entrega, e o uso fica registado.
+  \end{itemize}
+\end{tcolorbox}
 
-\renewcommand{\arraystretch}{2.1}
-\begin{tabularx}{\textwidth}{@{}X L{5cm}@{}}
-  \toprule
-  \textbf{Nome} & \textbf{N.º de aluno} \\
-  \midrule
-  Filipe Fogaça   & \\ \midrule[0.3pt]
-  João Vitor      & \\ \midrule[0.3pt]
-  Marcus Bernardo & \\ \midrule[0.3pt]
-  Rui Machado     & \\ \midrule[0.3pt]
-  Tiago Pereira   & \\
-  \bottomrule
+\section*{A equipa}
+
+\arrayrulecolor{azul!35}
+\renewcommand{\arraystretch}{2.2}
+\begin{tabularx}{\textwidth}{Y L{5.2cm}}
+  \rowcolor{azul} \th{Nome} & \th{N.º de aluno} \\
+  \rowcolor{azulclaro!55} Filipe Fogaça   & \\ \hline
+  \rowcolor{white}        João Vitor      & \\ \hline
+  \rowcolor{azulclaro!55} Marcus Bernardo & \\ \hline
+  \rowcolor{white}        Rui Machado     & \\ \hline
+  \rowcolor{azulclaro!55} Tiago Pereira   & \\ \hline
 \end{tabularx}
 \renewcommand{\arraystretch}{1}
+\arrayrulecolor{black}
 
 %--------------------------------------------------------------------
 \section{Reuniões}
@@ -64,24 +115,29 @@ Este contrato regista o que combinámos para trabalhar bem juntos durante o proj
 
 Seguimos o Scrum e fazemos as reuniões habituais. As durações são máximos: se acabarmos mais cedo, melhor.
 
-\renewcommand{\arraystretch}{1.3}
-\begin{tabularx}{\textwidth}{@{}L{2.7cm} L{3.4cm} L{1.8cm} X@{}}
-  \toprule
-  \textbf{Reunião} & \textbf{Quando} & \textbf{Duração} & \textbf{O que fazemos} \\
-  \midrule
+\small
+\renewcommand{\arraystretch}{1.45}
+\begin{tabularx}{\textwidth}{N{2.5cm} L{3.2cm} L{1.7cm} Y}
+  \rowcolor{azul} \th{Reunião} & \th{Quando} & \th{Duração} & \th{O que fazemos} \\
+  \rowcolor{azulclaro!55}
   Sprint Planning & No primeiro dia de cada sprint & até 1h30 &
-    O Product Owner traz o backlog já priorizado. Definimos o objetivo do sprint, escolhemos os itens que cabem, dividimos em tarefas, estimamos em story points e cada tarefa fica com um responsável. \\[4pt]
+    O Product Owner traz o backlog já priorizado. Definimos o objetivo do sprint, escolhemos os itens que cabem, dividimos em tarefas, estimamos em story points e cada tarefa fica com um responsável. \\
+  \rowcolor{white}
   Daily Scrum & Todos os dias úteis, à hora fixa que combinarmos no Planning & 15 min &
-    Cada um diz o que fez desde o último daily, o que vai fazer hoje e o que o está a bloquear. Fazemo-lo em pé e sem discussões longas; o que for mais demorado fica para depois. \\[4pt]
+    Cada um diz o que fez desde o último daily, o que vai fazer hoje e o que o está a bloquear. Fazemo-lo em pé e sem discussões longas; o que for mais demorado fica para depois. \\
+  \rowcolor{azulclaro!55}
   Refinement & Uma vez por semana, a meio da semana & 30 min &
-    O Product Owner e a equipa afinam os próximos itens do backlog: critérios de aceitação, estimativas e dúvidas. \\[4pt]
+    O Product Owner e a equipa afinam os próximos itens do backlog: critérios de aceitação, estimativas e dúvidas. \\
+  \rowcolor{white}
   Sprint Review & No fim do sprint, antes da apresentação oral & até 1h &
-    Mostramos o que ficou pronto e vemos se o objetivo do sprint foi cumprido. O Product Owner aceita (ou não) os itens. Aproveitamos para preparar o resumo que apresentamos na última semana do sprint. \\[4pt]
+    Mostramos o que ficou pronto e vemos se o objetivo do sprint foi cumprido. O Product Owner aceita (ou não) os itens. Aproveitamos para preparar o resumo que apresentamos na última semana do sprint. \\
+  \rowcolor{azulclaro!55}
   Retrospetiva & Logo a seguir à Review & 45 min &
     Falamos do que correu bem, do que correu mal e escolhemos duas ou três melhorias concretas para o sprint seguinte, cada uma com um responsável. \\
   \bottomrule
 \end{tabularx}
 \renewcommand{\arraystretch}{1}
+\normalsize
 
 No Sprint 5, que dura cinco semanas, fazemos ainda um ponto de situação de 30 minutos a meio, para perceber se estamos dentro do plano.
 
@@ -133,38 +189,38 @@ O enunciado pede provas de que cumprimos o Scrum, por isso tudo fica escrito na 
 
 Em cada sprint há um Product Owner e um Scrum Master. Ambos continuam a desenvolver como os outros; no Planning ajustamos a carga de tarefas para lhes sobrar tempo para o papel.
 
-\textbf{Product Owner}
-\begin{itemize}
-  \item Gere e prioriza o Product Backlog, com o que traz mais valor no topo da lista.
-  \item Explica os itens à equipa e ajuda a escrever os critérios de aceitação.
-  \item Está disponível durante o sprint para tirar dúvidas.
-  \item Na Review decide se o objetivo do sprint foi cumprido e aceita ou recusa os itens.
-  \item Não mexe no sprint backlog a meio do sprint sem falar com a equipa.
-\end{itemize}
+\begin{tcolorbox}[caixa, title={Product Owner}]
+  \begin{itemize}
+    \item Gere e prioriza o Product Backlog, com o que traz mais valor no topo da lista.
+    \item Explica os itens à equipa e ajuda a escrever os critérios de aceitação.
+    \item Está disponível durante o sprint para tirar dúvidas.
+    \item Na Review decide se o objetivo do sprint foi cumprido e aceita ou recusa os itens.
+    \item Não mexe no sprint backlog a meio do sprint sem falar com a equipa.
+  \end{itemize}
+\end{tcolorbox}
 
-\textbf{Scrum Master}
-\begin{itemize}
-  \item Garante que as reuniões acontecem, a horas, e que ficam registadas no Jira.
-  \item Ajuda a equipa a usar bem o Scrum. É um apoio para a equipa e não um chefe.
-  \item Ajuda a remover os obstáculos que apareçam e leva aos docentes o que a equipa não conseguir resolver sozinha.
-  \item Faz de mediador quando há desacordos.
-  \item Coordena o resumo para a apresentação oral do sprint.
-\end{itemize}
+\begin{tcolorbox}[caixa, title={Scrum Master}]
+  \begin{itemize}
+    \item Garante que as reuniões acontecem, a horas, e que ficam registadas no Jira.
+    \item Ajuda a equipa a usar bem o Scrum. É um apoio para a equipa e não um chefe.
+    \item Ajuda a remover os obstáculos que apareçam e leva aos docentes o que a equipa não conseguir resolver sozinha.
+    \item Faz de mediador quando há desacordos.
+    \item Coordena o resumo para a apresentação oral do sprint.
+  \end{itemize}
+\end{tcolorbox}
 
 \subsection{Rotação nos cinco sprints}
 
 Cada elemento é Product Owner uma vez e Scrum Master uma vez, e ninguém tem os dois papéis no mesmo sprint.
 
-\renewcommand{\arraystretch}{1.4}
-\begin{tabularx}{\textwidth}{@{}L{1.8cm} L{4.2cm} X X@{}}
-  \toprule
-  \textbf{Sprint} & \textbf{Datas} & \textbf{Product Owner} & \textbf{Scrum Master} \\
-  \midrule
-  1 & 21 de setembro a 9 de outubro  & Tiago Pereira   & Filipe Fogaça \\
-  2 & 12 a 30 de outubro              & Filipe Fogaça   & João Vitor \\
-  3 & 2 a 20 de novembro              & João Vitor      & Marcus Bernardo \\
-  4 & 23 de novembro a 11 de dezembro & Marcus Bernardo & Rui Machado \\
-  5 & 14 de dezembro a 15 de janeiro  & Rui Machado     & Tiago Pereira \\
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{N{1.6cm} L{5.2cm} Y Y}
+  \rowcolor{azul} \th{Sprint} & \th{Datas} & \th{Product Owner} & \th{Scrum Master} \\
+  \rowcolor{azulclaro!55} 1 & 21 de setembro a 9 de outubro  & Tiago Pereira   & Filipe Fogaça \\
+  \rowcolor{white}        2 & 12 a 30 de outubro             & Filipe Fogaça   & João Vitor \\
+  \rowcolor{azulclaro!55} 3 & 2 a 20 de novembro             & João Vitor      & Marcus Bernardo \\
+  \rowcolor{white}        4 & 23 de novembro a 11 de dezembro & Marcus Bernardo & Rui Machado \\
+  \rowcolor{azulclaro!55} 5 & 14 de dezembro a 15 de janeiro & Rui Machado     & Tiago Pereira \\
   \bottomrule
 \end{tabularx}
 \renewcommand{\arraystretch}{1}
@@ -224,22 +280,35 @@ Não queremos chegar a este ponto, mas fica escrito para ser justo com quem est�
 
 Um item só passa a \textit{Done} quando:
 
-\begin{enumerate}
-  \item cumpre os critérios de aceitação combinados com o Product Owner;
-  \item o código foi revisto por pelo menos outro elemento da equipa (\textit{pull request} aprovado);
-  \item tem testes (unitários e, quando fizer sentido, de integração) e todos passam;
-  \item está integrado na branch \texttt{dev} sem quebrar o build nem a integração contínua;
-  \item a documentação necessária está atualizada e os artefactos estão ligados no Jira;
-  \item o Product Owner aceitou o item;
-  \item o cartão no Jira está em \textit{Done}, com a ligação para o \textit{pull request}.
-\end{enumerate}
+\begin{tcolorbox}[caixa, title={Definição de Concluído}, colback=azulclaro!40]
+  \begin{itemize}[label=\textcolor{azul}{$\square$}]
+    \item cumpre os critérios de aceitação combinados com o Product Owner;
+    \item o código foi revisto por pelo menos outro elemento da equipa (\textit{pull request} aprovado);
+    \item tem testes (unitários e, quando fizer sentido, de integração) e todos passam;
+    \item está integrado na branch \texttt{dev} sem quebrar o build nem a integração contínua;
+    \item a documentação necessária está atualizada e os artefactos estão ligados no Jira;
+    \item o Product Owner aceitou o item;
+    \item o cartão no Jira está em \textit{Done}, com a ligação para o \textit{pull request}.
+  \end{itemize}
+\end{tcolorbox}
 
 \subsection{Uso do GitHub}
 
+Temos um repositório da equipa, ligado no Jira na secção \textit{Artifacts}, e trabalhamos com três tipos de branch:
+
+\small
+\renewcommand{\arraystretch}{1.5}
+\begin{tabularx}{\textwidth}{N{4.9cm} Y}
+  \rowcolor{azul} \th{Branch} & \th{Para que serve} \\
+  \rowcolor{azulclaro!55} \texttt{main} & Versões estáveis. Só recebe código no fim do sprint, depois da Review. \\
+  \rowcolor{white} \texttt{dev} & Onde integramos o trabalho de todos. \\
+  \rowcolor{azulclaro!55} \texttt{feature/PROJ-12-login} & Uma por tarefa, criada a partir da \texttt{dev}, com o código do cartão do Jira no nome. \\
+  \bottomrule
+\end{tabularx}
+\renewcommand{\arraystretch}{1}
+\normalsize
+
 \begin{itemize}
-  \item Temos um repositório da equipa, ligado no Jira na secção \textit{Artifacts}.
-  \item A \texttt{main} guarda as versões estáveis e só recebe código no fim do sprint, depois da Review. A \texttt{dev} é onde integramos o trabalho.
-  \item Cada tarefa tem a sua branch, criada a partir da \texttt{dev}, com o código do cartão no nome (por exemplo \texttt{feature/PROJ-12-login}).
   \item Ninguém faz \textit{push} direto para a \texttt{main} nem para a \texttt{dev}. Tudo passa por \textit{pull request}, com pelo menos uma aprovação de outra pessoa; ninguém aprova o seu próprio.
   \item Fazemos commits pequenos e frequentes, com mensagens curtas que digam o que mudou.
   \item Passwords, chaves de API e dados pessoais não entram no repositório.
@@ -257,13 +326,23 @@ O projeto incentiva o uso de ferramentas de IA e nós vamos usá-las, mas com re
   \item O que for gerado por IA é revisto e testado como qualquer outro código ou texto, e passa pela mesma Definição de Concluído.
   \item Não pomos passwords, chaves, dados pessoais nem informação que não possamos partilhar em ferramentas de IA.
   \item Verificamos sempre a informação e o código que a IA sugere, incluindo licenças e fontes.
-  \item Registamos de forma simples onde e para quê usámos IA, e assumimos quando algo foi gerado.
+  \item Registamos onde e para quê usámos IA no ficheiro \textit{Registo de Uso de IA}, que está ligado no Jira (\textit{Artifacts}), e assumimos quando algo foi gerado. A base deste contrato foi feita com apoio de IA e está declarada nesse registo.
 \end{itemize}
 
 %--------------------------------------------------------------------
-\section{Alterações ao contrato}
+\section{Alterações e confirmação}
 
-Revemos este contrato nas retrospetivas. Qualquer alteração precisa da concordância de todos e fica registada no Jira. Ao colocar este contrato no quadro, cada elemento da equipa confirma que o leu e que está de acordo.
+Revemos este contrato nas retrospetivas. Qualquer alteração precisa da concordância de todos e fica registada no Jira. Ao assinar, cada elemento da equipa confirma que leu o contrato e que está de acordo.
+
+\vspace{0.4em}
+\begin{tabularx}{\textwidth}{Y@{\hspace{1.4cm}}Y}
+  \rule{0pt}{2.6em}\hrulefill & \rule{0pt}{2.6em}\hrulefill \\
+  \small Filipe Fogaça & \small João Vitor \\
+  \rule{0pt}{2.6em}\hrulefill & \rule{0pt}{2.6em}\hrulefill \\
+  \small Marcus Bernardo & \small Rui Machado \\
+  \rule{0pt}{2.6em}\hrulefill & \\
+  \small Tiago Pereira & \\
+\end{tabularx}
 
 \vspace{1.5em}
 Covilhã, \underline{\hspace{1cm}} de outubro de 2026
