@@ -66,6 +66,34 @@
     left=9pt, right=9pt, top=6pt, bottom=6pt}
 }
 
+% ---------- entradas do registo ----------
+\newcommand{\linha}[1]{\rule[-2pt]{#1}{0.4pt}}
+\newcommand{\claude}{Claude (Anthropic), via Claude Code}
+% \entrada{data}{onde}{ferramenta}{para quê}
+\newcommand{\entrada}[4]{%
+  \begin{tcolorbox}[caixa, title={#1 \textperiodcentered{} #2}]
+    \renewcommand{\arraystretch}{1.45}%
+    \begin{tabularx}{\linewidth}{@{}N{2.5cm} Y@{}}
+      Ferramenta & #3 \\
+      Para quê & #4 \\
+      Revisto por & \linha{6.2cm}\hspace{1.2em}Data\hspace{0.5em}\linha{2.4cm} \\
+    \end{tabularx}
+  \end{tcolorbox}%
+}
+\newcommand{\entradavazia}{%
+  \begin{tcolorbox}[caixa, title={Nova entrada}]
+    \renewcommand{\arraystretch}{1.9}%
+    \begin{tabularx}{\linewidth}{@{}N{2.5cm} Y@{}}
+      Data & \linha{4cm} \\
+      Onde & \linha{10.6cm} \\
+      Ferramenta & \linha{10.6cm} \\
+      Para quê & \linha{10.6cm} \\
+      & \linha{10.6cm} \\
+      Revisto por & \linha{6.2cm}\hspace{1.2em}Data\hspace{0.5em}\linha{2.4cm} \\
+    \end{tabularx}
+  \end{tcolorbox}%
+}
+
 \begin{document}
 \thispagestyle{primeira}
 
@@ -90,32 +118,27 @@ Este ficheiro cumpre o que combinámos no Contrato de Equipa: dizer, de forma si
 %--------------------------------------------------------------------
 \section{Registo}
 
-Cada linha é uma coisa que fizemos com ajuda de IA. A última coluna serve para dizer quem leu e validou o resultado.
+\begin{tcolorbox}[caixa, title={Como se preenche}, colback=azulclaro!60]
+  \begin{enumerate}
+    \item Quem usou a IA acrescenta uma entrada nova no fim, com a data, o sítio onde usou, a ferramenta e para quê. Há caixas em branco no fim desta secção.
+    \item Outro elemento da equipa lê o que a IA fez, confirma que está certo e escreve o seu nome e a data em \textbf{Revisto por}, no fim da caixa.
+    \item Enquanto não houver nome ali, a entrada ainda não foi revista.
+  \end{enumerate}
+\end{tcolorbox}
 
-\small
-\renewcommand{\arraystretch}{1.5}
-\begin{tabularx}{\textwidth}{L{2.0cm} L{2.7cm} L{2.7cm} Y L{2.0cm}}
-  \rowcolor{azul} \th{Data} & \th{Onde} & \th{Ferramenta} & \th{Para quê} & \th{Revisto por} \\
-  \rowcolor{azulclaro!55}
-  09/10/2026 & Contrato de Equipa & Claude (Anthropic), via Claude Code &
-    Estrutura, primeira versão do texto, aspeto do documento e valores sugeridos (reuniões, rotação de PO e SM, consequências). & \\
-  \rowcolor{white}
-  09/10/2026 & Registo de Uso de IA (este ficheiro) & Claude (Anthropic), via Claude Code &
-    Primeira versão do texto. & \\
-  \rowcolor{azulclaro!55}
-  09/10/2026 & Guia de Jira & Claude (Anthropic), via Claude Code &
-    Pesquisa dos passos do Jira, primeira versão do guia e reescrita para a equipa começar a usar (também em página do Confluence). & \\
-  \rowcolor{white}
-  09/10/2026 & Jira (estrutura e textos) & Claude (Anthropic), via Claude Code &
-    Primeira versão da estrutura e dos textos: epics, cartões, sprints, presenças e faltas, papéis, páginas do Confluence e ligação ao GitHub. & \\
-  \rowcolor{azulclaro!55}
-  09/10/2026 & Análise do Produto (Sprint 1) & Claude (Anthropic), via Claude Code &
-    Reescrita do texto do PDF da equipa para ficar mais natural, e correção de gralhas. O conteúdo (personas, cenários, histórias e prioridades) é da equipa. & \\
-  \rowcolor{white} \rule{0pt}{2.2em} & & & & \\
-  \bottomrule
-\end{tabularx}
-\renewcommand{\arraystretch}{1}
-\normalsize
+\entrada{09/10/2026}{Contrato de Equipa}{\claude}{Estrutura, primeira versão do texto, aspeto do documento e valores sugeridos (reuniões, rotação de PO e SM, consequências).}
+
+\entrada{09/10/2026}{Registo de Uso de IA (este ficheiro)}{\claude}{Primeira versão do texto e, mais tarde, uma organização mais clara das entradas.}
+
+\entrada{09/10/2026}{Guia de Jira}{\claude}{Pesquisa dos passos do Jira, primeira versão do guia e reescrita para a equipa começar a usar (também em página do Confluence).}
+
+\entrada{09/10/2026}{Jira (estrutura e textos)}{\claude}{Primeira versão da estrutura e dos textos: epics, cartões, sprints, presenças e faltas, papéis, páginas do Confluence e ligação ao GitHub.}
+
+\entrada{09/10/2026}{Análise do Produto (Sprint 1)}{\claude}{Reescrita do texto do PDF da equipa para ficar mais natural, e correção de gralhas. O conteúdo (personas, cenários, histórias e prioridades) é da equipa.}
+
+\entradavazia
+
+\entradavazia
 
 %--------------------------------------------------------------------
 \section{Ferramentas}
