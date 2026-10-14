@@ -88,7 +88,7 @@ Este contrato regista o que combinámos para trabalhar juntos durante o projeto 
     \item Em cada sprint há um Product Owner e um Scrum Master, e todos passamos pelos dois papéis.
     \item Decidimos por consenso. Se não der, votamos.
     \item Nada fica feito sem revisão, testes e aceitação do Product Owner.
-    \item Tudo passa por \textit{pull request} na \texttt{dev}; a \texttt{main} só recebe código no fim do sprint.
+    \item Tudo passa por \textit{pull request} para a \texttt{main}.
     \item A IA ajuda, mas cada um responde pelo que entrega, e o uso fica registado.
   \end{itemize}
 \end{tcolorbox}
@@ -99,11 +99,11 @@ Este contrato regista o que combinámos para trabalhar juntos durante o projeto 
 \renewcommand{\arraystretch}{2.2}
 \begin{tabularx}{\textwidth}{Y L{5.2cm}}
   \rowcolor{azul} \th{Nome} & \th{N.º de aluno} \\
-  \rowcolor{azulclaro!55} Felipe Fogaça   & \\ \hline
-  \rowcolor{white}        João Vitor      & \\ \hline
-  \rowcolor{azulclaro!55} Marcus Fernandes & \\ \hline
-  \rowcolor{white}        Rui Machado     & \\ \hline
-  \rowcolor{azulclaro!55} Tiago Pereira   & \\ \hline
+  \rowcolor{azulclaro!55} Felipe Fogaça    & 53394 \\ \hline
+  \rowcolor{white}        João Vitor       & 53396 \\ \hline
+  \rowcolor{azulclaro!55} Marcus Fernandes & 52822 \\ \hline
+  \rowcolor{white}        Rui Machado      & 53867 \\ \hline
+  \rowcolor{azulclaro!55} Tiago Pereira    & 55019 \\ \hline
 \end{tabularx}
 \renewcommand{\arraystretch}{1}
 \arrayrulecolor{black}
@@ -276,7 +276,7 @@ Um item só passa a \textit{Done} quando:
     \item cumpre os critérios de aceitação combinados com o Product Owner;
     \item o código foi revisto por pelo menos outro elemento da equipa (\textit{pull request} aprovado);
     \item tem testes (unitários e, quando fizer sentido, de integração) e todos passam;
-    \item está integrado na branch \texttt{dev} sem quebrar o build nem a integração contínua;
+    \item está integrado na \texttt{main} sem quebrar o build nem a integração contínua;
     \item a documentação necessária está atualizada e os artefactos estão ligados no Jira;
     \item o Product Owner aceitou o item;
     \item o cartão no Jira está em \textit{Done}, com a ligação para o \textit{pull request}.
@@ -285,15 +285,14 @@ Um item só passa a \textit{Done} quando:
 
 \subsection{Uso do GitHub}
 
-Temos um repositório da equipa, ligado no Jira na secção \textit{Artifacts}, e trabalhamos com três tipos de branch:
+Temos um repositório da equipa, ligado no Jira na secção \textit{Artifacts}. Trabalhamos na \texttt{main}. Cada tarefa sai numa branch à parte e volta por \textit{pull request}.
 
 \small
 \renewcommand{\arraystretch}{1.5}
 \begin{tabularx}{\textwidth}{N{4.9cm} Y}
   \rowcolor{azul} \th{Branch} & \th{Para que serve} \\
-  \rowcolor{azulclaro!55} \texttt{main} & Versões estáveis. Só recebe código no fim do sprint, depois da Review. \\
-  \rowcolor{white} \texttt{dev} & Onde integramos o trabalho de todos. \\
-  \rowcolor{azulclaro!55} \texttt{feature/PROJ-12-login} & Uma por tarefa, criada a partir da \texttt{dev}, com o código do cartão do Jira no nome. \\
+  \rowcolor{azulclaro!55} \texttt{main} & Onde está o trabalho da equipa. Os \textit{pull requests} entram aqui. \\
+  \rowcolor{white} \texttt{feature/EDS-13-personas} & Uma por tarefa, criada a partir da \texttt{main}, com a chave do cartão do Jira no nome. \\
   \bottomrule
 \end{tabularx}
 \renewcommand{\arraystretch}{1}
@@ -302,7 +301,7 @@ Temos um repositório da equipa, ligado no Jira na secção \textit{Artifacts}, 
 \begin{itemize}
   \item Fazemos commits pequenos e frequentes, com mensagens curtas que digam o que mudou.
   \item Passwords, chaves de API e dados pessoais não entram no repositório.
-  \item Antes de começar a trabalhar fazemos \textit{pull} da \texttt{dev}.
+  \item Antes de começar a trabalhar fazemos \textit{pull} da \texttt{main}.
   \item Se a integração contínua falhar, corrigir isso passa à frente do resto.
 \end{itemize}
 
