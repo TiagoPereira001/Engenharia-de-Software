@@ -6,14 +6,13 @@ O dia a dia está no Jira. Aqui ficam o código e os documentos. Quem chega agor
 
 - [Jira, projeto EDS](https://ubi-team-ebw5rr6y.atlassian.net/jira/software/projects/EDS/boards/3)
 - [Confluence](https://ubi-team-ebw5rr6y.atlassian.net/wiki/spaces/EDS/overview)
+- [Figma, wireframes](https://www.figma.com/design/VGH6pNIEVkvzY6QtVo8gcr)
 
 ## O que vamos construir
 
-O enunciado pede um sistema para gerir pedidos de funcionalidades e o roadmap de um produto. Dá para submeter pedidos, etiquetá-los, priorizar (à mão, por votos e com uma sugestão de IA), montar o backlog e o sprint, atribuir trabalho, ver o roadmap e as releases, gerar user stories a partir dos pedidos, comentar e ter dashboards (pedidos, lead time, cycle time, carga das equipas).
+Um *Feature Request & Product Roadmap Management System*, o produto que o enunciado propõe: um sistema para gerir pedidos de funcionalidades e o roadmap de um produto. Dá para submeter pedidos, etiquetá-los, priorizar (à mão, por votos e com uma sugestão de IA), montar o backlog e o sprint, atribuir trabalho, ver o roadmap e as releases, gerar user stories a partir dos pedidos, comentar e ter dashboards (pedidos, lead time, cycle time, carga das equipas).
 
 Há back-end e front-end. São precisas pelo menos 8 interfaces para além do login e do CRUD. A arquitetura tem de estar justificada, com wireframes e mockups. Os requisitos levantam-se com o Character.ai. Usamos pelo menos uma ferramenta de IA para programar, e esse uso fica no registo.
-
-No Sprint 1 a análise de produto (personas, cenários, user stories e prioridades) foi escrita sobre uma aplicação universitária da UBI: horários, notas, propinas, avisos, mapa. Está em `docs/sprint-1/`. O enunciado descreve o sistema de pedidos e roadmap. As duas coisas coexistem até o professor fechar o tema. A decisão fica no Jira.
 
 ## Equipa
 
@@ -27,33 +26,30 @@ No Sprint 1 a análise de produto (personas, cenários, user stories e prioridad
 
 ## Sprints
 
-O professor deu mais uma semana a cada sprint do que as datas do enunciado. O Sprint 1 acaba a 14 de outubro. Daí para a frente são as datas do contrato.
+| Sprint | Datas | Product Owner | Scrum Master | O que se fez |
+|---|---|---|---|---|
+| 1 | 21 set a 14 out | Tiago Pereira | Rui Machado | Equipa, contrato, Jira, produto decidido, primeira proposta de personas, cenários e user stories |
+| 2 | 12 a 23 out | Felipe Fogaça | João Vitor | Entrevistas às cinco personas no Character.ai, personas e user stories revistas, wireframes |
+| 3 | 23 a 26 out | João Vitor | Marcus Fernandes | Requisitos não funcionais, arquitetura, modelação UML, wireframes corrigidos, mockups, base do código |
+| 4 | por confirmar | Marcus Fernandes | Felipe Fogaça | Primeiro incremento a funcionar (pedidos, votos, aviso de pedidos parecidos) |
+| 5 | por confirmar | Rui Machado | Tiago Pereira | Restantes interfaces, testes, deploy e entrega final |
 
-| Sprint | Datas | Product Owner | Scrum Master |
-|---|---|---|---|
-| 1 | 21 set a 14 out | Tiago Pereira | Rui Machado |
-| 2 | 12 a 30 out | Felipe Fogaça | João Vitor |
-| 3 | 2 a 20 nov | João Vitor | Marcus Fernandes |
-| 4 | 23 nov a 11 dez | Marcus Fernandes | Felipe Fogaça |
-| 5 | 14 dez a 15 jan | Rui Machado | Tiago Pereira |
+Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo sprint. A apresentação oral é no fim de cada sprint. A do Sprint 1 e a do Sprint 2 fizeram-se juntas, porque é o mesmo produto.
 
-Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo sprint. A apresentação oral é na última semana do sprint.
-
-No Jira, o Sprint 2 começa a 12 de outubro, por isso ainda se cruza com o fim do Sprint 1.
-
-No fecho do Sprint 1 faltam, no quadro, a daily (EDS-4), a review (EDS-6) e a retrospetiva (EDS-7).
-
-## O que já está neste repositório
+## O que está neste repositório
 
 | Pasta | O que é |
 |---|---|
-| `docs/contrato/` | Contrato de equipa. O texto certo é o `.tex`. O PDF ainda é uma compilação antiga: diz Filipe, Marcus Bernardo, Sprint 1 até 9 de outubro e a branch `dev`. Isso já foi corrigido no `.tex`, falta compilar no Overleaf. |
-| `docs/sprint-1/` | Análise do produto do Sprint 1, em PDF e em LaTeX (`analise_produto`). |
+| `docs/contrato/` | Contrato de equipa. O texto certo é o `.tex`. O PDF é uma compilação antiga: ainda diz Filipe, Marcus Bernardo, Sprint 1 até 9 de outubro e a branch `dev`. Falta compilar o `.tex` no Overleaf. |
+| `docs/sprint-1/` | Análise do produto. `produto_personas_cenarios.pdf` e `analise_produto.tex` são a versão de 17 de outubro: produto, papéis, sete áreas, personas, cenários e user stories. `analise_produto.pdf` é a primeira versão, de 28 de setembro, sobre uma aplicação da UBI que era o exercício do Lab03 e não o produto do enunciado; fica como histórico. |
+| `docs/sprint-2/` | Guião das entrevistas no Character.ai (`entrevistas_character_ai.pdf`) e os primeiros rascunhos dos ecrãs (`wireframes_exemplos.pdf`). Os wireframes definitivos estão no Figma. |
 | `docs/guia-jira/` | Guia para usar o nosso Jira, em LaTeX. |
 | `docs/registo-ia/` | Onde registamos o uso de IA, em LaTeX. |
 | `certificados-scrum/` | Print do Certiprof de cada um. |
 
-Ainda não há código da aplicação. Wireframes, arquitetura, desenho, modelação e mockups entram aqui quando existirem, e ficam ligados no epic Artifacts do Jira (EDS-26 a EDS-30).
+Os documentos de 17 de outubro foram escritos antes das entrevistas. O que saiu delas (as cinco personas revistas, os cenários e as user stories corrigidas) está no Jira, nos epics Personas (EDS-150), Cenários (EDS-151) e User stories (EDS-152), com as capturas e o texto de cada conversa no cartão EDS-55.
+
+Os documentos do Sprint 3 (requisitos não funcionais, arquitetura e modelação) vão para `docs/sprint-3/`. O código entra também no Sprint 3, com `backend/` (Django) e `frontend/` (React), como diz o cartão EDS-164.
 
 Os `.tex` compilam no Overleaf com pdfLaTeX. É preciso compilar duas vezes para os números de página ficarem certos.
 
@@ -64,7 +60,7 @@ Há uma branch, a `main`. Cada tarefa sai numa branch à parte, com a chave do c
 ```bash
 git switch main
 git pull
-git switch -c feature/EDS-13-personas
+git switch -c feature/EDS-164-ambiente
 ```
 
 A chave vai em maiúsculas na branch, no commit e no título do pull request. Passwords e chaves de API não entram no repositório.
