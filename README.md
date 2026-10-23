@@ -7,6 +7,8 @@ O dia a dia está no Jira. Aqui ficam o código e os documentos. Quem chega agor
 - [Jira, projeto EDS](https://ubi-team-ebw5rr6y.atlassian.net/jira/software/projects/EDS/boards/3)
 - [Confluence](https://ubi-team-ebw5rr6y.atlassian.net/wiki/spaces/EDS/overview)
 - [Figma, wireframes](https://www.figma.com/design/VGH6pNIEVkvzY6QtVo8gcr)
+- [FigJam, diagramas do Sprint 3](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41)
+- [Wiki do projeto](wiki/README.md) e [estado atual](wiki/currentstate.md)
 
 ## O que vamos construir
 
@@ -40,6 +42,11 @@ Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo 
 
 | Pasta | O que é |
 |---|---|
+| `wiki/` | Documentação em Markdown, por ordem: produto, requisitos, protótipo, arquitetura, modelação, código e Scrum. Começa no [índice](wiki/README.md). |
+| `backend/` | Servidor Django REST Framework (módulos `contas` e `pedidos`) e os seus testes. Ver [como correr](wiki/06-codigo/como-correr.md). |
+| `frontend/` | Aplicação React com os 15 ecrãs dos wireframes, numa versão inicial sem cores, e os seus testes. |
+| `.github/workflows/` | Integração contínua: corre os testes em cada pull request. |
+| `AGENTS.md` | Regras para quem trabalha no repositório, pessoas ou ferramentas de IA. |
 | `docs/contrato/` | Contrato de equipa. O texto certo é o `.tex`. O PDF é uma compilação antiga: ainda diz Filipe, Marcus Bernardo, Sprint 1 até 9 de outubro e a branch `dev`. Falta compilar o `.tex` no Overleaf. |
 | `docs/sprint-1/` | Análise do produto. `produto_personas_cenarios.pdf` e `analise_produto.tex` são a versão de 17 de outubro: produto, papéis, sete áreas, personas, cenários e user stories. `analise_produto.pdf` é a primeira versão, de 28 de setembro, sobre uma aplicação da UBI que era o exercício do Lab03 e não o produto do enunciado; fica como histórico. |
 | `docs/sprint-2/` | Guião das entrevistas no Character.ai (`entrevistas_character_ai.pdf`) e os primeiros rascunhos dos ecrãs (`wireframes_exemplos.pdf`). Os wireframes definitivos estão no Figma. |
@@ -49,7 +56,7 @@ Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo 
 
 Os documentos de 17 de outubro foram escritos antes das entrevistas. O que saiu delas (as cinco personas revistas, os cenários e as user stories corrigidas) está no Jira, nos epics Personas (EDS-150), Cenários (EDS-151) e User stories (EDS-152), com as capturas e o texto de cada conversa no cartão EDS-55.
 
-Os documentos do Sprint 3 (requisitos não funcionais, arquitetura e modelação) vão para `docs/sprint-3/`. O código entra também no Sprint 3, com `backend/` (Django) e `frontend/` (React), como diz o cartão EDS-164.
+Os documentos do Sprint 3 em LaTeX (requisitos não funcionais, arquitetura e modelação) vão para `docs/sprint-3/`. A versão de trabalho está na `wiki/`.
 
 Os `.tex` compilam no Overleaf com pdfLaTeX. É preciso compilar duas vezes para os números de página ficarem certos.
 
