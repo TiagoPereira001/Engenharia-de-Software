@@ -4,102 +4,415 @@
 \usepackage[portuguese]{babel}
 \usepackage{geometry}
 \usepackage{enumitem}
-\usepackage{longtable}
-\usepackage{array}
 \usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
 \usepackage{lmodern}
 \geometry{margin=2.4cm}
-\setlist[itemize]{leftmargin=1.5em}
+\setlist[itemize]{leftmargin=1.5em, itemsep=0.2em, topsep=0.2em}
 \setlist[enumerate]{leftmargin=1.8em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+
+% Persona: nome, idade e papel, contexto, objetivos, frustrações, ligação ao produto
+\newcommand{\persona}[6]{%
+  \subsection{#1}
+  \textbf{#2}\\
+  #3
+
+  \textbf{O que quer.} #4
+
+  \textbf{O que a incomoda hoje.} #5
+
+  \textbf{No sistema.} #6
+}
+
+% User story: id, área, persona, quero, para, prioridade proposta, critérios
+\newcommand{\us}[7]{%
+  \paragraph{#1 \textnormal{(#2, #6)}}
+  Como \textit{#3}, quero \textit{#4}, para \textit{#5}.
+  \begin{itemize}
+  #7
+  \end{itemize}
+}
+
 \title{Engenharia de Software\\Sprint 1 --- Análise do Produto}
 \author{}
-\date{28/09 \quad | \quad Sprint: 1 \quad | \quad Projeto: Aplicação Universitária UBI}
+\date{17/10/2026 \quad|\quad Sprints 1 e 2 \quad|\quad Feature Request \& Product Roadmap Management System}
 \begin{document}
 \maketitle
+
+\section*{Estado deste documento}
+
+Este é o documento de base do Sprint 1 e vai ser revisto pela equipa. Contém a visão do produto, os papéis que o enunciado nomeia, as sete áreas de funcionalidade, as personas, os cenários, as user stories com critérios de aceitação, os requisitos não funcionais e as interfaces candidatas.
+
+Duas coisas têm de ficar claras:
+
+\begin{itemize}
+\item As personas, os cenários, as histórias e as prioridades são uma \textbf{primeira proposta}. O enunciado não traz nenhuma persona escrita. Partiram do texto do enunciado (\texttt{SE\_Project.pdf}, secção \textit{Project Proposal}) e foram escritas com apoio de IA (Claude, via Claude Code). As pessoas são inventadas, só os papéis e as funcionalidades vêm do enunciado.
+\item O enunciado obriga a levantar os requisitos com o Character.ai. Esse levantamento \textbf{ainda não foi feito}. Quando for, os resultados entram aqui para confirmar, corrigir ou cortar o que está escrito. Até lá, nada disto está validado.
+\end{itemize}
+
+A prioridade de cada história é uma proposta (método MoSCoW). Quem decide a ordem do backlog é o Product Owner, depois de ouvir a equipa.
+
 \section{Visão e âmbito}
-\textbf{Problema:} a informação e os serviços académicos encontram-se dispersos por diferentes canais, dificultando tarefas quotidianas e a orientação no campus.\par
-\textbf{Proposta:} centralizar o acesso à informação e aos serviços universitários numa aplicação, considerando estudantes, docentes e funcionários.\par
-\textbf{Âmbito inicial a validar:} consulta de horários e salas, notificações de alterações e comunicação docente--estudante. As restantes funcionalidades podem ser consideradas para versões futuras, conforme prioridades, dependências e feedback dos utilizadores.
-\section{Stakeholders}
+
+\textbf{Nome.} Development of a Feature Request \& Product Roadmap Management System. Em português: sistema para gerir pedidos de funcionalidades e o roadmap de um produto.
+
+\textbf{Problema.} Um produto de software muda com o feedback dos clientes, com o que os stakeholders pedem, com o mercado e com a tecnologia. Muita gente ainda junta esses pedidos em folhas de cálculo, emails, trackers genéricos ou chats. O resultado é pedidos repetidos, prioridades que não batem certo, pouca ligação entre o que se pediu e o que se fez, e pouca visibilidade de como o produto evolui.
+
+\textbf{O que vamos construir.} Um sistema, com back-end e front-end, em que gestores de produto, clientes, programadores e gestores de projeto trabalham no mesmo sítio, desde o pedido de uma funcionalidade até à release.
+
+\textbf{O que o enunciado exige à volta disto.}
 \begin{itemize}
-\item \textbf{Estudantes} Utilizadores principais; consultam horários, notas e a cantina.
-\item \textbf{Docentes} Gerem aulas, avaliações e comunicação com as turmas.
-\item \textbf{Funcionários administrativos} Gerem inscrições, propinas e processos administrativos.
-\item \textbf{Serviços Académicos (SASUBI/Reitoria)} Responsáveis pelos processos.
-\item \textbf{Equipa de TI da UBI} Manutenção, suporte técnico e integrações.
-\item \textbf{Serviços de Ação Social} Gerem bolsas, refeitório e residências.
-\item \textbf{Segurança/Portaria} Controlo de acessos aos edifícios, caso aplicável.
-\item \textbf{Fornecedores externos} Prestadores potencialmente integrados, como cantina e transportes.
-\item \textbf{Visitantes/Candidatos} Acesso limitado à informação pública e às candidaturas.
+\item Back-end e front-end (o enunciado recomenda Django, React ou Node.js).
+\item Pelo menos 8 interfaces para além do login, do registo e do CRUD básico.
+\item Arquitetura justificada, com wireframes e mockups.
+\item Requisitos levantados com o Character.ai.
+\item Pelo menos uma ferramenta de IA para programar.
+\item Jira para organizar tudo, com acesso dos docentes.
+\item Um Product Owner e um Team Captain (Scrum Master) por sprint, com rotação.
 \end{itemize}
-\section{Funcionalidades identificadas}
-\begin{enumerate}
-\item Consulta de horários e salas.
-\item Consulta de notas.
-\item Consulta de propinas.
-\item Notificações sobre alterações de aulas e frequências.
-\item Reservas de espaços.
-\item Mapa interativo da universidade, com salas e serviços da UBI.
-\item Comunicação entre docentes e estudantes.
-\item Gestão de pedidos de documentos.
-\end{enumerate}
+
+\textbf{Fora do âmbito, por agora.} Integração com ferramentas externas (por exemplo importar pedidos do email ou de um tracker) é permitida pelo enunciado, mas não é pedida. Fica para depois do núcleo estar feito.
+
+\section{Quem o enunciado nomeia}
+
+Não são personas. São os papéis que o texto nomeia. As personas da secção seguinte dão rosto a estes papéis.
+
+\begin{itemize}
+\item \textbf{Gestores de produto} (product managers). Acompanham a evolução do produto.
+\item \textbf{Clientes} (customers). A origem de parte dos pedidos.
+\item \textbf{Programadores} (software developers). Recebem trabalho e implementam.
+\item \textbf{Gestores de projeto} (project managers). Acompanham o andamento.
+\item \textbf{Product Owners.} O enunciado diz que a priorização manual é feita por eles.
+\item \textbf{Utilizadores que votam.} O enunciado pede um mecanismo de votação e não diz quem vota. Assumimos que são os clientes e os utilizadores do produto cujos pedidos o sistema gere (a confirmar).
+\end{itemize}
+
+\section{Funcionalidades}
+
+São as sete áreas do enunciado, na ordem em que o enunciado as escreve. Essa ordem não é uma prioridade.
+
+\begin{description}
+\item[Feature Management.] Submissão de pedidos; categorização e etiquetas; edição e versões; pesquisa e filtros.
+\item[Prioritization.] Priorização manual pelos Product Owners; votação pelos utilizadores; sugestões assistidas por IA; estimativa de impacto e de esforço.
+\item[Product Backlog Management.] Criação do product backlog; definição do sprint backlog; estado das funcionalidades; atribuição a equipas de desenvolvimento.
+\item[Product Roadmap.] Roadmap visual; planeamento de releases; milestones; dependências entre funcionalidades.
+\item[Requirements Engineering.] Geração automática de user stories a partir dos pedidos; rastreabilidade entre funcionalidades, user stories e implementação; gestão de critérios de aceitação.
+\item[Collaboration.] Comentários e discussões; notificações; menções; espaços de trabalho por equipa.
+\item[Dashboards and Analytics.] Pedidos submetidos; aprovados e rejeitados; funcionalidades por release; lead time; cycle time; carga das equipas; progresso do roadmap.
+\end{description}
+
 \section{Personas}
-\subsection{Inês Carvalho, estudante}
-19 anos; frequenta o 1.º ano de Engenharia Informática. É de Viseu, estuda na Covilhã e vive numa residência. Usa o telemóvel para quase tudo.\par
-\textbf{Objetivos e frustrações:} quer consultar o horário, as salas e as notas num só local, ver o menu da cantina e orientar-se pelos vários polos. Frustra-se por alternar entre sites e não saber a quem recorrer para assuntos administrativos.
-\subsection{Professora Helena Duarte, docente}
-52 anos; docente de Matemática há mais de 20 anos. Tem conhecimentos tecnológicos medianos e prefere ferramentas simples.\par
-\textbf{Objetivos e frustrações:} quer comunicar rapidamente com os alunos, lançar sumários e notas, e reservar salas e equipamentos. Frustra-se com tarefas repetitivas e com a utilização de sites diferentes.
-\subsection{Paula Rodrigues, funcionária dos Serviços Académicos}
-45 anos; atende estudantes presencialmente e por email. O volume de trabalho aumenta no início do semestre e nas inscrições para exames.\par
-\textbf{Objetivos e frustrações:} quer reduzir pedidos repetitivos e organizar os processos digitalmente. Frustra-se com filas, pedidos incompletos e perguntas cuja resposta já está publicada.
-\subsection{João Almeida, estudante com mobilidade reduzida}
-20 anos; estudante de Marketing que se desloca em cadeira de rodas.\par
-\textbf{Objetivos e frustrações:} quer consultar percursos e edifícios acessíveis, reservar apoio e receber avisos sobre elevadores avariados. Frustra-se quando descobre no local que um acesso não está disponível.
-\section{Cenários de utilização}
-\subsection{Cenário 1, Consultar horário e chegar à aula}
-Inês acorda de manhã sem saber se houve alterações ao horário. Abre a aplicação e consulta as aulas do dia, incluindo horas e salas. Antes de sair de casa, verifica se há uma notificação de alteração. Ao chegar à universidade, consulta a localização da sala e segue para a aula. Se a informação estiver desatualizada ou a sala não estiver identificada, a aplicação deve indicar que os dados não estão disponíveis e apontar um canal de contacto.
-\subsection{Cenário 2, Comunicar uma alteração de aula}
-A professora Helena precisa de informar a turma de que a aula mudou de sala. Acede à funcionalidade de comunicação, seleciona a turma e a aula, escreve a alteração e confirma o envio. Os estudantes recebem uma notificação com a informação essencial. Helena deve conseguir verificar que a mensagem foi enviada; se não tiver autorização ou a turma não estiver disponível, o sistema deve explicar o problema sem enviar a mensagem.
-\subsection{Cenário 3, Pedir um documento académico}
-Paula recebe muitos pedidos de declarações, alguns sem os dados necessários. O estudante consulta os documentos disponíveis, seleciona o tipo pretendido e preenche os campos obrigatórios. Antes do envio, revê o pedido. O sistema confirma a submissão e apresenta um identificador ou estado para acompanhamento. Se faltarem dados, assinala os campos a corrigir.
-\subsection{Cenário 4, Encontrar um percurso acessível}
-João precisa de chegar a um edifício num polo que não conhece. Consulta o mapa, pesquisa o edifício e seleciona a opção de percurso acessível. A aplicação apresenta um percurso que considera a existência de entradas acessíveis. Se um elevador estiver avariado, o aviso deve ser visível e o sistema deve apresentar uma alternativa quando exista; caso contrário, deve informar que não consegue garantir um percurso acessível.
-\subsection{Cenário 5, Consultar uma nota ou propina}
-Inês quer confirmar uma nota publicada ou verificar informação sobre propinas. Abre a secção correspondente e consulta os dados associados à sua conta. A aplicação distingue informação atual de informação indisponível ou ainda não publicada e não expõe dados de outros estudantes.
-\section{User Stories iniciais}
-\begin{itemize}
-\item \textbf{US01, Horário:} Como estudante, quero consultar o meu horário e as salas, para planear o meu dia sem alternar entre vários sites.
-\item \textbf{US02, Notificações:} Como estudante, quero receber avisos de alterações a aulas ou frequências, para agir com base em informação atualizada.
-\item \textbf{US03, Comunicação:} Como docente, quero comunicar uma alteração à turma, para que os estudantes sejam informados atempadamente.
-\item \textbf{US04, Percurso acessível:} Como estudante com mobilidade reduzida, quero consultar percursos acessíveis e avisos sobre elevadores, para planear a deslocação.
-\item \textbf{US05, Pedido de documento:} Como estudante, quero submeter e acompanhar um pedido de documento, para evitar deslocações e saber o estado do pedido.
-\item \textbf{US06, Gestão de pedidos:} Como funcionária dos Serviços Académicos, quero receber pedidos com os campos necessários, para reduzir pedidos incompletos.
-\end{itemize}
-\noindent\textbf{Nota:} estas histórias são candidatas ao Product Backlog. A equipa deve refiná-las, atribuir prioridade e selecionar apenas as adequadas à Sprint, com critérios de aceitação acordados.
-\section{Priorização preliminar}
-\small
-\begin{longtable}{>{\centering\arraybackslash}p{0.7cm} p{3.4cm} p{1.5cm} p{7.8cm}}
+
+Cinco proto-personas, uma por papel principal. Os nomes e as histórias são inventados para ajudar a decidir. O formato segue o das aulas: quem é, o que quer, o que a incomoda.
+
+\persona{Marta Lopes}{34 anos, product manager numa empresa de software B2B}
+{Gere um produto usado por cerca de 40 empresas clientes. Recebe pedidos por email, por chat e em reuniões, e guarda-os numa folha de cálculo que só ela percebe. Tem de apresentar o plano do produto à direção de três em três meses.}
+{Ver todos os pedidos num só sítio, perceber quais se repetem, decidir com dados o que entra em cada release e mostrar um roadmap que a direção e os clientes entendam.}
+{Pedidos duplicados, prioridades decididas por quem insiste mais, e não conseguir explicar porque é que uma funcionalidade ficou de fora.}
+{Utilizadora principal do roadmap, das releases, das dependências e do dashboard. Revê a priorização.}
+
+\persona{Ricardo Almeida}{41 anos, Product Owner de uma equipa Scrum}
+{Trabalha com uma equipa de seis programadores em sprints de duas semanas. É ele que ordena o product backlog e aceita ou recusa o que fica pronto.}
+{Transformar pedidos soltos em histórias claras, com critérios de aceitação, ordenar o backlog com impacto e esforço à vista e montar o sprint backlog sem folhas de cálculo.}
+{Pedidos mal descritos que obrigam a perguntar tudo de novo, estimativas que ninguém regista e perder o fio entre o que se pediu e o que a equipa entregou.}
+{Utilizador principal da priorização, do backlog, das user stories e dos critérios de aceitação.}
+
+\persona{Sofia Ferreira}{29 anos, responsável de operações numa empresa cliente}
+{Usa o produto todos os dias e vai notando o que falta. Hoje manda os pedidos por email ao seu contacto na empresa fornecedora e raramente sabe o que lhes aconteceu.}
+{Submeter um pedido em poucos minutos, ver se alguém já pediu o mesmo, votar nos pedidos que a afetam e saber em que estado está o que pediu.}
+{Não ter resposta, não saber se o pedido foi lido e ter de repetir o mesmo pedido de cada vez que muda o interlocutor.}
+{Cliente que submete, vota e acompanha. É também a nossa aproximação ao \textit{utilizador que vota}.}
+
+\persona{Diogo Martins}{26 anos, programador full-stack}
+{Está há dois anos na equipa. Recebe tarefas pelo Jira e por mensagens. Gosta de trabalhar com requisitos claros e de saber o motivo do que está a construir.}
+{Ver a funcionalidade que lhe atribuíram com a história, os critérios de aceitação e as dependências, comentar com quem pediu, e ligar o que fez ao pedido original.}
+{Pedidos vagos, mudanças de âmbito sem aviso e não saber que outra funcionalidade tem de estar pronta antes da sua.}
+{Utilizador da atribuição de funcionalidades, do estado, das menções e da rastreabilidade.}
+
+\persona{Helena Costa}{45 anos, gestora de projeto}
+{Acompanha duas equipas e os prazos de cada release. Quer perceber a carga de cada equipa e se o plano se mantém, sem ter de interromper as pessoas para perguntar.}
+{Ver o progresso do roadmap, a carga das equipas e o tempo que as funcionalidades levam do pedido à entrega, para ajustar prazos e avisar a direção a tempo.}
+{Relatórios feitos à mão que já nascem desatualizados e descobrir os atrasos tarde demais.}
+{Utilizadora principal dos dashboards, das métricas e dos milestones.}
+
+\section{Cenários}
+
+Cada cenário é o caminho de uma persona a tentar um objetivo. Inclui o que o sistema responde e o que acontece quando corre mal.
+
+\subsection{C1. Sofia submete e acompanha um pedido}
+A Sofia repara que os relatórios do produto não se exportam para Excel. Entra no sistema, escreve o título e a descrição do pedido e escolhe a categoria \textit{Relatórios}. Enquanto escreve, o sistema mostra dois pedidos parecidos. Um deles é o que ela queria: vota nele em vez de submeter outro. Dias depois recebe uma notificação a dizer que o pedido passou a \textit{Em análise}.
+
+\textit{Quando corre mal.} Se o pedido que ela submete for mesmo duplicado e ela ignorar o aviso, o pedido fica criado mas o Ricardo pode juntá-lo ao original. A Sofia é avisada e os votos passam para o pedido principal.
+
+\subsection{C2. Ricardo prioriza o backlog}
+No início da semana o Ricardo abre a lista de pedidos novos. Filtra os que têm mais votos, regista para cada um o impacto e o esforço e vê a sugestão de prioridade da IA. Concorda com duas sugestões e discorda de uma: mantém a ordem dele e escreve a razão. Passa os pedidos escolhidos para o product backlog.
+
+\textit{Quando corre mal.} Se a IA não estiver disponível, o sistema avisa e o Ricardo prioriza à mão. A IA só sugere, nunca decide. Se a estimativa de esforço ainda não existir, o pedido não entra no sprint backlog.
+
+\subsection{C3. Marta monta uma release no roadmap}
+A Marta abre o roadmap visual, cria a release 2.0 com um milestone para o fim de novembro e arrasta para lá as funcionalidades aprovadas. Ao arrastar \textit{Exportar relatórios}, o sistema avisa que depende de \textit{Filtros avançados}, que ainda não está agendada. Ela agenda as duas.
+
+\textit{Quando corre mal.} Se criar uma dependência circular (A depende de B e B depende de A), o sistema recusa e explica porquê.
+
+\subsection{C4. Ricardo gera histórias a partir de um pedido}
+O pedido \textit{Exportar relatórios} foi aprovado. O Ricardo pede ao sistema para gerar as user stories. Aparecem três propostas no formato \textit{como\ldots{} quero\ldots{} para\ldots}. Edita uma, rejeita outra e acrescenta critérios de aceitação às que ficam. O sistema liga as histórias ao pedido original.
+
+\textit{Quando corre mal.} Se o pedido tiver pouca informação, o sistema gera menos histórias e diz o que falta. As histórias geradas nunca entram no backlog sem o Ricardo as aceitar.
+
+\subsection{C5. Diogo trabalha numa funcionalidade}
+O Diogo vê no seu espaço de equipa a funcionalidade que lhe atribuíram, com as histórias e os critérios. Muda o estado para \textit{Em desenvolvimento}, escreve um comentário com uma pergunta e menciona a Sofia para esclarecer um detalhe. No fim liga o seu \textit{pull request} à funcionalidade e passa-a a \textit{Em revisão}.
+
+\textit{Quando corre mal.} Se tentar passar a \textit{Concluída} sem pull request ligado, o sistema avisa que falta a ligação à implementação.
+
+\subsection{C6. Helena verifica o andamento}
+Antes da reunião com a direção, a Helena abre o dashboard. Vê o progresso do roadmap, a carga de cada equipa e o lead time e o cycle time médios. Repara que uma equipa está acima da capacidade e que a release 2.0 está atrasada. Exporta a vista e pede ao Ricardo para rever o âmbito.
+
+\textit{Quando corre mal.} Se faltarem dados (por exemplo funcionalidades sem estimativa), o dashboard mostra a métrica como incompleta e diz quantos itens faltam, em vez de mostrar um número que engana.
+
+\section{User stories}
+
+Formato das aulas: como \textit{persona}, quero \textit{objetivo}, para \textit{benefício}. Cada história indica a área do enunciado, a prioridade proposta (MoSCoW) e os critérios de aceitação. As histórias são do nosso backlog, para construir este sistema. A geração automática de histórias (US-18) é uma funcionalidade do produto, não se confunde com este documento.
+
+\subsection{Feature Management}
+
+\us{US-01}{Feature Management}{cliente}{submeter um pedido de funcionalidade com título, descrição e categoria}{o meu pedido ficar registado e não se perder num email}{Must}{
+\item O pedido só se grava com título e descrição preenchidos.
+\item Depois de gravar, o pedido aparece na lista com o estado \textit{Novo}.
+\item Quem submete recebe a confirmação no ecrã.}
+
+\us{US-02}{Feature Management}{product manager}{categorizar e etiquetar os pedidos}{os agrupar por tema e encontrá-los depois}{Must}{
+\item É possível atribuir uma categoria e várias etiquetas a cada pedido.
+\item Pode filtrar-se a lista por categoria e por etiqueta.}
+
+\us{US-03}{Feature Management}{product manager}{editar um pedido e ver as versões anteriores}{perceber o que mudou e quem mudou}{Should}{
+\item Cada edição cria uma versão nova com autor e data.
+\item É possível ver a lista de versões e comparar duas.
+\item Voltar a uma versão antiga cria uma versão nova, não apaga o histórico.}
+
+\us{US-04}{Feature Management}{utilizador}{pesquisar e filtrar pedidos por texto, estado, categoria e etiqueta}{encontrar depressa o que procuro}{Must}{
+\item A pesquisa por texto procura no título e na descrição.
+\item Os filtros combinam-se entre si.
+\item Quando não há resultados, o ecrã diz isso e sugere limpar os filtros.}
+
+\us{US-05}{Feature Management}{cliente}{ser avisado de pedidos parecidos quando escrevo o meu}{votar num que já existe em vez de criar um duplicado}{Should}{
+\item Ao escrever o título, o sistema sugere pedidos semelhantes.
+\item O product owner pode juntar dois pedidos; os votos e os comentários passam para o principal.}
+
+\subsection{Prioritization}
+
+\us{US-06}{Prioritization}{Product Owner}{ordenar manualmente os pedidos por prioridade}{a equipa trabalhar primeiro no que tem mais valor}{Must}{
+\item Só o Product Owner altera a ordem.
+\item A alteração fica registada com data e autor.
+\item O Product Owner pode escrever a razão da ordem.}
+
+\us{US-07}{Prioritization}{utilizador}{votar nos pedidos que me interessam}{mostrar o que mais precisa de ser feito}{Must}{
+\item Cada utilizador tem um voto por pedido e pode retirá-lo.
+\item O número de votos é visível na lista e no pedido.
+\item O sistema impede votar duas vezes no mesmo pedido.}
+
+\us{US-08}{Prioritization}{Product Owner}{receber uma sugestão de prioridade assistida por IA}{apoiar a minha decisão com outra leitura dos dados}{Should}{
+\item A sugestão usa dados do pedido (votos, impacto, esforço).
+\item A sugestão é só uma recomendação: nada muda sem o Product Owner aceitar.
+\item Quando a IA falha ou não responde, o resto da priorização continua a funcionar.}
+
+\us{US-09}{Prioritization}{Product Owner}{estimar o impacto e o esforço de cada pedido}{comparar pedidos e escolher melhor}{Must}{
+\item Impacto e esforço usam uma escala fixa e documentada.
+\item A lista pode ordenar-se por impacto, por esforço ou pela relação entre os dois.}
+
+\subsection{Product Backlog Management}
+
+\us{US-10}{Product Backlog}{Product Owner}{criar e manter o product backlog a partir dos pedidos aprovados}{ter uma lista única do que falta fazer}{Must}{
+\item Um pedido aprovado pode ser acrescentado ao product backlog.
+\item O backlog tem uma ordem e o Product Owner pode alterá-la.}
+
+\us{US-11}{Product Backlog}{Product Owner}{definir o sprint backlog escolhendo itens do product backlog}{a equipa saber o que fazer em cada sprint}{Must}{
+\item Um item só entra no sprint se tiver estimativa.
+\item O sprint tem datas e objetivo.
+\item O que não fica pronto volta ao product backlog.}
+
+\us{US-12}{Product Backlog}{programador}{atualizar o estado de uma funcionalidade}{todos verem em que ponto está}{Must}{
+\item Os estados são \textit{Novo}, \textit{Em análise}, \textit{Aprovado}, \textit{Rejeitado}, \textit{Em desenvolvimento}, \textit{Em revisão} e \textit{Concluído}.
+\item Cada mudança de estado fica registada com data e autor.
+\item Os interessados são notificados quando o estado muda.}
+
+\us{US-13}{Product Backlog}{project manager}{atribuir funcionalidades a equipas de desenvolvimento}{cada trabalho ter um responsável}{Must}{
+\item Uma funcionalidade pode ter uma equipa atribuída.
+\item A lista pode filtrar-se por equipa.}
+
+\subsection{Product Roadmap}
+
+\us{US-14}{Product Roadmap}{product manager}{ver o roadmap numa linha do tempo visual}{perceber de relance o que vem e quando}{Must}{
+\item O roadmap mostra releases e funcionalidades ao longo do tempo.
+\item Arrastar uma funcionalidade para outra release atualiza-a.}
+
+\us{US-15}{Product Roadmap}{product manager}{planear releases com data e funcionalidades}{comunicar o que entra em cada versão}{Must}{
+\item Uma release tem nome, data prevista e lista de funcionalidades.
+\item Uma funcionalidade pertence, no máximo, a uma release.}
+
+\us{US-16}{Product Roadmap}{product manager}{definir milestones}{marcar os marcos importantes do produto}{Should}{
+\item Um milestone tem nome, data e funcionalidades associadas.
+\item O estado do milestone calcula-se a partir das funcionalidades.}
+
+\us{US-17}{Product Roadmap}{programador}{ver e registar dependências entre funcionalidades}{saber o que tem de estar pronto antes do meu trabalho}{Should}{
+\item O sistema avisa quando se agenda uma funcionalidade antes daquela de que depende.
+\item O sistema recusa dependências circulares.}
+
+\subsection{Requirements Engineering}
+
+\us{US-18}{Requirements Engineering}{Product Owner}{gerar user stories a partir de um pedido aprovado}{poupar tempo a escrever e não perder nada do que foi pedido}{Should}{
+\item As histórias saem no formato \textit{como\ldots{} quero\ldots{} para\ldots}.
+\item O Product Owner edita, aceita ou rejeita cada uma.
+\item Cada história aceite fica ligada ao pedido de origem.}
+
+\us{US-19}{Requirements Engineering}{project manager}{seguir a ligação entre pedido, user story e implementação}{provar de onde veio cada coisa feita}{Should}{
+\item A partir de um pedido vê-se as histórias e a implementação ligadas (por exemplo o pull request).
+\item A partir de uma implementação chega-se ao pedido original.}
+
+\us{US-20}{Requirements Engineering}{Product Owner}{escrever e gerir critérios de aceitação em cada história}{a equipa saber quando uma história está pronta}{Must}{
+\item Cada história pode ter vários critérios.
+\item Cada critério marca-se como cumprido ou não cumprido.
+\item Uma história só passa a \textit{Concluído} se todos os critérios estiverem cumpridos, ou se o Product Owner justificar a exceção.}
+
+\subsection{Collaboration}
+
+\us{US-21}{Collaboration}{utilizador}{comentar e discutir um pedido}{esclarecer dúvidas no sítio onde está o pedido}{Must}{
+\item Os comentários mostram autor e data.
+\item O autor pode editar ou apagar o seu comentário.}
+
+\us{US-22}{Collaboration}{utilizador}{receber notificações do que me interessa}{não ter de andar a verificar}{Should}{
+\item Recebo notificação quando alguém me menciona, responde ou muda o estado de um pedido que sigo.
+\item Posso escolher quais notificações quero receber.}
+
+\us{US-23}{Collaboration}{programador}{mencionar colegas com @nome nos comentários}{chamar a pessoa certa para a conversa}{Should}{
+\item Ao escrever @, aparece a lista de pessoas do espaço de trabalho.
+\item A pessoa mencionada recebe uma notificação.}
+
+\us{US-24}{Collaboration}{project manager}{ter um espaço de trabalho por equipa}{cada equipa ver só o seu trabalho}{Should}{
+\item Cada espaço de trabalho tem membros, pedidos e funcionalidades.
+\item Um utilizador só vê os espaços a que pertence.}
+
+\subsection{Dashboards and Analytics}
+
+\us{US-25}{Dashboards}{product manager}{ver quantos pedidos foram submetidos, aprovados e rejeitados}{perceber o fluxo de pedidos}{Should}{
+\item Os totais podem filtrar-se por período.
+\item Os números batem com a lista de pedidos.}
+
+\us{US-26}{Dashboards}{product manager}{ver quantas funcionalidades há por release}{avaliar o tamanho de cada versão}{Should}{
+\item O gráfico mostra o número de funcionalidades de cada release.
+\item Carregar numa release leva à lista das suas funcionalidades.}
+
+\us{US-27}{Dashboards}{project manager}{ver o lead time e o cycle time}{perceber quanto tempo demora uma funcionalidade do pedido à entrega}{Should}{
+\item Lead time: da data do pedido à conclusão.
+\item Cycle time: do início do desenvolvimento à conclusão.
+\item O dashboard mostra a média e a evolução por período.}
+
+\us{US-28}{Dashboards}{project manager}{ver a carga de cada equipa}{distribuir melhor o trabalho}{Should}{
+\item A carga mostra o esforço estimado atribuído a cada equipa.
+\item Quando a carga passa a capacidade definida, aparece um aviso.}
+
+\us{US-29}{Dashboards}{project manager}{ver o progresso do roadmap}{saber se as releases estão dentro do plano}{Should}{
+\item O progresso de cada release calcula-se a partir do estado das suas funcionalidades.
+\item Uma release em atraso fica destacada.}
+
+\subsection{Acesso}
+
+\us{US-30}{Acesso}{utilizador}{registar-me e entrar no sistema com o meu perfil}{ver só o que o meu papel permite}{Must}{
+\item Existem os perfis cliente, product manager, Product Owner, programador e project manager.
+\item Cada perfil só acede às funcionalidades que lhe dizem respeito.
+\item A palavra-passe não se guarda em texto simples.}
+
+\subsection{Resumo}
+
+\begin{center}
+\begin{tabular}{lccc}
 \toprule
-\textbf{N.º} & \textbf{Funcionalidade} & \textbf{Prioridade} & \textbf{Justificação}\\
+Área & Must & Should & Total \\
 \midrule
-1 & Horários e salas & Alta & Uso recorrente e informação essencial para estudantes.\\
-2 & Notas & Alta & Apoia o acompanhamento do semestre.\\
-3 & Propinas & Média & Importante, mas consultada com menor frequência.\\
-4 & Notificações de alterações & Alta & Ajuda a agir perante mudanças e evita deslocações ou faltas.\\
-5 & Reservas de espaços & Baixa & Útil; prioridade deve ser validada com utilizadores e âmbito.\\
-6 & Mapa interativo & Baixa & Pode ser mais valioso para novos alunos, visitantes e pessoas com necessidades de acessibilidade.\\
-7 & Comunicação docente--estudante & Alta & Facilita a comunicação direta sobre aulas e atividades.\\
-8 & Pedidos de documentos & Média & Pode reduzir trabalho administrativo e pedidos repetitivos.\\
+Feature Management & 3 & 2 & 5 \\
+Prioritization & 3 & 1 & 4 \\
+Product Backlog & 4 & 0 & 4 \\
+Product Roadmap & 2 & 2 & 4 \\
+Requirements Engineering & 1 & 2 & 3 \\
+Collaboration & 1 & 3 & 4 \\
+Dashboards & 0 & 5 & 5 \\
+Acesso & 1 & 0 & 1 \\
+\midrule
+Total & 15 & 15 & 30 \\
 \bottomrule
-\end{longtable}
-\normalsize
-\section{Questões em aberto e validação}
+\end{tabular}
+\end{center}
+
+Nenhuma história está como \textit{Could} ou \textit{Won't} para já. Essa decisão é do Product Owner.
+
+\section{Requisitos não funcionais}
+
+Valores propostos e por confirmar com a equipa. O enunciado pede arquitetura justificada, modularidade e escalabilidade.
+
 \begin{itemize}
-\item Confirmar o âmbito e o nome oficial do produto, os utilizadores-alvo e se a aplicação integra sistemas existentes ou apenas agrega ligações/informação.
-\item Validar personas e cenários com estudantes, docentes e funcionários; até essa validação, tratá-los como proto-personas e hipóteses, não como factos observados.
-\item Confirmar como serão obtidos horários, notas, propinas, dados de acessibilidade e estado de elevadores, bem como quem mantém esses dados.
-\item Rever as prioridades: o valor para utilizadores com necessidades específicas não deve ser confundido com a frequência de utilização pela maioria.
-\item Definir critérios de aceitação para as histórias escolhidas e associá-las às funcionalidades; evitar colocar todas as funcionalidades na Sprint 1 sem capacidade e objetivos claros.
+\item \textbf{Usabilidade.} Submeter um pedido não deve exigir mais do que um ecrã. A interface funciona em portátil e em telemóvel.
+\item \textbf{Desempenho.} A pesquisa e as listas respondem em menos de 2 segundos com alguns milhares de pedidos.
+\item \textbf{Segurança.} Autenticação, perfis com permissões por papel, palavras-passe com hash e protegidas, e proteção contra os erros mais comuns (injeção, XSS).
+\item \textbf{Rastreabilidade e auditoria.} Mudanças de estado, de prioridade e de versão ficam registadas com autor e data.
+\item \textbf{Privacidade.} Só se guardam os dados pessoais necessários e cumpre-se o RGPD.
+\item \textbf{Fiabilidade.} Se a IA ou um serviço externo falhar, o resto do sistema continua a funcionar.
+\item \textbf{Manutenção.} Código modular, testes automáticos e integração contínua na \texttt{main}, como o contrato diz.
+\item \textbf{Escalabilidade.} Arquitetura que permita crescer em utilizadores e em equipas sem refazer tudo.
+\item \textbf{Acessibilidade.} Contraste, navegação por teclado e textos alternativos.
+\item \textbf{Idioma.} Interface em português; a estrutura deve permitir acrescentar inglês.
 \end{itemize}
+
+\section{Interfaces candidatas}
+
+O enunciado pede pelo menos 8 interfaces para além do login, do registo e do CRUD básico. Estas são as candidatas. Os wireframes do Sprint 2 escolhem e desenham as principais.
+
+\begin{enumerate}
+\item Roadmap visual com releases e milestones.
+\item Quadro de priorização, com votos, impacto, esforço e sugestão da IA.
+\item Detalhe do pedido, com versões, comentários e menções.
+\item Gerador e editor de user stories com critérios de aceitação.
+\item Planeamento de sprint (product backlog e sprint backlog).
+\item Vista de rastreabilidade (pedido, história, implementação).
+\item Dashboard de métricas (pedidos, lead time, cycle time, release).
+\item Carga das equipas.
+\item Centro de notificações.
+\item Espaço de trabalho de equipa.
+\end{enumerate}
+
+\section{De onde vem cada persona}
+
+\begin{center}
+\begin{tabular}{lp{9cm}}
+\toprule
+Persona & Histórias principais \\
+\midrule
+Marta (product manager) & US-02, US-14, US-15, US-16, US-25, US-26 \\
+Ricardo (Product Owner) & US-06, US-08, US-09, US-10, US-11, US-18, US-20 \\
+Sofia (cliente) & US-01, US-05, US-07, US-21, US-22 \\
+Diogo (programador) & US-12, US-17, US-23 \\
+Helena (project manager) & US-13, US-19, US-24, US-27, US-28, US-29 \\
+Todos & US-03, US-04, US-30 \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+\section{Apresentação dos Sprints 1 e 2}
+
+A apresentação oral do Sprint 1 e a do Sprint 2 fazem-se juntas. É o mesmo produto e o mesmo tema. Não são dois trabalhos (combinado da equipa, não vem do enunciado).
+
+Para o Sprint 1 já temos: produto, problema, papéis, sete áreas, personas, cenários, user stories com critérios, requisitos não funcionais e interfaces candidatas. Para o Sprint 2 ficam os wireframes e a escolha da arquitetura. Falta o levantamento com o Character.ai.
+
+\section{Pendente e limites}
+
+\begin{itemize}
+\item \textbf{Character.ai.} Falta o levantamento. Quando houver, confirmar personas, cenários e histórias.
+\item \textbf{Validação pela equipa.} Ninguém além de quem escreveu leu este documento.
+\item \textbf{Prioridades.} São uma proposta. O Product Owner decide.
+\item \textbf{Escalas e números.} A escala de impacto e esforço, os tempos de resposta e os estados são valores propostos.
+\item \textbf{O enunciado.} A página 3 é um esquema do percurso da cadeira (SWEBOK v4 e SFIA 9), não uma lista de ecrãs. As datas do enunciado (21/09 a 02/10 e seguintes) não são as do grupo, que estão no contrato e no Jira.
+\item \textbf{Lab03.} O Smart Campus (\texttt{ENGENHARIA DE SOFTWARE.txt}) é o exercício da aula, usado só para o método. Nenhuma persona nem história dali entra aqui.
+\item \textbf{Terminologia.} O enunciado chama Team Captain ao Scrum Master. No contrato e na equipa continua Scrum Master.
+\end{itemize}
+
 \end{document}
