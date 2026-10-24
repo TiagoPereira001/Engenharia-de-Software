@@ -38,9 +38,9 @@ python3 -m venv .venv
 .venv/bin/python manage.py runserver
 ```
 
-O `dados_exemplo` cria cinco utilizadores de teste com o nome das personas (sofia, marta, ricardo, diogo, helena), um por papel, e cinco pedidos. A palavra-passe de teste está em `backend/pedidos/management/commands/dados_exemplo.py`. Só serve para desenvolvimento.
+O `dados_exemplo` cria cinco utilizadores de teste com o nome das personas (sofia, marta, ricardo, diogo, helena), um por papel, e cinco pedidos. A palavra-passe de cada um é o nome seguido de 123 (`sofia` / `sofia123`). Cria também o administrador `admin` / `admin123`. São contas de teste, só para desenvolvimento.
 
-A API fica em `http://127.0.0.1:8000/api/` e o painel de administração em `/admin/` (para entrar no painel cria um superutilizador com `manage.py createsuperuser`).
+A API fica em `http://127.0.0.1:8000/api/` e o painel de administração em `/admin/` (entra-se com `admin` / `admin123`).
 
 ### Front-end (React)
 

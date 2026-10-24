@@ -27,8 +27,14 @@ class DadosExemplo(TestCase):
         self.assertEqual(exportacao.votos.count(), 3)
         self.assertEqual(exportacao.historico.count(), 2)
 
+    def test_palavra_passe_e_o_nome_mais_123(self):
+        self.correr()
+        self.assertTrue(Utilizador.objects.get(username="sofia").check_password("sofia123"))
+        admin = Utilizador.objects.get(username="admin")
+        self.assertTrue(admin.is_superuser and admin.check_password("admin123"))
+
     def test_correr_duas_vezes_nao_duplica(self):
         self.correr()
         self.correr()
         self.assertEqual(Pedido.objects.count(), 5)
-        self.assertEqual(Utilizador.objects.count(), 5)
+        self.assertEqual(Utilizador.objects.count(), 6)

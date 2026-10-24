@@ -1,6 +1,7 @@
 """Cria utilizadores de teste e pedidos de exemplo para as demonstrações.
 
-Só para desenvolvimento. A palavra-passe de todos os utilizadores de teste é a de baixo.
+Só para desenvolvimento. A palavra-passe de cada utilizador de teste é o nome seguido de 123
+(sofia / sofia123). Também cria o administrador admin / admin123 para entrar em /admin/.
 """
 
 from django.core.management.base import BaseCommand
@@ -8,8 +9,6 @@ from django.core.management.base import BaseCommand
 from contas.models import Papel, Utilizador
 from pedidos import servicos
 from pedidos.models import Categoria, Estado, Pedido
-
-PALAVRA_PASSE_TESTE = "teste-es-2026"
 
 UTILIZADORES = [
     ("sofia", Papel.CLIENTE),
@@ -30,17 +29,28 @@ PEDIDOS = [
 ]
 
 
+def palavra_passe_teste(nome):
+    return f"{nome}123"
+
+
 class Command(BaseCommand):
     help = "Cria utilizadores de teste e pedidos de exemplo (só para desenvolvimento)."
 
     def handle(self, *args, **options):
         pessoas = {}
         for nome, papel in UTILIZADORES:
-            u, criado = Utilizador.objects.get_or_create(username=nome, defaults={"papel": papel})
-            if criado:
-                u.set_password(PALAVRA_PASSE_TESTE)
-                u.save()
+            u, _ = Utilizador.objects.get_or_create(username=nome, defaults={"papel": papel})
+            # Repõe sempre a palavra-passe, para quem já tinha a base de dados criada.
+            u.set_password(palavra_passe_teste(nome))
+            u.save()
             pessoas[nome] = u
+
+        admin, _ = Utilizador.objects.get_or_create(
+            username="admin", defaults={"papel": Papel.PRODUCT_MANAGER, "is_staff": True, "is_superuser": True}
+        )
+        admin.set_password(palavra_passe_teste("admin"))
+        admin.save()
+
         cats = {nome: Categoria.objects.get_or_create(nome=nome)[0] for nome in CATEGORIAS}
 
         if Pedido.objects.exists():
@@ -53,4 +63,4 @@ class Command(BaseCommand):
         servicos.mudar_estado(pedido=primeiro, para=Estado.EM_ANALISE, autor=pessoas["marta"])
         for nome in ["marta", "diogo", "helena"]:
             servicos.alternar_voto(pedido=primeiro, utilizador=pessoas[nome])
-        self.stdout.write(self.style.SUCCESS(f"Pronto. Utilizadores: {', '.join(pessoas)}."))
+        self.stdout.write(self.style.SUCCESS(f"Pronto. Utilizadores: {', '.join(pessoas)} e admin (palavra-passe: nome + 123)."))
