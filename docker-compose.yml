@@ -1,18 +1,42 @@
-# Levanta a aplicação inteira com um comando:  docker compose up --build
+# O projeto inteiro em Docker, com um comando:  docker compose up --build
 # Front-end em http://localhost:5173, API em http://localhost:8000/api/
-# Os dois contentores ficam na mesma rede; o front-end chega ao back-end pelo nome "backend".
+# Três contentores na mesma rede: base de dados (PostgreSQL), back-end (Django) e front-end (React).
+# O código está montado nos contentores: ao guardar um ficheiro, o servidor recarrega sozinho.
 
 services:
+  db:
+    image: postgres:16-alpine
+    environment:
+      # Só para desenvolvimento.
+      POSTGRES_DB: pedidos
+      POSTGRES_USER: pedidos
+      POSTGRES_PASSWORD: pedidos-dev
+    volumes:
+      - postgres:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U pedidos -d pedidos"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+    networks:
+      - rede
+
   backend:
     build: ./backend
     environment:
       DJANGO_DEBUG: "1"
       DJANGO_ALLOWED_HOSTS: "localhost,127.0.0.1,backend"
-      DJANGO_DB_PATH: /dados/db.sqlite3
+      POSTGRES_HOST: db
+      POSTGRES_DB: pedidos
+      POSTGRES_USER: pedidos
+      POSTGRES_PASSWORD: pedidos-dev
     volumes:
-      - dados:/dados
+      - ./backend:/app
     ports:
       - "8000:8000"
+    depends_on:
+      db:
+        condition: service_healthy
     networks:
       - rede
 
@@ -20,6 +44,12 @@ services:
     build: ./frontend
     environment:
       API_URL: http://backend:8000
+      # Para o Vite ver as alterações aos ficheiros também no Windows.
+      CHOKIDAR_USEPOLLING: "true"
+    volumes:
+      - ./frontend:/app
+      # Os node_modules ficam os do contentor, não os da pasta do computador.
+      - /app/node_modules
     ports:
       - "5173:5173"
     depends_on:
@@ -31,4 +61,4 @@ networks:
   rede:
 
 volumes:
-  dados:
+  postgres:

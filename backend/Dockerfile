@@ -13,5 +13,5 @@ COPY . .
 
 EXPOSE 8000
 
-# Ao arrancar: prepara a base de dados, cria os dados de exemplo (só da primeira vez) e liga o servidor.
+# Ao arrancar: prepara a base de dados, cria os dados de exemplo e liga o servidor (recarrega ao mudar o código).
 CMD ["sh", "-c", "python manage.py migrate --noinput && python manage.py dados_exemplo && python manage.py runserver 0.0.0.0:8000"]

@@ -59,13 +59,25 @@ TEMPLATES = [
 
 WSGI_APPLICATION = "config.wsgi.application"
 
-DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.sqlite3",
-        # No Docker a base de dados fica num volume (DJANGO_DB_PATH), para não se perder ao recriar o contentor.
-        "NAME": os.environ.get("DJANGO_DB_PATH", BASE_DIR / "db.sqlite3"),
+# No Docker a base de dados é PostgreSQL (contentor "db"). Sem Docker, e nos testes da CI, é SQLite.
+if os.environ.get("POSTGRES_HOST"):
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.postgresql",
+            "HOST": os.environ["POSTGRES_HOST"],
+            "PORT": os.environ.get("POSTGRES_PORT", "5432"),
+            "NAME": os.environ.get("POSTGRES_DB", "pedidos"),
+            "USER": os.environ.get("POSTGRES_USER", "pedidos"),
+            "PASSWORD": os.environ.get("POSTGRES_PASSWORD", ""),
+        }
     }
-}
+else:
+    DATABASES = {
+        "default": {
+            "ENGINE": "django.db.backends.sqlite3",
+            "NAME": os.environ.get("DJANGO_DB_PATH", BASE_DIR / "db.sqlite3"),
+        }
+    }
 
 AUTH_USER_MODEL = "contas.Utilizador"
 
