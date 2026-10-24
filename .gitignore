@@ -13,3 +13,16 @@
 
 # macOS
 .DS_Store
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+backend/db.sqlite3
+
+# Node
+node_modules/
+frontend/dist/
+
+# Variáveis de ambiente (o modelo é o .env.example)
+.env
