@@ -1,0 +1,22 @@
+%% Sequência: sugestão de prioridade quando a IA falha (FigJam, diagrama 4). Cenário C2.
+sequenceDiagram
+    actor PO as Product Owner
+    participant UI as Ecrã Priorização (React)
+    participant API as API de priorização
+    participant Adaptador as Adaptador de IA
+    participant IA as Serviço de IA
+    PO->>UI: Pedir sugestão
+    UI->>API: POST /api/priorizacao/sugestao
+    API->>Adaptador: sugerir(pedidos)
+    Adaptador->>IA: pedido com tempo limite de 10 s
+    alt a IA responde a tempo
+        IA-->>Adaptador: ordem proposta e razão de cada pedido
+        Adaptador-->>API: sugestão com razões
+        API-->>UI: 200 com a sugestão
+        UI-->>PO: mostra a ordem e a razão
+        PO->>UI: Aceitar ou Manter a minha ordem
+    else a IA falha ou passa o tempo
+        Adaptador-->>API: sem sugestão
+        API-->>UI: 200 sem sugestão
+        UI-->>PO: aviso e a priorização manual continua
+    end

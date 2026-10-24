@@ -1,0 +1,16 @@
+%% Estados de um pedido, os da US-12 (FigJam, diagrama 5). Iguais a TRANSICOES em backend/pedidos/servicos.py.
+stateDiagram-v2
+    [*] --> Novo: cliente submete
+    Novo --> EmAnalise: product manager abre
+    EmAnalise --> Aprovado: faz sentido para o produto
+    EmAnalise --> Rejeitado: rejeitado com motivo
+    Aprovado --> EmDesenvolvimento: entra num sprint
+    EmDesenvolvimento --> EmRevisao: pull request aberto
+    EmRevisao --> EmDesenvolvimento: revisão pede alterações
+    EmRevisao --> Concluido: aceite pelo Product Owner
+    Rejeitado --> [*]
+    Concluido --> [*]
+    EmAnalise: Em análise
+    EmDesenvolvimento: Em desenvolvimento
+    EmRevisao: Em revisão
+    Concluido: Concluído

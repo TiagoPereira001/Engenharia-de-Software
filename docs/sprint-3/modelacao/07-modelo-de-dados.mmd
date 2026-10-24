@@ -1,0 +1,87 @@
+%% Modelo de dados (FigJam, diagrama 7). As tabelas UTILIZADOR, PEDIDO, CATEGORIA, VOTO e MUDANCA_ESTADO já existem no código.
+erDiagram
+    UTILIZADOR ||--o{ PEDIDO : "submete"
+    UTILIZADOR ||--o{ VOTO : "dá"
+    PEDIDO ||--o{ VOTO : "recebe"
+    CATEGORIA ||--o{ PEDIDO : "classifica"
+    PEDIDO ||--o{ MUDANCA_ESTADO : "tem"
+    UTILIZADOR ||--o{ MUDANCA_ESTADO : "faz"
+    PEDIDO ||--o{ COMENTARIO : "tem"
+    UTILIZADOR ||--o{ COMENTARIO : "escreve"
+    PEDIDO ||--o{ USER_STORY : "gera"
+    USER_STORY ||--o{ CRITERIO_ACEITACAO : "tem"
+    EQUIPA ||--o{ UTILIZADOR : "tem"
+    SPRINT ||--o{ USER_STORY : "inclui"
+    RELEASE ||--o{ PEDIDO : "entrega"
+    UTILIZADOR ||--o{ NOTIFICACAO : "recebe"
+    UTILIZADOR {
+        int id PK
+        string nome
+        string email
+        string papel
+        int equipa_id FK
+    }
+    PEDIDO {
+        int id PK
+        string titulo
+        string descricao
+        string estado
+        string origem
+        datetime criado_em
+        int autor_id FK
+        int categoria_id FK
+        int release_id FK
+    }
+    CATEGORIA {
+        int id PK
+        string nome
+    }
+    VOTO {
+        int id PK
+        int pedido_id FK
+        int utilizador_id FK
+    }
+    MUDANCA_ESTADO {
+        int id PK
+        int pedido_id FK
+        string de
+        string para
+        string motivo
+        datetime quando
+        int autor_id FK
+    }
+    COMENTARIO {
+        int id PK
+        string texto
+        datetime criado_em
+    }
+    USER_STORY {
+        int id PK
+        string texto
+        int pedido_id FK
+        int sprint_id FK
+    }
+    CRITERIO_ACEITACAO {
+        int id PK
+        string texto
+    }
+    EQUIPA {
+        int id PK
+        string nome
+    }
+    SPRINT {
+        int id PK
+        string nome
+        date inicio
+        date fim
+    }
+    RELEASE {
+        int id PK
+        string nome
+        date data
+    }
+    NOTIFICACAO {
+        int id PK
+        string texto
+        bool lida
+    }

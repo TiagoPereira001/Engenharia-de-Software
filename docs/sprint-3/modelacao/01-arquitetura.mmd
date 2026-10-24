@@ -1,0 +1,45 @@
+%% Arquitetura: monólito modular (FigJam, diagrama 1)
+flowchart LR
+    subgraph browser ["Browser"]
+        spa["Aplicação React (ecrãs dos wireframes)"]
+    end
+    subgraph servidor ["Servidor Django (monólito modular)"]
+        api["API REST (Django REST Framework)"]
+        subgraph modulos ["Módulos"]
+            contas["Contas e papéis"]
+            pedidos["Pedidos"]
+            priorizacao["Priorização"]
+            backlog["Backlog"]
+            roadmap["Roadmap"]
+            requisitos["Requisitos"]
+            colaboracao["Colaboração"]
+            metricas["Métricas"]
+        end
+        historico["Histórico de estados (partilhado)"]
+        adaptadorIa["Adaptador de IA (tempo limite)"]
+    end
+    subgraph dados ["Dados"]
+        bd[("Base de dados")]
+    end
+    subgraph fora ["Serviços de fora"]
+        ia["Serviço de IA"]
+        email["Email"]
+    end
+    spa -->|"HTTPS / JSON"| api
+    api --> contas
+    api --> pedidos
+    api --> priorizacao
+    api --> backlog
+    api --> roadmap
+    api --> requisitos
+    api --> colaboracao
+    api --> metricas
+    pedidos --> historico
+    backlog --> historico
+    metricas -->|"lê"| historico
+    priorizacao --> adaptadorIa
+    requisitos --> adaptadorIa
+    adaptadorIa -.->|"sugestões"| ia
+    colaboracao -.->|"avisos"| email
+    historico --> bd
+    modulos -->|"ORM"| bd

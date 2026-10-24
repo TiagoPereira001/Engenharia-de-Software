@@ -1,0 +1,31 @@
+%% Sequência: submeter pedido com aviso de parecidos (FigJam, diagrama 3). Cenário C1.
+sequenceDiagram
+    actor Cliente
+    participant UI as Ecrã Novo pedido (React)
+    participant API as API de pedidos (Django)
+    participant Servico as Serviço de pedidos
+    participant BD as Base de dados
+    Cliente->>UI: escreve o título
+    UI->>UI: espera 300 ms sem teclas
+    UI->>API: GET /api/pedidos/parecidos/?q=titulo
+    API->>Servico: procurar_parecidos(titulo)
+    Servico->>BD: procura pedidos com as mesmas palavras
+    BD-->>Servico: até 5 pedidos
+    Servico-->>API: lista de parecidos
+    API-->>UI: 200 com a lista
+    UI-->>Cliente: mostra os parecidos com o botão Votar
+    alt o pedido já existe
+        Cliente->>UI: Votar num parecido
+        UI->>API: POST /api/pedidos/id/voto/
+        API->>Servico: alternar_voto(pedido, utilizador)
+        Servico->>BD: guarda o voto (um por pessoa)
+        API-->>UI: 200 com o total de votos
+    else é um pedido novo
+        Cliente->>UI: Submeter
+        UI->>API: POST /api/pedidos/
+        API->>Servico: criar_pedido(dados, autor)
+        Servico->>BD: guarda o pedido no estado Novo
+        Servico->>BD: regista a mudança de estado
+        API-->>UI: 201 com o pedido
+        UI-->>Cliente: abre o detalhe do pedido
+    end

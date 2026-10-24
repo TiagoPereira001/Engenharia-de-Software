@@ -1,0 +1,28 @@
+%% Atividades: triagem de um pedido (FigJam, diagrama 6).
+flowchart TD
+    inicio(("Início"))
+    chega["Chega um pedido novo"]
+    origem{"Veio pelo sistema?"}
+    regista["Product manager regista-o com a origem (email, reunião, chat)"]
+    duplicado{"Já existe um pedido igual?"}
+    junta["Junta ao pedido existente e soma o voto"]
+    analisa["Product manager passa a Em análise"]
+    decide{"Faz sentido para o produto?"}
+    rejeita["Rejeita e escreve o motivo"]
+    aceita["Aprova o pedido"]
+    estima["Product Owner estima impacto; equipa estima esforço"]
+    criterios{"Tem critérios de aceitação?"}
+    historias["Gera e revê as user stories"]
+    backlog["Entra no product backlog"]
+    avisa["Cliente recebe uma notificação"]
+    fim(("Fim"))
+    inicio --> chega --> origem
+    origem -->|"Não"| regista --> duplicado
+    origem -->|"Sim"| duplicado
+    duplicado -->|"Sim"| junta --> avisa
+    duplicado -->|"Não"| analisa --> decide
+    decide -->|"Não"| rejeita --> avisa
+    decide -->|"Sim"| aceita --> estima --> criterios
+    criterios -->|"Não"| historias --> criterios
+    criterios -->|"Sim"| backlog --> avisa
+    avisa --> fim
