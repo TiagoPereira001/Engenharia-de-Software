@@ -1,0 +1,109 @@
+% Requisitos não funcionais e especificação do primeiro incremento (Sprint 3, EDS-159).
+% Compila no Overleaf com pdfLaTeX.
+\documentclass[11pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[portuguese]{babel}
+\usepackage[margin=2.3cm]{geometry}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\setlist{itemsep=0.15em, topsep=0.3em}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0.5em}
+\newcolumntype{Y}{>{\raggedright\arraybackslash}X}
+
+\title{Requisitos não funcionais e especificação do primeiro incremento}
+\author{Feature Request \& Product Roadmap Management System\\Engenharia de Software, UBI 2026/27}
+\date{Sprint 3 · cartão EDS-159 · versão de 23 de outubro de 2026}
+
+\begin{document}
+\maketitle
+
+\section*{Sobre este documento}
+
+No fim do Sprint 2 a equipa achou que a primeira versão dos requisitos não funcionais estava fraca: faltava dizer de onde vinha cada requisito e como se media. Esta versão refaz o documento com essas duas coisas para cada linha, e acrescenta a especificação das user stories que entram primeiro no código.
+
+Os números são uma proposta. Fecham-se com o Product Owner do sprint.
+
+\section{Requisitos não funcionais}
+
+Agrupados pelas características da norma ISO/IEC 25010. A coluna ``Vem de'' diz que persona (entrevistada no Character.ai a 17 de outubro) ou que parte do enunciado deu origem ao requisito.
+
+\small
+\begin{tabularx}{\textwidth}{@{}p{2.4cm} Y p{2.1cm} Y@{}}
+\toprule
+\textbf{Característica} & \textbf{Requisito} & \textbf{Vem de} & \textbf{Como se verifica} \\
+\midrule
+Usabilidade & RNF-01. Um cliente submete um pedido em 3 minutos ou menos. & Sofia & Teste cronometrado com uma pessoa de fora da equipa. \\
+Usabilidade & RNF-02. O formulário do cliente só pede título, descrição e uma categoria. & Sofia & Teste automático do ecrã Novo pedido. \\
+Fiabilidade & RNF-03. Se o serviço de IA falhar ou demorar mais de 10 segundos, a priorização continua a funcionar sem sugestão. & Ricardo & Teste automático com o serviço desligado (Sprint 4). \\
+Transparência & RNF-04. Cada sugestão da IA mostra a razão. & Ricardo & Revisão do ecrã Priorização. \\
+Desempenho & RNF-05. A lista e a pesquisa de pedidos respondem em menos de 1 segundo com 1000 pedidos. & Marta, Helena & Teste com dados gerados. \\
+Rastreabilidade & RNF-06. Todas as mudanças de estado de um pedido ficam guardadas com data e autor. & Ricardo, Helena & Testes automáticos ao histórico. \\
+Segurança & RNF-07. A palavra-passe guarda-se com hash e cada papel só faz o que lhe cabe. & Enunciado & Testes automáticos de permissões. \\
+Privacidade & RNF-08. Os votos mostram o total, nunca quem votou. & Sofia & Teste automático à API. \\
+Manutenibilidade & RNF-09. Testes automáticos em cada pull request; pelo menos 60\% de cobertura no back-end. & Equipa & GitHub Actions. \\
+Portabilidade & RNF-10. O sistema arranca na máquina de qualquer membro da equipa seguindo o README. & Equipa & Um colega que não montou o ambiente experimenta. \\
+\bottomrule
+\end{tabularx}
+\normalsize
+
+\section{Especificação do primeiro incremento}
+
+O primeiro incremento segue o cenário C1: a Sofia submete um pedido, vê se já existe um parecido, vota e acompanha o estado. Para cada user story: o que entra, as regras e o que acontece quando corre mal.
+
+\subsection{US-30. Registar-se e entrar}
+
+\begin{itemize}
+\item \textbf{Entradas:} nome de utilizador, email e palavra-passe.
+\item \textbf{Regras:} quem se regista fica sempre com o papel de cliente. Os papéis de product manager, Product Owner, programador e gestor de projeto atribui-os um administrador.
+\item \textbf{Erros:} palavra-passe fraca é recusada. Dados de entrada errados dão sempre a mesma mensagem (``Utilizador ou palavra-passe errados''), para não revelar se o utilizador existe.
+\end{itemize}
+
+\subsection{US-01. Submeter um pedido}
+
+\begin{itemize}
+\item \textbf{Entradas:} título, descrição e uma categoria. O product manager e o Product Owner podem ainda indicar a origem (email, reunião, chat) quando registam um pedido em nome de alguém.
+\item \textbf{Regras:} só utilizadores autenticados submetem. O pedido nasce no estado Novo e fica uma linha no histórico com data e autor. Se um cliente enviar uma origem, ela é ignorada.
+\item \textbf{Erros:} título com menos de 5 caracteres ou descrição vazia são recusados, com a mensagem junto ao campo.
+\end{itemize}
+
+\subsection{US-04. Pesquisar e filtrar pedidos}
+
+\begin{itemize}
+\item \textbf{Entradas:} texto, estado, categoria e ordem (mais recentes ou mais votados).
+\item \textbf{Regras:} o texto procura no título e na descrição. Os filtros juntam-se e ficam no endereço da página.
+\item \textbf{Casos limite:} sem resultados, o ecrã diz isso e oferece limpar os filtros.
+\end{itemize}
+
+\subsection{US-05. Aviso de pedidos parecidos}
+
+\begin{itemize}
+\item \textbf{Entradas:} o título enquanto se escreve.
+\item \textbf{Regras:} só procura a partir de 4 letras e depois de 300 milissegundos sem escrever. Mostra no máximo 5 pedidos, cada um com o seu botão de votar. Pedidos rejeitados não aparecem.
+\item \textbf{Casos limite:} se não houver parecidos, não aparece nada. Votar num parecido não apaga o que já se escreveu.
+\end{itemize}
+
+\subsection{US-07. Votar}
+
+\begin{itemize}
+\item \textbf{Regras:} um voto por pessoa e por pedido, garantido na base de dados. Votar outra vez retira o voto. A API devolve o total e se a pessoa votou, nunca quem votou.
+\item \textbf{Erros:} quem não está autenticado não vota.
+\end{itemize}
+
+\subsection{US-12 (parte). Estados e histórico}
+
+\begin{itemize}
+\item \textbf{Estados:} Novo, Em análise, Aprovado, Rejeitado, Em desenvolvimento, Em revisão, Concluído.
+\item \textbf{Transições permitidas:} Novo para Em análise; Em análise para Aprovado ou Rejeitado; Aprovado para Em desenvolvimento; Em desenvolvimento para Em revisão; Em revisão para Em desenvolvimento ou Concluído.
+\item \textbf{Regras:} no primeiro incremento só o product manager e o Product Owner mudam o estado. Rejeitar exige motivo, que o cliente vê.
+\item \textbf{Erros:} uma transição fora da lista é recusada com uma mensagem a dizer de onde para onde não se pode passar.
+\end{itemize}
+
+\section{Ligação aos testes}
+
+Os requisitos RNF-02, RNF-06, RNF-07 e RNF-08 e todas as regras da secção 2 já têm testes automáticos no repositório (\texttt{backend/*/tests} e \texttt{frontend/src/testes}). Os restantes verificam-se no Sprint 4.
+
+\end{document}
