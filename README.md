@@ -1,20 +1,107 @@
-# Engenharia de Software
+<div align="center">
 
-Trabalho de grupo da UBI, 2026/27. Docentes: Nuno Pombo e Carlos Cunha.
+# Pedidos e Roadmap
 
-O dia a dia está no Jira. Aqui ficam o código e os documentos. Quem chega agora começa por esta página, depois abre o Jira.
+**Um sistema para gerir pedidos de funcionalidades e o roadmap de um produto.**
 
-- [Jira, projeto EDS](https://ubi-team-ebw5rr6y.atlassian.net/jira/software/projects/EDS/boards/3)
-- [Confluence](https://ubi-team-ebw5rr6y.atlassian.net/wiki/spaces/EDS/overview)
-- [Figma, wireframes](https://www.figma.com/design/VGH6pNIEVkvzY6QtVo8gcr)
-- [FigJam, diagramas do Sprint 3](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41)
-- [Wiki do projeto](wiki/README.md) e [estado atual](wiki/currentstate.md)
+Trabalho de grupo de Engenharia de Software · UBI · 2026/27 · Docentes: Nuno Pombo e Carlos Cunha
 
-## O que vamos construir
+![Django](https://img.shields.io/badge/Django-4.2-0c4b33?logo=django&logoColor=white)
+![React](https://img.shields.io/badge/React-18-087ea4?logo=react&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-compose-1d63ed?logo=docker&logoColor=white)
+![Testes](https://img.shields.io/badge/testes-31%20%2B%2023-2e7d32)
 
-Um *Feature Request & Product Roadmap Management System*, o produto que o enunciado propõe: um sistema para gerir pedidos de funcionalidades e o roadmap de um produto. Dá para submeter pedidos, etiquetá-los, priorizar (à mão, por votos e com uma sugestão de IA), montar o backlog e o sprint, atribuir trabalho, ver o roadmap e as releases, gerar user stories a partir dos pedidos, comentar e ter dashboards (pedidos, lead time, cycle time, carga das equipas).
+[Jira](https://ubi-team-ebw5rr6y.atlassian.net/jira/software/projects/EDS/boards/3) ·
+[Confluence](https://ubi-team-ebw5rr6y.atlassian.net/wiki/spaces/EDS/overview) ·
+[Wireframes (Figma)](https://www.figma.com/design/VGH6pNIEVkvzY6QtVo8gcr) ·
+[Diagramas (FigJam)](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41) ·
+[Wiki](wiki/README.md) ·
+[Estado atual](wiki/currentstate.md)
 
-Há back-end e front-end. São precisas pelo menos 8 interfaces para além do login e do CRUD. A arquitetura tem de estar justificada, com wireframes e mockups. Os requisitos levantam-se com o Character.ai. Usamos pelo menos uma ferramenta de IA para programar, e esse uso fica no registo.
+<br>
+
+<img src="docs/imagens/app-pedidos.png" alt="Lista de pedidos da aplicação" width="900">
+
+</div>
+
+## O que é
+
+É o *Feature Request & Product Roadmap Management System* que o enunciado propõe. Os clientes submetem pedidos de funcionalidades e votam nos dos outros. A equipa de produto analisa-os, prioriza-os (à mão, por votos ou com uma sugestão de IA), monta o backlog e o sprint e mostra o que vem a seguir no roadmap. Pelo caminho geram-se user stories a partir dos pedidos, comenta-se e acompanha-se tudo em dashboards.
+
+Os requisitos vieram de entrevistas às cinco personas no Character.ai (Sofia, Marta, Ricardo, Diogo e Helena). O dia a dia do trabalho está no Jira, e aqui ficam o código e os documentos.
+
+## A aplicação
+
+Já funcionam os pedidos: criar, procurar, votar, ver o histórico e mudar o estado. Os outros ecrãs dos wireframes existem com dados de exemplo e ligam-se à API nos próximos sprints.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/imagens/app-novo-pedido.png" alt="Novo pedido com aviso de pedidos parecidos"></td>
+    <td width="50%"><img src="docs/imagens/app-detalhe-pedido.png" alt="Detalhe de um pedido com histórico e mudança de estado"></td>
+  </tr>
+  <tr>
+    <td><b>Novo pedido.</b> Enquanto se escreve o título aparecem os pedidos parecidos, para votar em vez de duplicar.</td>
+    <td><b>Detalhe do pedido.</b> Votos, histórico de estados e, para quem gere o produto, a mudança de estado.</td>
+  </tr>
+  <tr>
+    <td><img src="docs/imagens/app-priorizacao.png" alt="Ecrã de priorização com sugestão da IA"></td>
+    <td><img src="docs/imagens/app-pedidos.png" alt="Lista de pedidos com filtros"></td>
+  </tr>
+  <tr>
+    <td><b>Priorização.</b> A sugestão da IA aparece ao lado, e a decisão é sempre de quem prioriza.</td>
+    <td><b>Pedidos.</b> Pesquisa, filtros por estado e categoria, e ordenação.</td>
+  </tr>
+</table>
+
+## Como correr
+
+Com o Docker Desktop aberto, na pasta do projeto:
+
+```bash
+docker compose up --build
+```
+
+Depois abre-se **http://localhost:5173**. Para parar usa-se `Ctrl+C`, e `docker compose down -v` apaga a base de dados para recomeçar do zero.
+
+Ao arrancar são criadas contas de teste, uma por papel. A palavra-passe é o nome seguido de `123`:
+
+| Utilizador | Palavra-passe | Papel |
+|---|---|---|
+| `sofia` | `sofia123` | Cliente |
+| `marta` | `marta123` | Product manager |
+| `ricardo` | `ricardo123` | Product Owner |
+| `diogo` | `diogo123` | Programador |
+| `helena` | `helena123` | Gestor de projeto |
+| `admin` | `admin123` | Administrador (painel em `/admin/`) |
+
+São contas só para desenvolvimento. Para correr sem Docker e para os testes, ver [como correr](wiki/06-codigo/como-correr.md) e [testes](wiki/06-codigo/testes.md).
+
+## Arquitetura
+
+<img src="docs/imagens/diagrama-arquitetura.png" alt="Diagrama da arquitetura" width="900">
+
+Escolhemos um monólito modular: uma aplicação React fala por HTTPS/JSON com uma API em Django REST Framework, dividida em módulos que correspondem às sete áreas do produto (mais contas e papéis). Para uma equipa de cinco pessoas e um semestre, um só servidor é mais simples de montar, testar e pôr a correr do que vários serviços, e os módulos separados deixam dividir o trabalho sem pisar o código uns dos outros. As regras do negócio ficam em `servicos.py` de cada módulo, e a API só trata do HTTP. As razões de cada escolha estão em [decisões](wiki/04-arquitetura/decisoes.md).
+
+## Modelação
+
+<table>
+  <tr>
+    <td width="38%"><img src="docs/imagens/diagrama-estados-do-pedido.png" alt="Diagrama de estados de um pedido"></td>
+    <td width="62%"><img src="docs/imagens/diagrama-casos-de-uso.png" alt="Diagrama de casos de uso"></td>
+  </tr>
+  <tr>
+    <td><b>Estados de um pedido</b> (US-12). São os mesmos no código, na API e no Jira.</td>
+    <td><b>Casos de uso</b> dos cinco papéis e do serviço de IA.</td>
+  </tr>
+</table>
+
+<details>
+<summary><b>Modelo de dados</b></summary>
+<br>
+<img src="docs/imagens/diagrama-modelo-de-dados.png" alt="Modelo de dados" width="900">
+</details>
+
+São oito diagramas: arquitetura, casos de uso, duas sequências, estados, atividades, modelo de dados e classes. Estão todos em Mermaid em [`docs/sprint-3/modelacao/`](docs/sprint-3/modelacao/) e explicados na [wiki](wiki/05-modelacao/casos-de-uso.md). Os sete primeiros também estão no [FigJam](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41).
 
 ## Equipa
 
@@ -32,8 +119,8 @@ Há back-end e front-end. São precisas pelo menos 8 interfaces para além do lo
 |---|---|---|---|---|
 | 1 | 21 set a 14 out | Tiago Pereira | Rui Machado | Equipa, contrato, Jira, produto decidido, primeira proposta de personas, cenários e user stories |
 | 2 | 12 a 23 out | Felipe Fogaça | João Vitor | Entrevistas às cinco personas no Character.ai, personas e user stories revistas, wireframes |
-| 3 | 23 a 26 out | João Vitor | Marcus Fernandes | Requisitos não funcionais, arquitetura, modelação UML, wireframes corrigidos, mockups, base do código |
-| 4 | por confirmar | Marcus Fernandes | Felipe Fogaça | Primeiro incremento a funcionar (pedidos, votos, aviso de pedidos parecidos) |
+| 3 | 23 a 26 out | João Vitor | Marcus Fernandes | Requisitos não funcionais, arquitetura, modelação UML, wireframes corrigidos, base do código, testes, CI e Docker |
+| 4 | por confirmar | Marcus Fernandes | Felipe Fogaça | Primeiro incremento completo e ligação dos outros ecrãs à API |
 | 5 | por confirmar | Rui Machado | Tiago Pereira | Restantes interfaces, testes, deploy e entrega final |
 
 Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo sprint. A apresentação oral é no fim de cada sprint. A do Sprint 1 e a do Sprint 2 fizeram-se juntas, porque é o mesmo produto.
@@ -42,36 +129,34 @@ Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo 
 
 | Pasta | O que é |
 |---|---|
-| `wiki/` | Documentação em Markdown, por ordem: produto, requisitos, protótipo, arquitetura, modelação, código e Scrum. Começa no [índice](wiki/README.md). |
-| `backend/` | Servidor Django REST Framework (módulos `contas` e `pedidos`) e os seus testes. Ver [como correr](wiki/06-codigo/como-correr.md). |
-| `docker-compose.yml` | Levanta o back-end e o front-end na mesma rede: `docker compose up --build`. |
-| `frontend/` | Aplicação React com os 15 ecrãs dos wireframes, numa versão inicial sem cores, e os seus testes. |
-| `.github/workflows/` | Integração contínua: corre os testes em cada pull request. |
-| `AGENTS.md` | Regras para quem trabalha no repositório, pessoas ou ferramentas de IA. |
-| `docs/contrato/` | Contrato de equipa. O texto certo é o `.tex`. O PDF é uma compilação antiga: ainda diz Filipe, Marcus Bernardo, Sprint 1 até 9 de outubro e a branch `dev`. Falta compilar o `.tex` no Overleaf. |
-| `docs/sprint-1/` | Análise do produto. `produto_personas_cenarios.pdf` e `analise_produto.tex` são a versão de 17 de outubro: produto, papéis, sete áreas, personas, cenários e user stories. `analise_produto.pdf` é a primeira versão, de 28 de setembro, sobre uma aplicação da UBI que era o exercício do Lab03 e não o produto do enunciado; fica como histórico. |
-| `docs/sprint-2/` | Guião das entrevistas no Character.ai (`entrevistas_character_ai.pdf`) e os primeiros rascunhos dos ecrãs (`wireframes_exemplos.pdf`). Os wireframes definitivos estão no Figma. |
-| `docs/guia-jira/` | Guia para usar o nosso Jira, em LaTeX. |
-| `docs/registo-ia/` | Onde registamos o uso de IA, em LaTeX. |
-| `certificados-scrum/` | Print do Certiprof de cada um. |
+| `backend/` | API em Django REST Framework (módulos `contas` e `pedidos`) e os seus testes |
+| `frontend/` | Aplicação React com os 15 ecrãs dos wireframes e os seus testes |
+| `docker-compose.yml` | Levanta o back-end e o front-end na mesma rede |
+| `.github/workflows/` | Integração contínua: corre os testes em cada push e pull request |
+| `wiki/` | Documentação em Markdown: produto, requisitos, protótipo, arquitetura, modelação, código e Scrum. Começa no [índice](wiki/README.md) |
+| `AGENTS.md` | Regras para quem trabalha no repositório, pessoas ou ferramentas de IA |
+| `docs/contrato/` | Contrato de equipa (o `.tex` é a versão de referência) |
+| `docs/sprint-1/` | Análise do produto: papéis, sete áreas, personas, cenários e user stories |
+| `docs/sprint-2/` | Guião das entrevistas no Character.ai e primeiros rascunhos dos ecrãs |
+| `docs/sprint-3/` | Wireframes em PNG, diagramas em Mermaid e requisitos não funcionais |
+| `docs/imagens/` | Imagens deste README |
+| `docs/guia-jira/` | Guia para usar o nosso Jira |
+| `docs/registo-ia/` | Onde registamos o uso de IA |
+| `certificados-scrum/` | Print do Certiprof de cada um |
 
-Os documentos de 17 de outubro foram escritos antes das entrevistas. O que saiu delas (as cinco personas revistas, os cenários e as user stories corrigidas) está no Jira, nos epics Personas (EDS-150), Cenários (EDS-151) e User stories (EDS-152), com as capturas e o texto de cada conversa no cartão EDS-55.
-
-Os documentos do Sprint 3 em LaTeX (requisitos não funcionais, arquitetura e modelação) vão para `docs/sprint-3/`. A versão de trabalho está na `wiki/`.
-
-Os `.tex` compilam no Overleaf com pdfLaTeX. É preciso compilar duas vezes para os números de página ficarem certos.
+As personas, os cenários e as user stories revistas depois das entrevistas estão no Jira, nos epics Personas (EDS-150), Cenários (EDS-151) e User stories (EDS-152), com as capturas e o texto de cada conversa no cartão EDS-55. Os `.tex` compilam no Overleaf com pdfLaTeX (duas vezes, para os números de página ficarem certos).
 
 ## Como trabalhamos no Git
 
-Há uma branch, a `main`. Cada tarefa sai numa branch à parte, com a chave do cartão, e volta por pull request. Outra pessoa da equipa revê antes de integrar.
+Há uma branch, a `main`. Cada tarefa sai numa branch à parte, com a chave do cartão do Jira, e volta por pull request revisto por outra pessoa da equipa.
 
 ```bash
 git switch main
 git pull
-git switch -c feature/EDS-164-ambiente
+git switch -c feature/EDS-166-contas
 ```
 
-A chave vai em maiúsculas na branch, no commit e no título do pull request. Passwords e chaves de API não entram no repositório.
+A chave vai em maiúsculas na branch, no commit e no título do pull request. Palavras-passe reais e chaves de API não entram no repositório. Mais em [Git e pull requests](wiki/06-codigo/git.md).
 
 ## Avaliação
 
