@@ -20,9 +20,9 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 - Wireframes exportados em imagem para `docs/sprint-3/wireframes/`.
 - Documento de requisitos não funcionais em LaTeX: `docs/sprint-3/requisitos_nao_funcionais.tex`.
 - Base do código: back-end Django com contas e pedidos, front-end React com os 15 ecrãs e um estilo simples.
-- Docker: `docker compose up --build` levanta o back-end e o front-end na mesma rede. Ver [como correr](06-codigo/como-correr.md).
-- Testes automáticos: 30 no back-end e 23 no front-end, todos a passar. Ver [testes](06-codigo/testes.md).
-- Integração contínua escrita (`.github/workflows/ci.yml`). Corre no GitHub a partir do push do pacote do Marcus.
+- Docker: `docker compose up --build` levanta o projeto inteiro (PostgreSQL, back-end e front-end) na mesma rede, com o código a recarregar sozinho. Ver [como correr](06-codigo/como-correr.md).
+- Testes automáticos: 31 no back-end e 23 no front-end, todos a passar (também no PostgreSQL, dentro do Docker). Ver [testes](06-codigo/testes.md).
+- Integração contínua (`.github/workflows/ci.yml`) a correr no GitHub em cada push e pull request.
 
 ## Por fazer neste sprint
 
@@ -36,7 +36,6 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 
 - Datas dos Sprints 4 e 5.
 - Que serviço de IA usar na priorização (Sprint 4).
-- Quando passar de SQLite para PostgreSQL (planeado para o Sprint 4).
 
 ## Onde está cada coisa
 

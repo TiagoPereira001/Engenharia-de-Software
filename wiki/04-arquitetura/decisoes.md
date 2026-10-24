@@ -22,7 +22,8 @@ Cada decisão importante fica aqui, com o contexto e as alternativas. Uma decis�
 - **Contexto:** o pedido do Tiago foi uma base "muito simples, só para começar".
 - **Decisão:** SQLite em desenvolvimento. PostgreSQL entra no Sprint 4.
 - **Atualização (24/10/2026):** o Docker entrou já no Sprint 3, com SQLite num volume, para a aplicação arrancar com um só comando.
-- **Consequência:** o aviso de parecidos usa, por agora, palavras em comum. Com PostgreSQL passa a semelhança por trigramas.
+- **Atualização (24/10/2026):** o projeto passou a correr todo em Docker, com PostgreSQL num contentor próprio (`db`). Sem Docker continua a ser SQLite, para quem não quer instalar nada, e a CI também testa em SQLite.
+- **Consequência:** o aviso de parecidos usa, por agora, palavras em comum. Com PostgreSQL já disponível, a semelhança por trigramas pode entrar no Sprint 4.
 
 ## D4. A IA fica atrás de um adaptador (23/10/2026)
 

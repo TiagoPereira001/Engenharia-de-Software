@@ -8,6 +8,7 @@ Trabalho de grupo de Engenharia de Software · UBI · 2026/27 · Docentes: Nuno 
 
 ![Django](https://img.shields.io/badge/Django-4.2-0c4b33?logo=django&logoColor=white)
 ![React](https://img.shields.io/badge/React-18-087ea4?logo=react&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-16-336791?logo=postgresql&logoColor=white)
 ![Docker](https://img.shields.io/badge/Docker-compose-1d63ed?logo=docker&logoColor=white)
 ![Testes](https://img.shields.io/badge/testes-31%20%2B%2023-2e7d32)
 
@@ -55,13 +56,20 @@ Já funcionam os pedidos: criar, procurar, votar, ver o histórico e mudar o est
 
 ## Como correr
 
-Com o Docker Desktop aberto, na pasta do projeto:
+O projeto corre todo em Docker. Só é preciso ter o Docker Desktop aberto e, na pasta do projeto:
 
 ```bash
 docker compose up --build
 ```
 
-Depois abre-se **http://localhost:5173**. Para parar usa-se `Ctrl+C`, e `docker compose down -v` apaga a base de dados para recomeçar do zero.
+Sobem três contentores na mesma rede: a base de dados (PostgreSQL), o back-end (Django) e o front-end (React). Depois abre-se **http://localhost:5173**. O código está montado nos contentores, por isso ao guardar um ficheiro a aplicação recarrega sozinha.
+
+Para parar usa-se `Ctrl+C`, e `docker compose down -v` apaga a base de dados para recomeçar do zero. Os testes também correm dentro dos contentores:
+
+```bash
+docker compose exec backend python manage.py test
+docker compose exec frontend npm test
+```
 
 Ao arrancar são criadas contas de teste, uma por papel. A palavra-passe é o nome seguido de `123`:
 
@@ -74,13 +82,13 @@ Ao arrancar são criadas contas de teste, uma por papel. A palavra-passe é o no
 | `helena` | `helena123` | Gestor de projeto |
 | `admin` | `admin123` | Administrador (painel em `/admin/`) |
 
-São contas só para desenvolvimento. Para correr sem Docker e para os testes, ver [como correr](wiki/06-codigo/como-correr.md) e [testes](wiki/06-codigo/testes.md).
+São contas só para desenvolvimento. Para correr sem Docker (com SQLite) e para mais comandos, ver [como correr](wiki/06-codigo/como-correr.md) e [testes](wiki/06-codigo/testes.md).
 
 ## Arquitetura
 
 <img src="docs/imagens/diagrama-arquitetura.png" alt="Diagrama da arquitetura" width="900">
 
-Escolhemos um monólito modular: uma aplicação React fala por HTTPS/JSON com uma API em Django REST Framework, dividida em módulos que correspondem às sete áreas do produto (mais contas e papéis). Para uma equipa de cinco pessoas e um semestre, um só servidor é mais simples de montar, testar e pôr a correr do que vários serviços, e os módulos separados deixam dividir o trabalho sem pisar o código uns dos outros. As regras do negócio ficam em `servicos.py` de cada módulo, e a API só trata do HTTP. As razões de cada escolha estão em [decisões](wiki/04-arquitetura/decisoes.md).
+Escolhemos um monólito modular: uma aplicação React fala por HTTPS/JSON com uma API em Django REST Framework, que guarda os dados em PostgreSQL, dividida em módulos que correspondem às sete áreas do produto (mais contas e papéis). Para uma equipa de cinco pessoas e um semestre, um só servidor é mais simples de montar, testar e pôr a correr do que vários serviços, e os módulos separados deixam dividir o trabalho sem pisar o código uns dos outros. As regras do negócio ficam em `servicos.py` de cada módulo, e a API só trata do HTTP. As razões de cada escolha estão em [decisões](wiki/04-arquitetura/decisoes.md).
 
 ## Modelação
 
@@ -131,7 +139,7 @@ Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo 
 |---|---|
 | `backend/` | API em Django REST Framework (módulos `contas` e `pedidos`) e os seus testes |
 | `frontend/` | Aplicação React com os 15 ecrãs dos wireframes e os seus testes |
-| `docker-compose.yml` | Levanta o back-end e o front-end na mesma rede |
+| `docker-compose.yml` | Levanta o projeto inteiro: PostgreSQL, back-end e front-end na mesma rede |
 | `.github/workflows/` | Integração contínua: corre os testes em cada push e pull request |
 | `wiki/` | Documentação em Markdown: produto, requisitos, protótipo, arquitetura, modelação, código e Scrum. Começa no [índice](wiki/README.md) |
 | `AGENTS.md` | Regras para quem trabalha no repositório, pessoas ou ferramentas de IA |

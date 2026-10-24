@@ -15,8 +15,12 @@ Sistema de gestão de pedidos de funcionalidades e roadmap (o produto do enuncia
 ## Comandos
 
 ```bash
-# tudo de uma vez (Docker)
+# o projeto inteiro (PostgreSQL, back-end e front-end) em Docker
 docker compose up --build
+docker compose exec backend python manage.py test
+docker compose exec frontend npm test
+
+# sem Docker
 
 # back-end
 cd backend && .venv/bin/python manage.py test

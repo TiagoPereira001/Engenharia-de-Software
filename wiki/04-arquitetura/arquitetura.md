@@ -24,8 +24,8 @@ flowchart LR
 - **Browser:** React, com os ecrãs dos wireframes.
 - **Servidor:** um só projeto Django. Cada área do produto é um módulo (uma app Django). Hoje existem `contas` e `pedidos`.
 - **Camadas dentro de cada módulo:** a API só trata do HTTP (`api.py`), as regras ficam nos serviços (`servicos.py`), os modelos só guardam dados (`models.py`).
-- **Base de dados:** SQLite, também no Docker (num volume); PostgreSQL no Sprint 4.
-- **Docker:** dois contentores na mesma rede, `backend` e `frontend`, levantados com `docker compose up --build`.
+- **Base de dados:** PostgreSQL no Docker; SQLite quando se corre sem Docker.
+- **Docker:** três contentores na mesma rede, `db`, `backend` e `frontend`, levantados com `docker compose up --build`. O código está montado nos contentores e recarrega sozinho.
 - **Serviços de fora** (IA, email): sempre atrás de um adaptador com tempo limite. Ainda não existem.
 
 ## Porque é a melhor escolha para nós
