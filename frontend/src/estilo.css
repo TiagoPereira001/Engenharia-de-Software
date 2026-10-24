@@ -1,0 +1,26 @@
+/* Versão inicial, sem cores: só a estrutura dos wireframes de baixa fidelidade. */
+
+* { box-sizing: border-box; }
+body { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; }
+
+.aplicacao { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
+.menu { border-right: 1px solid; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
+.menu h2 { font-size: 13px; margin: 8px 0 2px; text-transform: uppercase; }
+.menu a { display: block; padding: 2px 0; }
+.menu .rodape { margin-top: auto; }
+main { padding: 24px 32px; max-width: 1100px; }
+
+table { border-collapse: collapse; width: 100%; }
+th, td { border: 1px solid; padding: 6px 8px; text-align: left; vertical-align: top; }
+fieldset { border: 1px solid; margin: 0 0 16px; }
+label { display: block; margin: 8px 0 4px; }
+input, textarea, select { font: inherit; width: 100%; max-width: 560px; padding: 4px; }
+button { font: inherit; padding: 4px 10px; margin: 4px 4px 4px 0; }
+
+.duas-colunas { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
+.colunas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.caixa { border: 1px solid; padding: 12px; margin-bottom: 16px; }
+.aviso { border: 1px dashed; padding: 8px 12px; margin: 12px 0; }
+.nota { font-size: 13px; }
+.barra { border: 1px solid; height: 14px; }
+.barra > span { display: block; height: 100%; border-right: 1px solid; }
