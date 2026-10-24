@@ -28,13 +28,16 @@ export default function Pedidos() {
 
   return (
     <section>
-      <h1>Pedidos</h1>
-      <p>
-        <Link to="/pedidos/novo">Novo pedido</Link>
-      </p>
-      <div>
+      <div className="cabecalho">
+        <h1>Pedidos</h1>
+        <Link className="botao" to="/pedidos/novo">Novo pedido</Link>
+      </div>
+      <div className="filtros">
+        <div>
         <label htmlFor="q">Pesquisar</label>
         <input id="q" defaultValue={params.get("q") || ""} onKeyDown={(e) => e.key === "Enter" && filtrar("q", e.target.value)} />
+        </div>
+        <div>
         <label htmlFor="estado">Estado</label>
         <select id="estado" value={params.get("estado") || ""} onChange={(e) => filtrar("estado", e.target.value)}>
           <option value="">Todos</option>
@@ -42,6 +45,8 @@ export default function Pedidos() {
             <option key={v} value={v}>{n}</option>
           ))}
         </select>
+        </div>
+        <div>
         <label htmlFor="categoria">Categoria</label>
         <select id="categoria" value={params.get("categoria") || ""} onChange={(e) => filtrar("categoria", e.target.value)}>
           <option value="">Todas</option>
@@ -49,11 +54,14 @@ export default function Pedidos() {
             <option key={c.id} value={c.id}>{c.nome}</option>
           ))}
         </select>
+        </div>
+        <div>
         <label htmlFor="ordem">Ordenar</label>
         <select id="ordem" value={params.get("ordem") || ""} onChange={(e) => filtrar("ordem", e.target.value)}>
           <option value="">Mais recentes</option>
           <option value="votos">Mais votados</option>
         </select>
+        </div>
       </div>
 
       {erro && <p role="alert">{erro}</p>}

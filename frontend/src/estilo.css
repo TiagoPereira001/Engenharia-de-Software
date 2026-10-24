@@ -1,26 +1,182 @@
-/* Versão inicial, sem cores: só a estrutura dos wireframes de baixa fidelidade. */
+/* Estilo base da aplicação. Simples de propósito: cores neutras, uma cor de destaque
+   (o azul-tinta dos wireframes) e espaçamentos consistentes. O aspeto final vem dos mockups. */
+
+:root {
+  --fundo: #f5f6f9;
+  --superficie: #ffffff;
+  --texto: #1d2233;
+  --texto-suave: #5f6577;
+  --linha: #dfe2ea;
+  --destaque: #2e3061;
+  --destaque-claro: #eceefa;
+  --aviso: #8a5a00;
+  --aviso-fundo: #fff6e0;
+  --raio: 8px;
+  --sombra: 0 1px 2px rgba(29, 34, 51, 0.06);
+}
 
 * { box-sizing: border-box; }
-body { margin: 0; font-family: system-ui, sans-serif; font-size: 15px; }
 
-.aplicacao { display: grid; grid-template-columns: 220px 1fr; min-height: 100vh; }
-.menu { border-right: 1px solid; padding: 16px; display: flex; flex-direction: column; gap: 12px; }
-.menu h2 { font-size: 13px; margin: 8px 0 2px; text-transform: uppercase; }
-.menu a { display: block; padding: 2px 0; }
-.menu .rodape { margin-top: auto; }
-main { padding: 24px 32px; max-width: 1100px; }
+body {
+  margin: 0;
+  background: var(--fundo);
+  color: var(--texto);
+  font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+}
 
-table { border-collapse: collapse; width: 100%; }
-th, td { border: 1px solid; padding: 6px 8px; text-align: left; vertical-align: top; }
-fieldset { border: 1px solid; margin: 0 0 16px; }
-label { display: block; margin: 8px 0 4px; }
-input, textarea, select { font: inherit; width: 100%; max-width: 560px; padding: 4px; }
-button { font: inherit; padding: 4px 10px; margin: 4px 4px 4px 0; }
+h1 { font-size: 1.6rem; margin: 0 0 16px; }
+h2, h3 { margin: 0 0 8px; }
+p { margin: 0 0 12px; }
+a { color: var(--destaque); }
+ul, ol { margin: 0 0 12px; padding-left: 1.2em; }
+li { margin-bottom: 4px; }
 
-.duas-colunas { display: grid; grid-template-columns: 2fr 1fr; gap: 24px; }
-.colunas { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
-.caixa { border: 1px solid; padding: 12px; margin-bottom: 16px; }
-.aviso { border: 1px dashed; padding: 8px 12px; margin: 12px 0; }
-.nota { font-size: 13px; }
-.barra { border: 1px solid; height: 14px; }
-.barra > span { display: block; height: 100%; border-right: 1px solid; }
+/* Estrutura: menu à esquerda, conteúdo à direita (igual aos wireframes) */
+.aplicacao { display: grid; grid-template-columns: 230px 1fr; min-height: 100vh; }
+
+.menu {
+  background: var(--superficie);
+  border-right: 1px solid var(--linha);
+  padding: 20px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+}
+.menu > strong { font-size: 1.05rem; color: var(--destaque); padding: 0 8px; }
+.menu h2 {
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--texto-suave);
+  margin: 0 0 4px;
+  padding: 0 8px;
+}
+.menu a {
+  display: block;
+  padding: 6px 8px;
+  border-radius: 6px;
+  color: var(--texto);
+  text-decoration: none;
+}
+.menu a:hover { background: var(--fundo); }
+.menu a.active { background: var(--destaque-claro); color: var(--destaque); font-weight: 600; }
+.menu .rodape {
+  margin-top: auto;
+  padding: 12px 8px 0;
+  border-top: 1px solid var(--linha);
+  color: var(--texto-suave);
+  font-size: 0.9rem;
+}
+
+main { padding: 28px 36px; max-width: 1150px; width: 100%; }
+
+/* Blocos */
+.caixa {
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  box-shadow: var(--sombra);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+.caixa > strong:first-child { display: block; margin-bottom: 8px; }
+.duas-colunas { display: grid; grid-template-columns: minmax(0, 2fr) minmax(0, 1fr); gap: 24px; align-items: start; }
+.colunas { display: grid; grid-template-columns: repeat(auto-fit, minmax(180px, 1fr)); gap: 16px; margin-bottom: 16px; }
+.colunas .caixa { margin-bottom: 0; }
+.colunas .caixa strong { font-size: 1.4rem; }
+
+.aviso {
+  background: var(--aviso-fundo);
+  color: var(--aviso);
+  border: 1px solid #f0d9a6;
+  border-radius: var(--raio);
+  padding: 10px 14px;
+  margin: 12px 0;
+}
+.nota { font-size: 0.85rem; color: var(--texto-suave); }
+
+/* Tabelas */
+table {
+  border-collapse: collapse;
+  width: 100%;
+  background: var(--superficie);
+  border: 1px solid var(--linha);
+  border-radius: var(--raio);
+  overflow: hidden;
+  box-shadow: var(--sombra);
+  margin-bottom: 16px;
+}
+th, td { padding: 10px 12px; text-align: left; vertical-align: top; border-bottom: 1px solid var(--linha); }
+th { background: var(--fundo); font-size: 0.8rem; text-transform: uppercase; letter-spacing: 0.04em; color: var(--texto-suave); }
+tbody tr:last-child td { border-bottom: 0; }
+tbody tr:hover { background: #fafbfd; }
+
+/* Formulários */
+label { display: block; margin: 12px 0 4px; font-weight: 600; font-size: 0.9rem; }
+input, textarea, select {
+  font: inherit;
+  width: 100%;
+  max-width: 560px;
+  padding: 8px 10px;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  background: var(--superficie);
+  color: var(--texto);
+}
+input:focus, textarea:focus, select:focus { outline: 2px solid var(--destaque-claro); border-color: var(--destaque); }
+input[type="checkbox"] { width: auto; margin-right: 6px; }
+fieldset { border: 1px solid var(--linha); border-radius: var(--raio); background: var(--superficie); padding: 12px 16px; margin: 0 0 16px; }
+fieldset label { font-weight: 400; }
+
+button {
+  font: inherit;
+  padding: 7px 14px;
+  margin: 4px 6px 4px 0;
+  border: 1px solid var(--linha);
+  border-radius: 6px;
+  background: var(--superficie);
+  color: var(--texto);
+  cursor: pointer;
+}
+button:hover { border-color: var(--destaque); }
+button[type="submit"] { background: var(--destaque); border-color: var(--destaque); color: #ffffff; }
+button[type="submit"]:hover { opacity: 0.9; }
+button:focus-visible, a:focus-visible { outline: 2px solid var(--destaque); outline-offset: 2px; }
+
+/* Barras de progresso e de carga */
+.barra { background: var(--fundo); border: 1px solid var(--linha); border-radius: 99px; height: 10px; overflow: hidden; }
+.barra > span { display: block; height: 100%; background: var(--destaque); }
+
+[role="alert"] { color: #a12a2a; }
+
+/* Ecrãs pequenos: o menu passa para cima */
+@media (max-width: 800px) {
+  .aplicacao { grid-template-columns: 1fr; }
+  .menu { position: static; height: auto; border-right: 0; border-bottom: 1px solid var(--linha); }
+  main { padding: 20px 16px; }
+  .duas-colunas { grid-template-columns: 1fr; }
+}
+
+/* Cabeçalho de página com ação à direita, e filtros numa linha */
+.cabecalho { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; margin-bottom: 16px; }
+.cabecalho h1 { margin: 0; }
+.botao {
+  display: inline-block;
+  padding: 8px 14px;
+  border-radius: 6px;
+  background: var(--destaque);
+  color: #ffffff;
+  text-decoration: none;
+  font-weight: 600;
+}
+.botao:hover { opacity: 0.9; }
+.filtros { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.filtros label { margin-top: 0; }
+@media (max-width: 800px) { .filtros { grid-template-columns: 1fr 1fr; } }

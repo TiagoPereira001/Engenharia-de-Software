@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, Navigate, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Navigate, Route, Routes } from "react-router-dom";
 import { api } from "./api.js";
 import Entrar from "./paginas/Entrar.jsx";
 import Pedidos from "./paginas/Pedidos.jsx";
@@ -48,7 +48,7 @@ export default function App() {
           <div key={area}>
             <h2>{area}</h2>
             {ecras.map(([caminho, nome]) => (
-              <Link key={caminho} to={caminho}>{nome}</Link>
+              <NavLink key={caminho} to={caminho} end>{nome}</NavLink>
             ))}
           </div>
         ))}
