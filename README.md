@@ -44,6 +44,7 @@ Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo 
 |---|---|
 | `wiki/` | Documentação em Markdown, por ordem: produto, requisitos, protótipo, arquitetura, modelação, código e Scrum. Começa no [índice](wiki/README.md). |
 | `backend/` | Servidor Django REST Framework (módulos `contas` e `pedidos`) e os seus testes. Ver [como correr](wiki/06-codigo/como-correr.md). |
+| `docker-compose.yml` | Levanta o back-end e o front-end na mesma rede: `docker compose up --build`. |
 | `frontend/` | Aplicação React com os 15 ecrãs dos wireframes, numa versão inicial sem cores, e os seus testes. |
 | `.github/workflows/` | Integração contínua: corre os testes em cada pull request. |
 | `AGENTS.md` | Regras para quem trabalha no repositório, pessoas ou ferramentas de IA. |

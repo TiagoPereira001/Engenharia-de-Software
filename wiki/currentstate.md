@@ -2,7 +2,7 @@
 
 [Índice](README.md) · [Visão do produto →](01-produto/visao.md)
 
-Última atualização: 23 de outubro de 2026, início do Sprint 3.
+Última atualização: 24 de outubro de 2026, Sprint 3.
 
 Esta página diz onde o projeto está. Quem mexe no projeto (pessoa ou agente de IA) atualiza-a quando alguma coisa muda.
 
@@ -19,8 +19,9 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 - Diagramas para o Sprint 3 no FigJam: arquitetura, casos de uso, duas sequências, estados, atividades e modelo de dados. Fontes em `docs/sprint-3/modelacao/`. Ver [modelação](05-modelacao/casos-de-uso.md).
 - Wireframes exportados em imagem para `docs/sprint-3/wireframes/`.
 - Documento de requisitos não funcionais em LaTeX: `docs/sprint-3/requisitos_nao_funcionais.tex`.
-- Base do código: back-end Django com contas e pedidos, front-end React com os 15 ecrãs numa versão sem cores. Ver [como correr](06-codigo/como-correr.md).
-- Testes automáticos: 28 no back-end e 23 no front-end, todos a passar. Ver [testes](06-codigo/testes.md).
+- Base do código: back-end Django com contas e pedidos, front-end React com os 15 ecrãs e um estilo simples.
+- Docker: `docker compose up --build` levanta o back-end e o front-end na mesma rede. Ver [como correr](06-codigo/como-correr.md).
+- Testes automáticos: 30 no back-end e 23 no front-end, todos a passar. Ver [testes](06-codigo/testes.md).
 - Integração contínua escrita (`.github/workflows/ci.yml`). Corre no GitHub a partir do push do pacote do Marcus.
 
 ## Por fazer neste sprint
@@ -35,7 +36,7 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 
 - Datas dos Sprints 4 e 5.
 - Que serviço de IA usar na priorização (Sprint 4).
-- Quando passar de SQLite para PostgreSQL e Docker (planeado para o Sprint 4).
+- Quando passar de SQLite para PostgreSQL (planeado para o Sprint 4).
 
 ## Onde está cada coisa
 

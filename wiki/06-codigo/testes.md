@@ -13,7 +13,7 @@ O GitHub Actions corre os dois em cada pull request e em cada push para a `main`
 
 ## O que já está testado
 
-**Back-end (28 testes):**
+**Back-end (30 testes):**
 
 - um pedido nasce Novo e fica no histórico;
 - o cliente não escolhe a origem; o product manager sim;
@@ -23,7 +23,8 @@ O GitHub Actions corre os dois em cada pull request e em cada push para a `main`
 - pedidos parecidos: encontra "exportação" ao escrever "exportar", ignora textos curtos e pedidos rejeitados;
 - API: criar precisa de login, título curto é recusado, pesquisa e filtros juntam-se, os votos mostram só o total, o cliente não muda o estado;
 - contas: quem se regista fica cliente, a palavra-passe fica com hash, o erro de entrada não diz o que falhou;
-- dados de exemplo: um utilizador por papel, pedidos com histórico e votos, e correr duas vezes não duplica.
+- dados de exemplo: um utilizador por papel, pedidos com histórico e votos, e correr duas vezes não duplica;
+- origem do front-end: a API aceita os POST vindos de `localhost:5173` (o proxy do Vite, também no Docker) e recusa os de outra origem.
 
 **Front-end (23 testes):**
 

@@ -15,6 +15,9 @@ Sistema de gestão de pedidos de funcionalidades e roadmap (o produto do enuncia
 ## Comandos
 
 ```bash
+# tudo de uma vez (Docker)
+docker compose up --build
+
 # back-end
 cd backend && .venv/bin/python manage.py test
 cd backend && .venv/bin/python manage.py runserver
