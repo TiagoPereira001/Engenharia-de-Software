@@ -1,0 +1,23 @@
+%% Casos de uso da Sofia Ferreira, cliente (FigJam, diagrama 2a). Ecrãs 01, 02, 03, 04 e 12.
+flowchart LR
+    sofia["Sofia Ferreira<br/>Cliente"]
+    subgraph sistema ["Feature Request e Product Roadmap Management System"]
+        uc1(["Registar-se e entrar<br/>US-30 · ecrã 01"])
+        uc2(["Pesquisar e filtrar pedidos<br/>US-04 · ecrã 02"])
+        uc3(["Submeter pedido<br/>US-01 · C1 · ecrã 03"])
+        uc4(["Ver pedidos parecidos<br/>US-05"])
+        uc5(["Votar num pedido<br/>US-07 · ecrãs 03 e 04"])
+        uc6(["Acompanhar o estado do pedido<br/>C1 · ecrã 04"])
+        uc7(["Comentar<br/>US-21 · ecrã 04"])
+        uc8(["Receber notificação quando o estado muda<br/>US-22 · ecrã 12"])
+    end
+    nota["Só se mostra o total de votos, nunca quem votou."]
+    sofia --- uc1
+    sofia --- uc2
+    sofia --- uc3
+    sofia --- uc5
+    sofia --- uc6
+    sofia --- uc7
+    sofia --- uc8
+    uc3 -.->|"«include»"| uc4
+    uc5 -.- nota

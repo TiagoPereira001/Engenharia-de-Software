@@ -1,0 +1,21 @@
+%% Casos de uso da Helena Costa, gestora de projeto (FigJam, diagrama 2e). Ecrãs 08, 11, 13, 14 e 15.
+flowchart LR
+    helena["Helena Costa<br/>Gestora de projeto"]
+    subgraph sistema ["Feature Request e Product Roadmap Management System"]
+        uc1(["Acompanhar o roadmap<br/>US-29 · C6 · ecrã 08"])
+        uc2(["Ver lead time e cycle time<br/>US-27 · ecrã 14"])
+        uc3(["Ver a carga das equipas por tipo de trabalho<br/>US-28 · ecrã 15"])
+        uc4(["Atribuir a equipas<br/>US-13"])
+        uc5(["Ver o espaço da equipa<br/>US-24 · ecrã 13"])
+        uc6(["Ver rastreabilidade<br/>US-19 · ecrã 11"])
+    end
+    n1["Primeiro as releases em risco e as entregas contratuais."]
+    n2["Mostra as tarefas paradas há mais de 3 dias. Com dados em falta, a métrica aparece como incompleta (C6)."]
+    helena --- uc1
+    helena --- uc2
+    helena --- uc3
+    helena --- uc4
+    helena --- uc5
+    helena --- uc6
+    uc1 -.- n1
+    uc2 -.- n2

@@ -1,48 +1,14 @@
-%% Casos de uso (FigJam, diagrama 2). Atores à esquerda, serviço de IA à direita.
+%% Casos de uso (FigJam, diagrama 2). A 26/10 passou a um diagrama por ator:
+%%   02-casos-de-uso-sofia.mmd    Sofia Ferreira, cliente
+%%   02-casos-de-uso-marta.mmd    Marta Lopes, product manager
+%%   02-casos-de-uso-ricardo.mmd  Ricardo Almeida, Product Owner (com o Serviço de IA)
+%%   02-casos-de-uso-diogo.mmd    Diogo Martins, programador
+%%   02-casos-de-uso-helena.mmd   Helena Costa, gestora de projeto
+%% Este ficheiro fica só com a vista geral: quem usa o quê.
 flowchart LR
-    cliente["Cliente"]
-    pm["Product manager"]
-    po["Product Owner"]
-    prog["Programador"]
-    gp["Gestor de projeto"]
-    subgraph sistema ["Feature Request e Product Roadmap Management System"]
-        uc1(["Registar-se e entrar"])
-        uc2(["Submeter pedido"])
-        uc3(["Ver pedidos parecidos"])
-        uc4(["Votar num pedido"])
-        uc5(["Pesquisar e filtrar pedidos"])
-        uc6(["Acompanhar o estado do pedido"])
-        uc7(["Comentar e mencionar"])
-        uc8(["Mudar o estado de um pedido"])
-        uc9(["Priorizar o backlog"])
-        uc10(["Pedir sugestão de prioridade"])
-        uc11(["Estimar impacto e esforço"])
-        uc12(["Planear o sprint"])
-        uc13(["Gerar user stories"])
-        uc14(["Planear releases e roadmap"])
-        uc15(["Ver rastreabilidade"])
-        uc16(["Ver dashboard e carga das equipas"])
-    end
-    ia["Serviço de IA"]
-    cliente --- uc1
-    cliente --- uc2
-    cliente --- uc4
-    cliente --- uc5
-    cliente --- uc6
-    cliente --- uc7
-    uc2 -.->|"include"| uc3
-    pm --- uc8
-    pm --- uc14
-    pm --- uc5
-    po --- uc9
-    po --- uc11
-    po --- uc12
-    po --- uc13
-    uc9 -.->|"extend"| uc10
-    prog --- uc7
-    prog --- uc15
-    prog --- uc11
-    gp --- uc16
-    gp --- uc14
-    uc10 --- ia
-    uc13 --- ia
+    sofia["Sofia Ferreira<br/>Cliente"] --> d1["02a · 8 casos"]
+    marta["Marta Lopes<br/>Product manager"] --> d2["02b · 9 casos"]
+    ricardo["Ricardo Almeida<br/>Product Owner"] --> d3["02c · 6 casos"]
+    diogo["Diogo Martins<br/>Programador"] --> d4["02d · 6 casos"]
+    helena["Helena Costa<br/>Gestora de projeto"] --> d5["02e · 6 casos"]
+    ia["Serviço de IA"] --> d3

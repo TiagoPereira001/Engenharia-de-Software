@@ -1,0 +1,29 @@
+%% Casos de uso da Marta Lopes, product manager (FigJam, diagrama 2b). Ecrãs 02, 03, 04, 08, 09 e 14.
+flowchart LR
+    marta["Marta Lopes<br/>Product manager"]
+    subgraph sistema ["Feature Request e Product Roadmap Management System"]
+        uc1(["Pesquisar e filtrar pedidos<br/>US-04 · ecrã 02"])
+        uc2(["Registar pedido com a origem<br/>triagem · ecrã 03"])
+        uc3(["Categorizar e etiquetar o pedido<br/>US-02"])
+        uc4(["Editar o pedido<br/>US-03 · ecrã 04"])
+        uc5(["Mudar o estado de um pedido<br/>diagrama de estados · ecrã 04"])
+        uc6(["Ver o roadmap<br/>US-14 · ecrã 08"])
+        uc7(["Planear a release<br/>US-15 · C3 · ecrã 09"])
+        uc8(["Ver pedidos submetidos, aprovados e rejeitados<br/>US-25 · ecrã 14"])
+        uc9(["Ver funcionalidades por release<br/>US-26 · ecrã 14"])
+    end
+    n1["Origem: Sistema, Email, Reunião ou Chat."]
+    n2["Abre de Novo para Em análise. Para rejeitar, tem de dar o motivo."]
+    n3["Avisa quando há uma dependência por agendar.<br/>Inclui os milestones (US-16)."]
+    marta --- uc1
+    marta --- uc2
+    marta --- uc3
+    marta --- uc4
+    marta --- uc5
+    marta --- uc6
+    marta --- uc7
+    marta --- uc8
+    marta --- uc9
+    uc2 -.- n1
+    uc5 -.- n2
+    uc7 -.- n3

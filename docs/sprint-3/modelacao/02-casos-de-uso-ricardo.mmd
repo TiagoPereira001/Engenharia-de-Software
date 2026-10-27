@@ -1,0 +1,28 @@
+%% Casos de uso do Ricardo Almeida, Product Owner (FigJam, diagrama 2c). Ecrãs 05, 06, 07 e 10. O Serviço de IA é ator secundário.
+flowchart LR
+    ricardo["Ricardo Almeida<br/>Product Owner"]
+    subgraph sistema ["Feature Request e Product Roadmap Management System"]
+        uc1(["Priorizar o backlog<br/>US-06 · ecrã 05"])
+        uc2(["Pedir sugestão de prioridade<br/>US-08 · ecrã 05"])
+        uc3(["Estimar impacto e esforço<br/>US-09 · ecrã 05"])
+        uc4(["Planear o sprint<br/>US-10 e US-11 · ecrãs 06 e 07"])
+        uc5(["Gerar user stories<br/>US-18 · C4 · ecrã 10"])
+        uc6(["Aceitar a conclusão<br/>diagrama de estados"])
+    end
+    ia["Serviço de IA<br/>(externo)"]
+    n1["A sugestão traz sempre a razão. Se a IA falhar ou passar dos 10 s, fica a ordem manual (D4, C2)."]
+    n2["Avisa quando passa a capacidade. Sem estimativa ou sem critérios, o item não entra (C2)."]
+    n3["O PO edita e aceita. Com pouca informação saem menos histórias e o sistema diz o que falta (C4)."]
+    n4["Em revisão para Concluído."]
+    ricardo --- uc1
+    ricardo --- uc3
+    ricardo --- uc4
+    ricardo --- uc5
+    ricardo --- uc6
+    uc2 -.->|"«extend»"| uc1
+    uc2 --- ia
+    uc5 --- ia
+    uc2 -.- n1
+    uc4 -.- n2
+    uc5 -.- n3
+    uc6 -.- n4

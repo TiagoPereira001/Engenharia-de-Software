@@ -1,0 +1,51 @@
+%% Classes que o Ricardo Almeida (Product Owner) usa. Mesmos nomes e relações do 08-classes.mmd.
+classDiagram
+    class Utilizador {
+        <<no código>>
+        username
+        email
+        papel
+        gere_pedidos() bool
+    }
+    class Pedido {
+        <<no código>>
+        titulo
+        descricao
+        estado
+        origem
+        criado_em
+        atualizado_em
+    }
+    class Voto {
+        <<no código>>
+        criado_em
+    }
+    class MudancaEstado {
+        <<no código>>
+        de
+        para
+        motivo
+        quando
+    }
+    class UserStory {
+        <<desenho>>
+        texto
+    }
+    class CriterioAceitacao {
+        <<desenho>>
+        texto
+    }
+    class Sprint {
+        <<desenho>>
+        nome
+        inicio
+        fim
+    }
+    Utilizador "1" --> "*" Pedido : submete (autor)
+    Pedido "1" *-- "*" Voto : recebe
+    Utilizador "1" --> "*" Voto : dá
+    Pedido "1" *-- "*" MudancaEstado : histórico
+    Utilizador "1" --> "*" MudancaEstado : faz (autor)
+    Pedido "1" --> "*" UserStory : gera
+    UserStory "1" *-- "*" CriterioAceitacao : tem
+    Sprint "1" o-- "*" UserStory : inclui

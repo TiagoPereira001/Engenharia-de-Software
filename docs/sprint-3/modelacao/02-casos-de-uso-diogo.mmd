@@ -1,0 +1,19 @@
+%% Casos de uso do Diogo Martins, programador (FigJam, diagrama 2d). Ecrãs 04, 07 e 11.
+flowchart LR
+    diogo["Diogo Martins<br/>Programador"]
+    subgraph sistema ["Feature Request e Product Roadmap Management System"]
+        uc1(["Ver o estado e o histórico<br/>US-12 · ecrã 04"])
+        uc2(["Comentar e mencionar<br/>US-21 e US-23 · C5 · ecrã 04"])
+        uc3(["Estimar esforço"])
+        uc4(["Ver dependências<br/>US-17"])
+        uc5(["Ligar o trabalho ao pedido<br/>C5"])
+        uc6(["Ver rastreabilidade<br/>ecrã 11"])
+    end
+    n1["Sem o pull request ligado, o pedido não passa a Concluído (C5)."]
+    diogo --- uc1
+    diogo --- uc2
+    diogo --- uc3
+    diogo --- uc4
+    diogo --- uc5
+    diogo --- uc6
+    uc5 -.- n1

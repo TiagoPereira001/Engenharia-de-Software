@@ -2,7 +2,7 @@
 
 [Índice](README.md) · [Visão do produto →](01-produto/visao.md)
 
-Última atualização: 24 de outubro de 2026, Sprint 3.
+Última atualização: 26 de outubro de 2026, Sprint 3.
 
 Esta página diz onde o projeto está. Quem mexe no projeto (pessoa ou agente de IA) atualiza-a quando alguma coisa muda.
 
@@ -17,6 +17,7 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 - Personas, cenários e 29 user stories no Jira, revistos com as entrevistas no Character.ai. Ver [personas](01-produto/personas.md).
 - Wireframes de baixa fidelidade dos 15 ecrãs no Figma, corrigidos a 23/10 com o que faltava das personas. Ver [wireframes](03-prototipo/wireframes.md).
 - Diagramas para o Sprint 3 no FigJam: arquitetura, casos de uso, duas sequências, estados, atividades e modelo de dados. Fontes em `docs/sprint-3/modelacao/`. Ver [modelação](05-modelacao/casos-de-uso.md).
+- Casos de uso com um diagrama por ator (Sofia, Marta, Ricardo, Diogo e Helena) e diagrama de classes com uma vista por persona, a 26/10, a pedido do professor. Ver [casos de uso](05-modelacao/casos-de-uso.md) e [classes](05-modelacao/classes.md).
 - Wireframes exportados em imagem para `docs/sprint-3/wireframes/`.
 - Documento de requisitos não funcionais em LaTeX: `docs/sprint-3/requisitos_nao_funcionais.tex`.
 - Base do código: back-end Django com contas e pedidos, front-end React com os 15 ecrãs e um estilo simples.
@@ -30,7 +31,7 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 - Mockups dos ecrãs 01 a 04 ([EDS-163](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-163)).
 - Escrever o documento de arquitetura em LaTeX para `docs/sprint-3/` ([EDS-153](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-153)), a partir de [arquitetura](04-arquitetura/arquitetura.md).
 - Proteger a `main` no GitHub (só o Tiago tem permissões).
-- Review, retrospetiva e apresentação ([EDS-173](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-173)).
+- Review e retrospetiva. A apresentação ([EDS-173](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-173)) passou para a semana de 2 de novembro, dia ainda por confirmar.
 
 ## Decisões em aberto
 
