@@ -86,30 +86,141 @@ São contas só para desenvolvimento. Para correr sem Docker (com SQLite) e para
 
 ## Arquitetura
 
-<img src="docs/imagens/diagrama-arquitetura.png" alt="Diagrama da arquitetura" width="900">
+<img src="docs/imagens/diagramas/01-arquitetura.png" alt="Diagrama da arquitetura" width="900">
 
-Escolhemos um monólito modular: uma aplicação React fala por HTTPS/JSON com uma API em Django REST Framework, que guarda os dados em PostgreSQL, dividida em módulos que correspondem às sete áreas do produto (mais contas e papéis). Para uma equipa de cinco pessoas e um semestre, um só servidor é mais simples de montar, testar e pôr a correr do que vários serviços, e os módulos separados deixam dividir o trabalho sem pisar o código uns dos outros. As regras do negócio ficam em `servicos.py` de cada módulo, e a API só trata do HTTP. As razões de cada escolha estão em [decisões](wiki/04-arquitetura/decisoes.md).
+Escolhemos um monólito modular: uma aplicação React fala por HTTPS/JSON com uma API em Django REST Framework, que guarda os dados em PostgreSQL. A API está dividida em módulos que correspondem às sete áreas do produto, mais contas e papéis. As caixas escuras já estão no código (Contas, Pedidos e o histórico de estados); as claras entram nos próximos sprints. Os serviços de fora, a IA e o email, ficam sempre atrás de um adaptador com tempo limite, para a aplicação continuar a funcionar se falharem.
+
+Para uma equipa de cinco pessoas e um semestre, um só servidor é mais simples de montar, testar e pôr a correr do que vários serviços, e os módulos separados deixam dividir o trabalho sem pisar o código uns dos outros. As regras do negócio ficam em `servicos.py` de cada módulo, e a API só trata do HTTP. As razões de cada escolha estão em [decisões](wiki/04-arquitetura/decisoes.md).
 
 ## Modelação
 
+Todos os diagramas estão no [FigJam](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41), com a fonte em Mermaid em [`docs/sprint-3/modelacao/`](docs/sprint-3/modelacao/) e a explicação na [wiki](wiki/05-modelacao/casos-de-uso.md).
+
+### Por persona
+
+Há um diagrama de casos de uso por ator e, ao lado, os recursos que essa pessoa usa: as classes do sistema, com o ecrã do wireframe e o módulo da arquitetura onde cada uma aparece. Os casos que fazem parte do cenário da persona estão marcados com a etiqueta do cenário (C1 a C6). Nos recursos, as classes de cabeçalho escuro já existem no código.
+
+| Persona | O que faz no sistema |
+|---|---|
+| Sofia Ferreira, cliente | Regista-se, pesquisa, submete pedidos (e vê os parecidos), vota, acompanha o estado, comenta e recebe notificações |
+| Marta Lopes, product manager | Regista pedidos com a origem, categoriza, muda o estado, vê o roadmap e planeia a release |
+| Ricardo Almeida, Product Owner | Prioriza o backlog (com sugestão da IA, se quiser), estima, planeia o sprint, gera user stories e aceita o que está concluído |
+| Diogo Martins, programador | Vê o estado e o histórico, comenta, estima o esforço, liga o trabalho ao pedido e vê a rastreabilidade |
+| Helena Costa, gestora de projeto | Acompanha o roadmap, o lead time e o cycle time, a carga das equipas, e atribui trabalho às equipas |
+
+Exemplo, a Sofia:
+
 <table>
   <tr>
-    <td width="38%"><img src="docs/imagens/diagrama-estados-do-pedido.png" alt="Diagrama de estados de um pedido"></td>
-    <td width="62%"><img src="docs/imagens/diagrama-casos-de-uso.png" alt="Diagrama de casos de uso"></td>
+    <td width="50%"><img src="docs/imagens/diagramas/02a-casos-de-uso-sofia.png" alt="Casos de uso da Sofia"></td>
+    <td width="50%"><img src="docs/imagens/diagramas/08a-recursos-sofia.png" alt="Classes que a Sofia usa"></td>
   </tr>
   <tr>
-    <td><b>Estados de um pedido</b> (US-12). São os mesmos no código, na API e no Jira.</td>
-    <td><b>Casos de uso</b> dos cinco papéis e do serviço de IA.</td>
+    <td align="center">2a. Casos de uso</td>
+    <td align="center">8a. Recursos (classes)</td>
+  </tr>
+</table>
+
+As outras quatro personas:
+
+<details>
+<summary><b>Marta Lopes</b>, product manager</summary>
+<br>
+
+Ecrãs 02, 03, 04, 08, 09 e 14.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/imagens/diagramas/02b-casos-de-uso-marta.png" alt="Casos de uso de Marta Lopes"></td>
+    <td width="50%"><img src="docs/imagens/diagramas/08b-recursos-marta.png" alt="Classes que Marta Lopes usa"></td>
+  </tr>
+  <tr>
+    <td align="center">2b. Casos de uso</td>
+    <td align="center">8b. Recursos (classes)</td>
+  </tr>
+</table>
+</details>
+
+<details>
+<summary><b>Ricardo Almeida</b>, Product Owner</summary>
+<br>
+
+Ecrãs 05, 06, 07 e 10. O Serviço de IA só aparece aqui: pedir sugestão estende a priorização, e sem ela o Ricardo prioriza à mão.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/imagens/diagramas/02c-casos-de-uso-ricardo.png" alt="Casos de uso de Ricardo Almeida"></td>
+    <td width="50%"><img src="docs/imagens/diagramas/08c-recursos-ricardo.png" alt="Classes que Ricardo Almeida usa"></td>
+  </tr>
+  <tr>
+    <td align="center">2c. Casos de uso</td>
+    <td align="center">8c. Recursos (classes)</td>
+  </tr>
+</table>
+</details>
+
+<details>
+<summary><b>Diogo Martins</b>, programador</summary>
+<br>
+
+Ecrãs 04, 07 e 11.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/imagens/diagramas/02d-casos-de-uso-diogo.png" alt="Casos de uso de Diogo Martins"></td>
+    <td width="50%"><img src="docs/imagens/diagramas/08d-recursos-diogo.png" alt="Classes que Diogo Martins usa"></td>
+  </tr>
+  <tr>
+    <td align="center">2d. Casos de uso</td>
+    <td align="center">8d. Recursos (classes)</td>
+  </tr>
+</table>
+</details>
+
+<details>
+<summary><b>Helena Costa</b>, gestora de projeto</summary>
+<br>
+
+Ecrãs 08, 11, 13, 14 e 15.
+
+<table>
+  <tr>
+    <td width="50%"><img src="docs/imagens/diagramas/02e-casos-de-uso-helena.png" alt="Casos de uso de Helena Costa"></td>
+    <td width="50%"><img src="docs/imagens/diagramas/08e-recursos-helena.png" alt="Classes que Helena Costa usa"></td>
+  </tr>
+  <tr>
+    <td align="center">2e. Casos de uso</td>
+    <td align="center">8e. Recursos (classes)</td>
+  </tr>
+</table>
+</details>
+
+### Comportamento do sistema
+
+<table>
+  <tr>
+    <td width="40%"><img src="docs/imagens/diagramas/06-estados-do-pedido.png" alt="Estados de um pedido"></td>
+    <td width="60%"><img src="docs/imagens/diagramas/04-atividades-triagem.png" alt="Atividades da triagem de um pedido"></td>
+  </tr>
+  <tr>
+    <td><b>6. Estados de um pedido</b> (US-12). Os mesmos nomes no Jira, nos ecrãs e no código.</td>
+    <td><b>4. Atividades.</b> A triagem de um pedido, desde que chega até ser aprovado ou rejeitado.</td>
+  </tr>
+  <tr>
+    <td><img src="docs/imagens/diagramas/07-sequencia-submeter-pedido.png" alt="Sequência de submeter pedido"></td>
+    <td><img src="docs/imagens/diagramas/03-sequencia-sugestao-ia.png" alt="Sequência da sugestão de prioridade"></td>
+  </tr>
+  <tr>
+    <td><b>7. Sequência.</b> Submeter um pedido com o aviso de pedidos parecidos.</td>
+    <td><b>3. Sequência.</b> Sugestão de prioridade, e o que acontece quando a IA falha.</td>
   </tr>
 </table>
 
 <details>
-<summary><b>Modelo de dados</b></summary>
+<summary><b>5. Modelo de dados</b></summary>
 <br>
-<img src="docs/imagens/diagrama-modelo-de-dados.png" alt="Modelo de dados" width="900">
+<img src="docs/imagens/diagramas/05-modelo-de-dados.png" alt="Modelo de dados" width="900">
 </details>
-
-São oito diagramas: arquitetura, casos de uso, duas sequências, estados, atividades, modelo de dados e classes. Estão todos em Mermaid em [`docs/sprint-3/modelacao/`](docs/sprint-3/modelacao/) e explicados na [wiki](wiki/05-modelacao/casos-de-uso.md). Os sete primeiros também estão no [FigJam](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41).
 
 ## Equipa
 
