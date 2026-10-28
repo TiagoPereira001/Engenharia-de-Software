@@ -275,7 +275,13 @@ git pull
 git switch -c feature/EDS-166-contas
 ```
 
-A chave vai em maiúsculas na branch, no commit e no título do pull request. Palavras-passe reais e chaves de API não entram no repositório. Mais em [Git e pull requests](wiki/06-codigo/git.md).
+As mensagens de commit seguem os [padrões de commits](https://github.com/iuricode/padroes-de-commits): `:emoji: tipo(âmbito): descrição`, com a chave do cartão do Jira no rodapé.
+
+```bash
+git commit -m ":sparkles: feat(pedidos): aviso de pedidos parecidos" -m "Refs: EDS-169"
+```
+
+A chave vai em maiúsculas na branch, no rodapé do commit e no título do pull request. Palavras-passe reais e chaves de API não entram no repositório. A tabela dos tipos e dos emojis está em [Git e pull requests](wiki/06-codigo/git.md#mensagens-de-commit).
 
 ## Avaliação
 

@@ -41,6 +41,7 @@ cd frontend && npm run dev
 - **Nunca ponhas palavras-passe, chaves de API nem o `.env`** no repositório.
 - **Uma branch por cartão** (`feature/EDS-nn-nome`) e pull request revisto por outra pessoa. Ver [Git e pull requests](wiki/06-codigo/git.md).
 - **Cada pessoa faz commit do seu trabalho com a sua conta.** Não se fazem commits em nome de outra pessoa.
+- **Mensagens de commit no formato `:emoji: tipo(âmbito): descrição`**, com os tipos e emojis dos [padrões de commits](https://github.com/iuricode/padroes-de-commits). Por exemplo: `:sparkles: feat(pedidos): aviso de pedidos parecidos`. A tabela completa está em [Git e pull requests](wiki/06-codigo/git.md#mensagens-de-commit).
 - **Regista o uso de IA.** Se uma ferramenta de IA escreveu ou mudou alguma coisa, diz-se no pull request e acrescenta-se uma linha a `docs/registo-ia/registo_uso_ia.tex`.
 - **Atualiza o [estado atual](wiki/currentstate.md)** quando acabares algo que mude o que lá está.
 
