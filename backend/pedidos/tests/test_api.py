@@ -18,12 +18,14 @@ class ApiPedidos(APITestCase):
         return servicos.criar_pedido(autor=self.sofia, titulo=titulo, descricao="x", categoria=categoria or self.cat)
 
     def test_criar_pedido_precisa_de_login(self):
-        resposta = self.client.post("/api/pedidos/", {"titulo": "Exportar em PDF", "descricao": "x", "categoria": self.cat.id})
+        novo = {"titulo": "Exportar em PDF", "descricao": "x", "categoria": self.cat.id}
+        resposta = self.client.post("/api/pedidos/", novo)
         self.assertEqual(resposta.status_code, 403)
 
     def test_cliente_cria_pedido(self):
         self.client.force_authenticate(self.sofia)
-        resposta = self.client.post("/api/pedidos/", {"titulo": "Exportar em PDF", "descricao": "x", "categoria": self.cat.id})
+        novo = {"titulo": "Exportar em PDF", "descricao": "x", "categoria": self.cat.id}
+        resposta = self.client.post("/api/pedidos/", novo)
         self.assertEqual(resposta.status_code, 201)
         self.assertEqual(resposta.data["estado"], "novo")
         self.assertEqual(resposta.data["autor"], "sofia")
@@ -70,9 +72,8 @@ class ApiPedidos(APITestCase):
     def test_product_manager_classifica(self):
         pedido = self.criar("Exportar relatórios")
         self.client.force_authenticate(self.ricardo)
-        resposta = self.client.patch(
-            f"/api/pedidos/{pedido.id}/classificar/", {"categoria": self.outra.id, "etiquetas": ["Excel"]}, format="json"
-        )
+        dados = {"categoria": self.outra.id, "etiquetas": ["Excel"]}
+        resposta = self.client.patch(f"/api/pedidos/{pedido.id}/classificar/", dados, format="json")
         self.assertEqual(resposta.status_code, 200)
         self.assertEqual((resposta.data["categoria"], resposta.data["etiquetas"]), (self.outra.id, ["excel"]))
 

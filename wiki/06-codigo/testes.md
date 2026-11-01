@@ -22,6 +22,23 @@ No Docker os testes do back-end correm em PostgreSQL; sem Docker e no GitHub Act
 
 O GitHub Actions corre os dois em cada pull request e em cada push para a `main` (`.github/workflows/ci.yml`).
 
+## Qualidade do código
+
+No back-end o GitHub Actions corre também:
+
+- **ruff**, que verifica o estilo, a ordem dos imports e erros comuns (as regras estão em `backend/pyproject.toml`);
+- **coverage**, que mede que parte do código os testes percorrem. Se a cobertura descer dos 90 %, o pull request fica vermelho.
+
+Para correr o mesmo no teu computador, sem Docker:
+
+```bash
+cd backend
+.venv/bin/pip install -r requirements-dev.txt
+.venv/bin/ruff check .
+.venv/bin/coverage run manage.py test
+.venv/bin/coverage report
+```
+
 ## O que já está testado
 
 **Back-end (41 testes):**

@@ -1,0 +1,20 @@
+# Verificações de qualidade do back-end (correm também no GitHub Actions).
+
+[tool.ruff]
+line-length = 120
+extend-exclude = ["*/migrations/*"]
+
+[tool.ruff.lint]
+# Erros, avisos e ordem dos imports; B apanha erros comuns (argumentos mutáveis, except vazio...).
+select = ["E", "F", "W", "I", "B", "UP"]
+
+[tool.ruff.lint.isort]
+known-first-party = ["config", "contas", "pedidos"]
+
+[tool.coverage.run]
+source = ["."]
+omit = ["*/migrations/*", "*/tests/*", "manage.py", "config/asgi.py", "config/wsgi.py", ".venv/*"]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true

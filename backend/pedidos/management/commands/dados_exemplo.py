@@ -20,12 +20,38 @@ UTILIZADORES = [
 
 CATEGORIAS = ["Relatórios", "Integrações", "Usabilidade", "Desempenho", "Notificações"]
 
+# (título, descrição, categoria, etiquetas)
 PEDIDOS = [
-    ("Exportação de relatórios em PDF", "Queria exportar os relatórios mensais em PDF para mandar à direção.", "Relatórios", ["relatórios", "exportar"]),
-    ("Filtrar pedidos de reposição por data de validade", "Perco muito tempo a ver um por um. Um filtro por data de validade resolvia.", "Usabilidade", ["filtros"]),
-    ("Ligação ao Slack", "Receber no Slack os avisos quando um pedido muda de estado.", "Integrações", ["slack", "avisos"]),
-    ("Lista de pedidos mais rápida", "A lista demora a abrir quando há muitos pedidos.", "Desempenho", []),
-    ("Aviso por email quando o pedido é lido", "Quero saber quando alguém lê o meu pedido, sem ter de perguntar.", "Notificações", ["avisos", "email"]),
+    (
+        "Exportação de relatórios em PDF",
+        "Queria exportar os relatórios mensais em PDF para mandar à direção.",
+        "Relatórios",
+        ["relatórios", "exportar"],
+    ),
+    (
+        "Filtrar pedidos de reposição por data de validade",
+        "Perco muito tempo a ver um por um. Um filtro por data de validade resolvia.",
+        "Usabilidade",
+        ["filtros"],
+    ),
+    (
+        "Ligação ao Slack",
+        "Receber no Slack os avisos quando um pedido muda de estado.",
+        "Integrações",
+        ["slack", "avisos"],
+    ),
+    (
+        "Lista de pedidos mais rápida",
+        "A lista demora a abrir quando há muitos pedidos.",
+        "Desempenho",
+        [],
+    ),
+    (
+        "Aviso por email quando o pedido é lido",
+        "Quero saber quando alguém lê o meu pedido, sem ter de perguntar.",
+        "Notificações",
+        ["avisos", "email"],
+    ),
 ]
 
 
@@ -57,11 +83,14 @@ class Command(BaseCommand):
             self.stdout.write("Já há pedidos; não criei mais.")
             return
         for titulo, descricao, cat, etiquetas in PEDIDOS:
-            pedido = servicos.criar_pedido(autor=pessoas["sofia"], titulo=titulo, descricao=descricao, categoria=cats[cat])
+            pedido = servicos.criar_pedido(
+                autor=pessoas["sofia"], titulo=titulo, descricao=descricao, categoria=cats[cat]
+            )
             servicos.classificar(pedido=pedido, autor=pessoas["marta"], etiquetas=etiquetas)
 
         primeiro = Pedido.objects.get(titulo__startswith="Exportação")
         servicos.mudar_estado(pedido=primeiro, para=Estado.EM_ANALISE, autor=pessoas["marta"])
         for nome in ["marta", "diogo", "helena"]:
             servicos.alternar_voto(pedido=primeiro, utilizador=pessoas[nome])
-        self.stdout.write(self.style.SUCCESS(f"Pronto. Utilizadores: {', '.join(pessoas)} e admin (palavra-passe: nome + 123)."))
+        nomes = ", ".join(pessoas)
+        self.stdout.write(self.style.SUCCESS(f"Pronto. Utilizadores: {nomes} e admin (palavra-passe: nome + 123)."))
