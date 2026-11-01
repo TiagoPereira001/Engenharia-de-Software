@@ -239,7 +239,7 @@ Ecrãs 08, 11, 13, 14 e 15.
 | 1 | 21 set a 14 out | Tiago Pereira | Rui Machado | Equipa, contrato, Jira, produto decidido, primeira proposta de personas, cenários e user stories |
 | 2 | 12 a 23 out | Felipe Fogaça | João Vitor | Entrevistas às cinco personas no Character.ai, personas e user stories revistas, wireframes |
 | 3 | 23 a 26 out | João Vitor | Marcus Fernandes | Requisitos não funcionais, arquitetura, modelação UML, wireframes corrigidos, base do código, testes, CI e Docker |
-| 4 | por confirmar | Marcus Fernandes | Felipe Fogaça | Primeiro incremento completo e ligação dos outros ecrãs à API |
+| 4 | por confirmar | Marcus Fernandes | Felipe Fogaça | Priorizar, planear e colaborar: oito ecrãs ligados à API, sugestão de prioridade com IA, qualidade no CI e o aspeto dos mockups |
 | 5 | por confirmar | Rui Machado | Tiago Pereira | Restantes interfaces, testes, deploy e entrega final |
 
 Cada um é Product Owner uma vez e Scrum Master uma vez, nunca os dois no mesmo sprint. A apresentação oral é no fim de cada sprint. A do Sprint 1 e a do Sprint 2 fizeram-se juntas, porque é o mesmo produto.

@@ -1,6 +1,6 @@
 # Apresentação do Sprint 3
 
-[Índice](../README.md) · [← Sprint 3](sprint-3.md)
+[Índice](../README.md) · [← Sprint 3](sprint-3.md) · [Sprint 4 →](sprint-4.md)
 
 Semana de 2 de novembro, dia ainda por confirmar. Falam o Product Owner (João) e o Scrum Master (Marcus). Os outros três estão presentes para responder sobre a parte que fizeram. O cartão é o [EDS-173](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-173).
 

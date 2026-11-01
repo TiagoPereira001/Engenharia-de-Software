@@ -2,15 +2,17 @@
 
 [Índice](README.md) · [Visão do produto →](01-produto/visao.md)
 
-Última atualização: 26 de outubro de 2026, Sprint 3.
+Última atualização: 1 de novembro de 2026, Sprint 4.
 
 Esta página diz onde o projeto está. Quem mexe no projeto (pessoa ou agente de IA) atualiza-a quando alguma coisa muda.
 
 ## Sprint em curso
 
-**Sprint 3**, de 23 a 26 de outubro. Product Owner: João Vitor. Scrum Master: Marcus Fernandes.
+**Sprint 4**, datas por confirmar. Product Owner: Marcus Fernandes. Scrum Master: Felipe Fogaça. Ver [Sprint 4](07-scrum/sprint-4.md).
 
-Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelação UML, wireframes corrigidos e mockups, e a base do código a correr. As funcionalidades do primeiro incremento passam para o Sprint 4.
+Objetivo: segundo incremento. Priorizar, planear e colaborar dentro do sistema, com oito ecrãs ligados à API (01 a 07 e 12), qualidade no CI, desenho de software e o aspeto dos mockups no front-end.
+
+O Sprint 3 está fechado no Jira; a apresentação dele é na semana de 2 de novembro ([guião](07-scrum/apresentacao-sprint-3.md)).
 
 ## Feito
 
@@ -25,18 +27,22 @@ Objetivo: requisitos não funcionais refeitos, arquitetura justificada, modelaç
 - Testes automáticos: 31 no back-end e 23 no front-end, todos a passar (também no PostgreSQL, dentro do Docker). Ver [testes](06-codigo/testes.md).
 - Integração contínua (`.github/workflows/ci.yml`) a correr no GitHub em cada push e pull request.
 
-## Por fazer neste sprint
+## Por fazer (do Sprint 3)
 
 - Rever, compilar no Overleaf e aceitar o documento de requisitos não funcionais ([EDS-159](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-159)).
 - Mockups dos ecrãs 01 a 04 ([EDS-163](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-163)).
 - Escrever o documento de arquitetura em LaTeX para `docs/sprint-3/` ([EDS-153](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-153)), a partir de [arquitetura](04-arquitetura/arquitetura.md).
 - Proteger a `main` no GitHub (só o Tiago tem permissões).
-- Review e retrospetiva. A apresentação ([EDS-173](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-173)) passou para a semana de 2 de novembro, dia ainda por confirmar.
+- Review e retrospetiva do Sprint 3. A apresentação ([EDS-173](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-173)) passou para a semana de 2 de novembro, dia ainda por confirmar.
+
+## Sprint 4
+
+O código do sprint está dividido por módulos, um por pessoa, e entra pela ordem Tiago, Marcus, Rui, João e Felipe ([quem faz o quê](07-scrum/sprint-4.md#como-se-divide-o-código)). Até lá, a lista "Feito" de cima ainda não o inclui.
 
 ## Decisões em aberto
 
 - Datas dos Sprints 4 e 5.
-- Que serviço de IA usar na priorização (Sprint 4).
+- Datas do Sprint 4 no Jira (estão as antigas, 23 de novembro a 11 de dezembro).
 
 ## Onde está cada coisa
 

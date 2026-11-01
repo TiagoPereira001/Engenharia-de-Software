@@ -50,6 +50,8 @@ Quem chega agora lê primeiro o [estado atual](currentstate.md). Quem vai mexer 
 - [Sprints](07-scrum/sprints.md)
 - [Sprint 3](07-scrum/sprint-3.md)
 - [Apresentação do Sprint 3](07-scrum/apresentacao-sprint-3.md)
+- [Sprint 4](07-scrum/sprint-4.md)
+- [Apresentação do Sprint 4](07-scrum/apresentacao-sprint-4.md)
 
 ## Fora da wiki
 
