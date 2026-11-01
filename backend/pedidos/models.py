@@ -33,10 +33,23 @@ class Categoria(models.Model):
         return self.nome
 
 
+class Etiqueta(models.Model):
+    """Etiquetas livres que o product manager põe nos pedidos (US-02)."""
+
+    nome = models.CharField(max_length=30, unique=True)
+
+    class Meta:
+        ordering = ["nome"]
+
+    def __str__(self):
+        return self.nome
+
+
 class Pedido(models.Model):
     titulo = models.CharField(max_length=120)
     descricao = models.TextField()
     categoria = models.ForeignKey(Categoria, on_delete=models.PROTECT, related_name="pedidos")
+    etiquetas = models.ManyToManyField(Etiqueta, blank=True, related_name="pedidos")
     estado = models.CharField(max_length=20, choices=Estado.choices, default=Estado.NOVO)
     origem = models.CharField(max_length=10, choices=Origem.choices, default=Origem.SISTEMA)
     autor = models.ForeignKey(settings.AUTH_USER_MODEL, on_delete=models.PROTECT, related_name="pedidos")

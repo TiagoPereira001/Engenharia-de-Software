@@ -1,5 +1,6 @@
 from rest_framework import serializers
 
+from . import servicos
 from .models import Categoria, Estado, MudancaEstado, Origem, Pedido
 
 
@@ -20,6 +21,7 @@ class MudancaEstadoSerializer(serializers.ModelSerializer):
 class PedidoSerializer(serializers.ModelSerializer):
     autor = serializers.CharField(source="autor.username", read_only=True)
     categoria_nome = serializers.CharField(source="categoria.nome", read_only=True)
+    etiquetas = serializers.SlugRelatedField(many=True, read_only=True, slug_field="nome")
     estado_nome = serializers.CharField(source="get_estado_display", read_only=True)
     # Só o total; quem votou nunca sai da API (pedido da Sofia, US-07).
     total_votos = serializers.IntegerField(read_only=True)
@@ -28,7 +30,7 @@ class PedidoSerializer(serializers.ModelSerializer):
     class Meta:
         model = Pedido
         fields = [
-            "id", "titulo", "descricao", "categoria", "categoria_nome", "estado", "estado_nome",
+            "id", "titulo", "descricao", "categoria", "categoria_nome", "etiquetas", "estado", "estado_nome",
             "origem", "autor", "criado_em", "total_votos", "votei",
         ]
         read_only_fields = ["estado"]
@@ -45,14 +47,24 @@ class PedidoSerializer(serializers.ModelSerializer):
 
 class PedidoDetalheSerializer(PedidoSerializer):
     historico = MudancaEstadoSerializer(many=True, read_only=True)
+    # Os botões de mudar estado vêm do servidor, para o ecrã não repetir as regras.
+    pode_mudar_para = serializers.SerializerMethodField()
 
     class Meta(PedidoSerializer.Meta):
-        fields = PedidoSerializer.Meta.fields + ["historico"]
+        fields = PedidoSerializer.Meta.fields + ["historico", "pode_mudar_para"]
+
+    def get_pode_mudar_para(self, pedido):
+        return servicos.estados_seguintes(pedido, self.context["request"].user)
 
 
 class MudarEstadoSerializer(serializers.Serializer):
     para = serializers.ChoiceField(choices=Estado.choices)
     motivo = serializers.CharField(required=False, allow_blank=True, default="")
+
+
+class ClassificarSerializer(serializers.Serializer):
+    categoria = serializers.PrimaryKeyRelatedField(queryset=Categoria.objects.all(), required=False)
+    etiquetas = serializers.ListField(child=serializers.CharField(max_length=30, allow_blank=True), required=False)
 
 
 class OrigemSerializer(serializers.Serializer):

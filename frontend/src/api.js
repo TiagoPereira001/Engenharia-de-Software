@@ -31,12 +31,14 @@ export const api = {
   registar: (dados) => pedir("/contas/registar/", { metodo: "POST", corpo: dados }),
   sair: () => pedir("/contas/sair/", { metodo: "POST" }),
   categorias: () => pedir("/categorias/"),
+  etiquetas: () => pedir("/etiquetas/"),
   pedidos: (filtros = {}) => pedir("/pedidos/?" + new URLSearchParams(filtros)),
   pedido: (id) => pedir(`/pedidos/${id}/`),
   criarPedido: (dados) => pedir("/pedidos/", { metodo: "POST", corpo: dados }),
   parecidos: (texto) => pedir("/pedidos/parecidos/?" + new URLSearchParams({ q: texto })),
   votar: (id) => pedir(`/pedidos/${id}/voto/`, { metodo: "POST" }),
   mudarEstado: (id, para, motivo = "") => pedir(`/pedidos/${id}/estado/`, { metodo: "POST", corpo: { para, motivo } }),
+  classificar: (id, dados) => pedir(`/pedidos/${id}/classificar/`, { metodo: "PATCH", corpo: dados }),
 };
 
 export const ESTADOS = {

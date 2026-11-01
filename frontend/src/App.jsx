@@ -67,7 +67,7 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Navigate to="/pedidos" replace />} />
           <Route path="/entrar" element={<Entrar aoEntrar={setUtilizador} />} />
-          <Route path="/pedidos" element={<Pedidos />} />
+          <Route path="/pedidos" element={<Pedidos utilizador={utilizador} />} />
           <Route path="/pedidos/novo" element={<NovoPedido utilizador={utilizador} />} />
           <Route path="/pedidos/:id" element={<DetalhePedido utilizador={utilizador} />} />
           <Route path="/priorizacao" element={<Priorizacao />} />

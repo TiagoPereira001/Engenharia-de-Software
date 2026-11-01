@@ -21,11 +21,11 @@ UTILIZADORES = [
 CATEGORIAS = ["Relatórios", "Integrações", "Usabilidade", "Desempenho", "Notificações"]
 
 PEDIDOS = [
-    ("Exportação de relatórios em PDF", "Queria exportar os relatórios mensais em PDF para mandar à direção.", "Relatórios"),
-    ("Filtrar pedidos de reposição por data de validade", "Perco muito tempo a ver um por um. Um filtro por data de validade resolvia.", "Usabilidade"),
-    ("Ligação ao Slack", "Receber no Slack os avisos quando um pedido muda de estado.", "Integrações"),
-    ("Lista de pedidos mais rápida", "A lista demora a abrir quando há muitos pedidos.", "Desempenho"),
-    ("Aviso por email quando o pedido é lido", "Quero saber quando alguém lê o meu pedido, sem ter de perguntar.", "Notificações"),
+    ("Exportação de relatórios em PDF", "Queria exportar os relatórios mensais em PDF para mandar à direção.", "Relatórios", ["relatórios", "exportar"]),
+    ("Filtrar pedidos de reposição por data de validade", "Perco muito tempo a ver um por um. Um filtro por data de validade resolvia.", "Usabilidade", ["filtros"]),
+    ("Ligação ao Slack", "Receber no Slack os avisos quando um pedido muda de estado.", "Integrações", ["slack", "avisos"]),
+    ("Lista de pedidos mais rápida", "A lista demora a abrir quando há muitos pedidos.", "Desempenho", []),
+    ("Aviso por email quando o pedido é lido", "Quero saber quando alguém lê o meu pedido, sem ter de perguntar.", "Notificações", ["avisos", "email"]),
 ]
 
 
@@ -56,8 +56,9 @@ class Command(BaseCommand):
         if Pedido.objects.exists():
             self.stdout.write("Já há pedidos; não criei mais.")
             return
-        for titulo, descricao, cat in PEDIDOS:
-            servicos.criar_pedido(autor=pessoas["sofia"], titulo=titulo, descricao=descricao, categoria=cats[cat])
+        for titulo, descricao, cat, etiquetas in PEDIDOS:
+            pedido = servicos.criar_pedido(autor=pessoas["sofia"], titulo=titulo, descricao=descricao, categoria=cats[cat])
+            servicos.classificar(pedido=pedido, autor=pessoas["marta"], etiquetas=etiquetas)
 
         primeiro = Pedido.objects.get(titulo__startswith="Exportação")
         servicos.mudar_estado(pedido=primeiro, para=Estado.EM_ANALISE, autor=pessoas["marta"])

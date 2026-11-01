@@ -4,21 +4,42 @@ from rest_framework.permissions import IsAuthenticated
 from rest_framework.response import Response
 from rest_framework.views import APIView
 
-from contas.permissoes import GerePedidos
-
 from . import servicos
-from .models import Categoria, Pedido
-from .serializers import CategoriaSerializer, MudarEstadoSerializer, PedidoDetalheSerializer, PedidoSerializer
+from .models import Categoria, Etiqueta, Pedido
+from .serializers import (
+    CategoriaSerializer,
+    ClassificarSerializer,
+    MudarEstadoSerializer,
+    PedidoDetalheSerializer,
+    PedidoSerializer,
+)
 
 
 def pedidos_com_votos():
-    return Pedido.objects.select_related("autor", "categoria").annotate(total_votos=Count("votos")).order_by("-criado_em", "-id")
+    return (
+        Pedido.objects.select_related("autor", "categoria")
+        .prefetch_related("etiquetas")
+        .annotate(total_votos=Count("votos"))
+        .order_by("-criado_em", "-id")
+    )
+
+
+def detalhe(pk, request):
+    pedido = pedidos_com_votos().prefetch_related("historico__autor").get(pk=pk)
+    return PedidoDetalheSerializer(pedido, context={"request": request}).data
 
 
 class CategoriaLista(generics.ListAPIView):
     queryset = Categoria.objects.all()
     serializer_class = CategoriaSerializer
     pagination_class = None
+
+
+class EtiquetaLista(APIView):
+    permission_classes = []
+
+    def get(self, request):
+        return Response(list(Etiqueta.objects.values_list("nome", flat=True)))
 
 
 class PedidoLista(generics.ListCreateAPIView):
@@ -35,6 +56,11 @@ class PedidoLista(generics.ListCreateAPIView):
             qs = qs.filter(estado=estado)
         if categoria := self.request.query_params.get("categoria"):
             qs = qs.filter(categoria_id=categoria)
+        if etiqueta := self.request.query_params.get("etiqueta"):
+            qs = qs.filter(etiquetas__nome=etiqueta.strip().lower())
+        # "Os meus pedidos": o cliente vê tudo o que pediu e o estado de cada um (US-01).
+        if self.request.query_params.get("meus") and self.request.user.is_authenticated:
+            qs = qs.filter(autor=self.request.user)
         if self.request.query_params.get("ordem") == "votos":
             qs = qs.order_by("-total_votos", "-criado_em")
         return qs
@@ -51,11 +77,12 @@ class PedidoLista(generics.ListCreateAPIView):
         serializer.instance = pedidos_com_votos().get(pk=pedido.pk)
 
 
-class PedidoDetalhe(generics.RetrieveAPIView):
-    serializer_class = PedidoDetalheSerializer
+class PedidoDetalhe(APIView):
+    permission_classes = []
 
-    def get_queryset(self):
-        return pedidos_com_votos().prefetch_related("historico__autor")
+    def get(self, request, pk):
+        generics.get_object_or_404(Pedido, pk=pk)
+        return Response(detalhe(pk, request))
 
 
 class Parecidos(APIView):
@@ -79,7 +106,9 @@ class Votar(APIView):
 
 
 class MudarEstado(APIView):
-    permission_classes = [GerePedidos]
+    """Quem pode fazer cada passagem está em servicos.QUEM_PODE."""
+
+    permission_classes = [IsAuthenticated]
 
     def post(self, request, pk):
         pedido = generics.get_object_or_404(Pedido, pk=pk)
@@ -87,7 +116,24 @@ class MudarEstado(APIView):
         entrada.is_valid(raise_exception=True)
         try:
             servicos.mudar_estado(pedido=pedido, autor=request.user, **entrada.validated_data)
+        except servicos.SemPermissao as erro:
+            return Response({"erro": str(erro)}, status=status.HTTP_403_FORBIDDEN)
         except servicos.RegraViolada as erro:
             return Response({"erro": str(erro)}, status=status.HTTP_400_BAD_REQUEST)
-        pedido = pedidos_com_votos().get(pk=pk)
-        return Response(PedidoDetalheSerializer(pedido, context={"request": request}).data)
+        return Response(detalhe(pk, request))
+
+
+class Classificar(APIView):
+    """Categoria e etiquetas de um pedido (US-02)."""
+
+    permission_classes = [IsAuthenticated]
+
+    def patch(self, request, pk):
+        pedido = generics.get_object_or_404(Pedido, pk=pk)
+        entrada = ClassificarSerializer(data=request.data)
+        entrada.is_valid(raise_exception=True)
+        try:
+            servicos.classificar(pedido=pedido, autor=request.user, **entrada.validated_data)
+        except servicos.SemPermissao as erro:
+            return Response({"erro": str(erro)}, status=status.HTTP_403_FORBIDDEN)
+        return Response(detalhe(pk, request))

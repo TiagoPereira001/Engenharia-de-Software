@@ -5,13 +5,15 @@ from django.test import TestCase
 
 from contas.models import Papel, Utilizador
 from pedidos import servicos
-from pedidos.models import Categoria, Estado, MudancaEstado, Origem, Voto
+from pedidos.models import Categoria, Estado, Etiqueta, MudancaEstado, Origem, Voto
 
 
 class Base(TestCase):
     def setUp(self):
         self.sofia = Utilizador.objects.create_user("sofia", password="x", papel=Papel.CLIENTE)
         self.marta = Utilizador.objects.create_user("marta", password="x", papel=Papel.PRODUCT_MANAGER)
+        self.ricardo = Utilizador.objects.create_user("ricardo", password="x", papel=Papel.PRODUCT_OWNER)
+        self.diogo = Utilizador.objects.create_user("diogo", password="x", papel=Papel.PROGRAMADOR)
         self.cat = Categoria.objects.create(nome="Relatórios")
 
     def novo(self, titulo="Exportação de relatórios em PDF", descricao="Para mandar à direção."):
@@ -41,10 +43,36 @@ class CriarPedido(Base):
 class MudarEstado(Base):
     def test_segue_o_diagrama_de_estados(self):
         pedido = self.novo()
-        for estado in [Estado.EM_ANALISE, Estado.APROVADO, Estado.EM_DESENVOLVIMENTO, Estado.EM_REVISAO, Estado.CONCLUIDO]:
-            servicos.mudar_estado(pedido=pedido, para=estado, autor=self.marta)
+        passos = [
+            (Estado.EM_ANALISE, self.marta),
+            (Estado.APROVADO, self.marta),
+            (Estado.EM_DESENVOLVIMENTO, self.diogo),
+            (Estado.EM_REVISAO, self.diogo),
+            (Estado.CONCLUIDO, self.ricardo),
+        ]
+        for estado, quem in passos:
+            servicos.mudar_estado(pedido=pedido, para=estado, autor=quem)
         self.assertEqual(pedido.estado, Estado.CONCLUIDO)
         self.assertEqual(pedido.historico.count(), 6)
+
+    def test_cada_papel_so_faz_a_sua_parte(self):
+        pedido = self.novo()
+        with self.assertRaises(servicos.SemPermissao):
+            servicos.mudar_estado(pedido=pedido, para=Estado.EM_ANALISE, autor=self.diogo)
+        servicos.mudar_estado(pedido=pedido, para=Estado.EM_ANALISE, autor=self.marta)
+        servicos.mudar_estado(pedido=pedido, para=Estado.APROVADO, autor=self.marta)
+        servicos.mudar_estado(pedido=pedido, para=Estado.EM_DESENVOLVIMENTO, autor=self.diogo)
+        servicos.mudar_estado(pedido=pedido, para=Estado.EM_REVISAO, autor=self.diogo)
+        # Só o Product Owner aceita o trabalho (diagrama de estados: "aceite pelo Product Owner").
+        with self.assertRaises(servicos.SemPermissao):
+            servicos.mudar_estado(pedido=pedido, para=Estado.CONCLUIDO, autor=self.diogo)
+        self.assertEqual(pedido.estado, Estado.EM_REVISAO)
+
+    def test_estados_seguintes_dependem_do_papel(self):
+        pedido = self.novo()
+        self.assertEqual(servicos.estados_seguintes(pedido, self.marta), [Estado.EM_ANALISE])
+        self.assertEqual(servicos.estados_seguintes(pedido, self.sofia), [])
+        self.assertEqual(servicos.estados_seguintes(pedido, self.diogo), [])
 
     def test_recusa_transicao_impossivel(self):
         pedido = self.novo()
@@ -59,6 +87,25 @@ class MudarEstado(Base):
             servicos.mudar_estado(pedido=pedido, para=Estado.REJEITADO, autor=self.marta, motivo="  ")
         servicos.mudar_estado(pedido=pedido, para=Estado.REJEITADO, autor=self.marta, motivo="Fora do âmbito")
         self.assertEqual(pedido.historico.last().motivo, "Fora do âmbito")
+
+
+class Classificar(Base):
+    def test_etiquetas_ficam_limpas_e_sem_repetidos(self):
+        pedido = self.novo()
+        servicos.classificar(pedido=pedido, autor=self.marta, etiquetas=["Relatórios", " relatórios ", "Excel", ""])
+        self.assertEqual(sorted(pedido.etiquetas.values_list("nome", flat=True)), ["excel", "relatórios"])
+        self.assertEqual(Etiqueta.objects.count(), 2)
+
+    def test_muda_a_categoria(self):
+        pedido = self.novo()
+        outra = Categoria.objects.create(nome="Integrações")
+        servicos.classificar(pedido=pedido, autor=self.marta, categoria=outra)
+        pedido.refresh_from_db()
+        self.assertEqual(pedido.categoria, outra)
+
+    def test_cliente_nao_classifica(self):
+        with self.assertRaises(servicos.SemPermissao):
+            servicos.classificar(pedido=self.novo(), autor=self.sofia, etiquetas=["x"])
 
 
 class Votos(Base):

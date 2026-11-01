@@ -26,6 +26,7 @@ class DadosExemplo(TestCase):
         self.assertEqual(exportacao.estado, Estado.EM_ANALISE)
         self.assertEqual(exportacao.votos.count(), 3)
         self.assertEqual(exportacao.historico.count(), 2)
+        self.assertEqual(sorted(exportacao.etiquetas.values_list("nome", flat=True)), ["exportar", "relatórios"])
 
     def test_palavra_passe_e_o_nome_mais_123(self):
         self.correr()

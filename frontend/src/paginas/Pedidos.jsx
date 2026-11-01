@@ -3,14 +3,16 @@ import { Link, useSearchParams } from "react-router-dom";
 import { api, ESTADOS } from "../api.js";
 
 // Ecrã 02. Pesquisa e filtros juntos (US-04). Os filtros ficam no endereço, para se poder partilhar.
-export default function Pedidos() {
+export default function Pedidos({ utilizador }) {
   const [params, setParams] = useSearchParams();
   const [pedidos, setPedidos] = useState(null);
   const [categorias, setCategorias] = useState([]);
+  const [etiquetas, setEtiquetas] = useState([]);
   const [erro, setErro] = useState("");
 
   useEffect(() => {
     api.categorias().then(setCategorias).catch(() => {});
+    api.etiquetas().then(setEtiquetas).catch(() => {});
   }, []);
 
   useEffect(() => {
@@ -56,6 +58,15 @@ export default function Pedidos() {
         </select>
         </div>
         <div>
+        <label htmlFor="etiqueta">Etiqueta</label>
+        <select id="etiqueta" value={params.get("etiqueta") || ""} onChange={(e) => filtrar("etiqueta", e.target.value)}>
+          <option value="">Todas</option>
+          {etiquetas.map((nome) => (
+            <option key={nome} value={nome}>{nome}</option>
+          ))}
+        </select>
+        </div>
+        <div>
         <label htmlFor="ordem">Ordenar</label>
         <select id="ordem" value={params.get("ordem") || ""} onChange={(e) => filtrar("ordem", e.target.value)}>
           <option value="">Mais recentes</option>
@@ -63,6 +74,12 @@ export default function Pedidos() {
         </select>
         </div>
       </div>
+      {utilizador && (
+        <label className="opcao">
+          <input type="checkbox" checked={params.get("meus") === "1"} onChange={(e) => filtrar("meus", e.target.checked ? "1" : "")} />
+          Só os meus pedidos
+        </label>
+      )}
 
       {erro && <p role="alert">{erro}</p>}
       {pedidos && pedidos.length === 0 && (
@@ -73,13 +90,14 @@ export default function Pedidos() {
       {pedidos && pedidos.length > 0 && (
         <table>
           <thead>
-            <tr><th>Pedido</th><th>Categoria</th><th>Estado</th><th>Votos</th></tr>
+            <tr><th>Pedido</th><th>Categoria</th><th>Etiquetas</th><th>Estado</th><th>Votos</th></tr>
           </thead>
           <tbody>
             {pedidos.map((p) => (
               <tr key={p.id}>
                 <td><Link to={`/pedidos/${p.id}`}>{p.titulo}</Link></td>
                 <td>{p.categoria_nome}</td>
+                <td>{(p.etiquetas || []).map((e) => <span key={e} className="etiqueta">{e}</span>)}</td>
                 <td>{p.estado_nome}</td>
                 <td>{p.total_votos}</td>
               </tr>

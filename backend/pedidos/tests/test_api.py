@@ -51,6 +51,43 @@ class ApiPedidos(APITestCase):
         self.assertEqual(detalhe["total_votos"], 1)
         self.assertNotIn("votos", detalhe)
 
+    def test_filtra_por_etiqueta(self):
+        com = self.criar("Exportar relatórios")
+        self.criar("Ligação ao Slack")
+        servicos.classificar(pedido=com, autor=self.ricardo, etiquetas=["Excel"])
+        resposta = self.client.get("/api/pedidos/", {"etiqueta": "excel"})
+        self.assertEqual([p["titulo"] for p in resposta.data["results"]], ["Exportar relatórios"])
+        self.assertEqual(resposta.data["results"][0]["etiquetas"], ["excel"])
+        self.assertEqual(self.client.get("/api/etiquetas/").data, ["excel"])
+
+    def test_os_meus_pedidos(self):
+        self.criar("Exportar relatórios")
+        servicos.criar_pedido(autor=self.ricardo, titulo="Pedido do Ricardo", descricao="x", categoria=self.cat)
+        self.client.force_authenticate(self.sofia)
+        resposta = self.client.get("/api/pedidos/", {"meus": "1"})
+        self.assertEqual([p["titulo"] for p in resposta.data["results"]], ["Exportar relatórios"])
+
+    def test_product_manager_classifica(self):
+        pedido = self.criar("Exportar relatórios")
+        self.client.force_authenticate(self.ricardo)
+        resposta = self.client.patch(
+            f"/api/pedidos/{pedido.id}/classificar/", {"categoria": self.outra.id, "etiquetas": ["Excel"]}, format="json"
+        )
+        self.assertEqual(resposta.status_code, 200)
+        self.assertEqual((resposta.data["categoria"], resposta.data["etiquetas"]), (self.outra.id, ["excel"]))
+
+    def test_cliente_nao_classifica(self):
+        pedido = self.criar("Exportar relatórios")
+        self.client.force_authenticate(self.sofia)
+        resposta = self.client.patch(f"/api/pedidos/{pedido.id}/classificar/", {"etiquetas": ["x"]}, format="json")
+        self.assertEqual(resposta.status_code, 403)
+
+    def test_detalhe_diz_para_onde_se_pode_mudar(self):
+        pedido = self.criar("Exportar relatórios")
+        self.assertEqual(self.client.get(f"/api/pedidos/{pedido.id}/").data["pode_mudar_para"], [])
+        self.client.force_authenticate(self.ricardo)
+        self.assertEqual(self.client.get(f"/api/pedidos/{pedido.id}/").data["pode_mudar_para"], ["em_analise"])
+
     def test_cliente_nao_muda_o_estado(self):
         pedido = self.criar("Exportar relatórios")
         self.client.force_authenticate(self.sofia)

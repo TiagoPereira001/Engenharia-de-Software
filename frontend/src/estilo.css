@@ -177,6 +177,25 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--destaque); outl
   font-weight: 600;
 }
 .botao:hover { opacity: 0.9; }
-.filtros { display: grid; grid-template-columns: 2fr repeat(3, 1fr); gap: 12px; margin-bottom: 20px; }
+.filtros { display: grid; grid-template-columns: 2fr repeat(4, 1fr); gap: 12px; margin-bottom: 20px; }
 .filtros label { margin-top: 0; }
 @media (max-width: 800px) { .filtros { grid-template-columns: 1fr 1fr; } }
+
+/* Etiquetas dos pedidos (US-02) */
+.etiqueta {
+  display: inline-block;
+  margin: 0 4px 4px 0;
+  padding: 1px 8px;
+  border-radius: 999px;
+  background: var(--destaque-claro);
+  color: var(--destaque);
+  font-size: 0.85em;
+}
+
+.opcao {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin: 8px 0;
+  font-weight: normal;
+}
