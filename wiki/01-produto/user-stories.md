@@ -13,10 +13,10 @@ Nas user stories aparece "project manager"; na wiki e no código esse papel cham
 | US-03 | [EDS-111](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-111) | Editar e ver versões | Pedidos | Product manager | Should |  |
 | US-04 | [EDS-112](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-112) | Pesquisar e filtrar | Pedidos | Utilizador | Must | Base no Sprint 3 |
 | US-05 | [EDS-113](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-113) | Aviso de pedidos parecidos | Pedidos | Cliente | Should | Base no Sprint 3 |
-| US-06 | [EDS-114](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-114) | Ordenar por prioridade | Priorização | Product Owner | Must |  |
+| US-06 | [EDS-114](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-114) | Ordenar por prioridade | Priorização | Product Owner | Must | Sprint 4 |
 | US-07 | [EDS-115](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-115) | Votar | Priorização | Utilizador | Must | Base no Sprint 3 |
-| US-08 | [EDS-116](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-116) | Sugestão de prioridade com IA | Priorização | Product Owner | Should |  |
-| US-09 | [EDS-117](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-117) | Impacto e esforço | Priorização | Product Owner | Must |  |
+| US-08 | [EDS-116](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-116) | Sugestão de prioridade com IA | Priorização | Product Owner | Should | Sprint 4 |
+| US-09 | [EDS-117](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-117) | Impacto e esforço | Priorização | Product Owner | Must | Sprint 4 |
 | US-10 | [EDS-118](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-118) | Product backlog | Backlog | Product Owner | Must |  |
 | US-11 | [EDS-119](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-119) | Sprint backlog | Backlog | Product Owner | Must |  |
 | US-12 | [EDS-120](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-120) | Estado de uma funcionalidade | Backlog | Programador | Must | Estados e histórico no Sprint 3 |

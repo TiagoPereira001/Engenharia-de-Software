@@ -29,12 +29,19 @@ Cada decisão importante fica aqui, com o contexto e as alternativas. Uma decis�
 
 - **Contexto:** o Ricardo só aceita a IA se o sistema funcionar sem ela.
 - **Decisão:** um único módulo fala com o serviço de IA, com tempo limite. Se falhar, a priorização manual continua.
-- **Estado:** desenhado (diagrama de sequência 4), por implementar no Sprint 4.
+- **Estado:** desenhado (diagrama de sequência 3) e implementado no Sprint 4, em `backend/priorizacao/ia.py`.
+- **Como ficou (Sprint 4):** o serviço de IA é o Claude, da Anthropic, chamado com saída estruturada (JSON com nível e razão de cada pedido) e um tempo limite de 20 segundos. Só é usado quando há uma chave em `ANTHROPIC_API_KEY`. Sem chave, ou se o Claude falhar, recusar ou devolver uma resposta que não bate certo, a sugestão é feita por uma regra local (valor por ponto de esforço, a partir dos votos e do impacto), e o ecrã diz que a sugestão não veio da IA. Os títulos e os números dos pedidos são enviados ao serviço; as descrições e os nomes das pessoas não.
 
 ## D5. Os estados de um pedido são os da US-12 (23/10/2026)
 
 - Novo, Em análise, Aprovado, Rejeitado, Em desenvolvimento, Em revisão, Concluído.
 - Os mesmos nomes no Jira, nos diagramas, no código (`pedidos/models.py`) e nos ecrãs. Ver [estados](../05-modelacao/estados-e-atividades.md).
+
+## D6. Escalas de impacto e de esforço (Sprint 4)
+
+- **Contexto:** a US-09 pede uma escala fixa e documentada. Nos mockups o esforço aparecia como S, M e L, mas a equipa estima em pontos no Jira.
+- **Decisão:** impacto em três níveis (1 Baixo, 2 Médio, 3 Alto); esforço em pontos da sequência de Fibonacci (1, 2, 3, 5, 8, 13), a mesma escala do Jira. A relação impacto/esforço serve para ordenar.
+- **Consequência:** a capacidade do sprint passa a ser em pontos, e o aviso de capacidade (US-06) soma os pontos dos pedidos já ordenados. Os mockups do ecrã 05 passam a mostrar pontos.
 
 ## Ver também
 
