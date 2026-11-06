@@ -39,6 +39,11 @@ export const api = {
   votar: (id) => pedir(`/pedidos/${id}/voto/`, { metodo: "POST" }),
   mudarEstado: (id, para, motivo = "") => pedir(`/pedidos/${id}/estado/`, { metodo: "POST", corpo: { para, motivo } }),
   classificar: (id, dados) => pedir(`/pedidos/${id}/classificar/`, { metodo: "PATCH", corpo: dados }),
+  priorizacao: (params = {}) => pedir("/priorizacao/?" + new URLSearchParams(params)),
+  estimar: (id, dados) => pedir(`/priorizacao/${id}/estimativa/`, { metodo: "PATCH", corpo: dados }),
+  ordenar: (dados) => pedir("/priorizacao/ordem/", { metodo: "POST", corpo: dados }),
+  historicoOrdem: () => pedir("/priorizacao/historico/"),
+  sugestao: () => pedir("/priorizacao/sugestao/"),
 };
 
 export const ESTADOS = {

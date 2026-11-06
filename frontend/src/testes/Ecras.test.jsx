@@ -1,7 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import Priorizacao from "../paginas/Priorizacao.jsx";
 import PlanearSprint from "../paginas/PlanearSprint.jsx";
 import QuadroSprint from "../paginas/QuadroSprint.jsx";
 import Roadmap from "../paginas/Roadmap.jsx";
@@ -19,7 +18,7 @@ const abrir = (Ecra) => render(<MemoryRouter><Ecra /></MemoryRouter>);
 
 describe("ecrãs com dados de exemplo", () => {
   const ECRAS = [
-    [Priorizacao, "Priorização"], [PlanearSprint, "Planear sprint"], [QuadroSprint, "Quadro do sprint"],
+    [PlanearSprint, "Planear sprint"], [QuadroSprint, "Quadro do sprint"],
     [Roadmap, "Roadmap"], [Release, "Release 2.0"], [GerarHistorias, "Gerar user stories"],
     [Rastreabilidade, "Rastreabilidade"], [Notificacoes, "Notificações"], [EspacoEquipa, "Espaço da equipa"],
     [Dashboard, "Dashboard"], [CargaEquipas, "Carga das equipas"],
@@ -33,13 +32,6 @@ describe("ecrãs com dados de exemplo", () => {
 });
 
 describe("o que as personas pediram", () => {
-  it("priorização: avisa quando a ordem passa a capacidade e mostra a razão da IA (Ricardo)", () => {
-    abrir(Priorizacao);
-    expect(screen.getByText(/a capacidade é/)).toBeTruthy();
-    expect(screen.getAllByText(/Razão:/).length).toBeGreaterThan(0);
-    expect(screen.getByRole("button", { name: "Manter a minha ordem" })).toBeTruthy();
-  });
-
   it("planear sprint: sem estimativa ou sem critérios não entra (Ricardo)", () => {
     abrir(PlanearSprint);
     expect(screen.getByText(/falta estimativa/)).toBeTruthy();

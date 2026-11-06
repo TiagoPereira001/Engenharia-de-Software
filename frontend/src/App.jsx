@@ -70,7 +70,7 @@ export default function App() {
           <Route path="/pedidos" element={<Pedidos utilizador={utilizador} />} />
           <Route path="/pedidos/novo" element={<NovoPedido utilizador={utilizador} />} />
           <Route path="/pedidos/:id" element={<DetalhePedido utilizador={utilizador} />} />
-          <Route path="/priorizacao" element={<Priorizacao />} />
+          <Route path="/priorizacao" element={<Priorizacao utilizador={utilizador} />} />
           <Route path="/sprint/planear" element={<PlanearSprint />} />
           <Route path="/sprint/quadro" element={<QuadroSprint />} />
           <Route path="/roadmap" element={<Roadmap />} />
