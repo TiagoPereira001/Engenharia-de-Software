@@ -30,6 +30,8 @@ services:
       POSTGRES_DB: pedidos
       POSTGRES_USER: pedidos
       POSTGRES_PASSWORD: pedidos-dev
+      # Opcional: com uma chave da Anthropic no terminal, a sugestão de prioridade usa o Claude.
+      ANTHROPIC_API_KEY: ${ANTHROPIC_API_KEY:-}
     volumes:
       - ./backend:/app
     ports:

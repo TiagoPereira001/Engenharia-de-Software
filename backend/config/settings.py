@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     "rest_framework",
     "contas",
     "pedidos",
+    "priorizacao",
 ]
 
 MIDDLEWARE = [
@@ -99,6 +100,13 @@ LANGUAGE_CODE = "pt-pt"
 TIME_ZONE = "Europe/Lisbon"
 USE_I18N = True
 USE_TZ = True
+
+# Priorização (US-06 e US-08)
+# Capacidade do sprint usada no aviso de capacidade, enquanto não há um sprint a planear.
+CAPACIDADE_SPRINT = int(os.environ.get("CAPACIDADE_SPRINT", "15"))
+# Sugestão de prioridade: usa o Claude só se houver ANTHROPIC_API_KEY; senão, a regra local.
+IA_MODELO = os.environ.get("IA_MODELO", "claude-opus-5-5")
+IA_TEMPO_LIMITE = float(os.environ.get("IA_TEMPO_LIMITE", "20"))
 
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
