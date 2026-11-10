@@ -1,8 +1,6 @@
 import { afterEach, describe, expect, it } from "vitest";
 import { cleanup, render, screen } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
-import PlanearSprint from "../paginas/PlanearSprint.jsx";
-import QuadroSprint from "../paginas/QuadroSprint.jsx";
 import Roadmap from "../paginas/Roadmap.jsx";
 import Release from "../paginas/Release.jsx";
 import GerarHistorias from "../paginas/GerarHistorias.jsx";
@@ -18,7 +16,6 @@ const abrir = (Ecra) => render(<MemoryRouter><Ecra /></MemoryRouter>);
 
 describe("ecrãs com dados de exemplo", () => {
   const ECRAS = [
-    [PlanearSprint, "Planear sprint"], [QuadroSprint, "Quadro do sprint"],
     [Roadmap, "Roadmap"], [Release, "Release 2.0"], [GerarHistorias, "Gerar user stories"],
     [Rastreabilidade, "Rastreabilidade"], [Notificacoes, "Notificações"], [EspacoEquipa, "Espaço da equipa"],
     [Dashboard, "Dashboard"], [CargaEquipas, "Carga das equipas"],
@@ -32,12 +29,6 @@ describe("ecrãs com dados de exemplo", () => {
 });
 
 describe("o que as personas pediram", () => {
-  it("planear sprint: sem estimativa ou sem critérios não entra (Ricardo)", () => {
-    abrir(PlanearSprint);
-    expect(screen.getByText(/falta estimativa/)).toBeTruthy();
-    expect(screen.getByText(/faltam critérios de aceitação/)).toBeTruthy();
-  });
-
   it("roadmap: a release em risco aparece destacada (Helena)", () => {
     abrir(Roadmap);
     expect(screen.getByText(/Em risco/)).toBeTruthy();

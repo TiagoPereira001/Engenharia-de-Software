@@ -204,3 +204,8 @@ button:focus-visible, a:focus-visible { outline: 2px solid var(--destaque); outl
 button.secundario { background: var(--superficie); color: var(--destaque); border: 1px solid var(--destaque); }
 tr.fora td { background: var(--aviso-fundo); }
 .post-it { display: inline-block; padding: 1px 8px; background: #f2d64b; border-radius: 2px; font-weight: 600; }
+
+/* Cartões do backlog e do quadro (ecrãs 06 e 07) */
+.cartoes { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
+.cartao { background: var(--superficie); border: 1px solid var(--linha); border-left: 3px solid #d0473d; border-radius: 2px; padding: 8px 10px; }
+.cartao button { margin-top: 6px; }

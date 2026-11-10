@@ -44,6 +44,18 @@ export const api = {
   ordenar: (dados) => pedir("/priorizacao/ordem/", { metodo: "POST", corpo: dados }),
   historicoOrdem: () => pedir("/priorizacao/historico/"),
   sugestao: () => pedir("/priorizacao/sugestao/"),
+  backlog: () => pedir("/backlog/"),
+  acrescentarAoBacklog: (pedido) => pedir("/backlog/", { metodo: "POST", corpo: { pedido } }),
+  equipas: () => pedir("/backlog/equipas/"),
+  atribuirEquipa: (pedido, equipa) => pedir(`/backlog/${pedido}/equipa/`, { metodo: "PATCH", corpo: { equipa } }),
+  sprints: () => pedir("/backlog/sprints/"),
+  criarSprint: (dados) => pedir("/backlog/sprints/", { metodo: "POST", corpo: dados }),
+  sprint: (id) => pedir(`/backlog/sprints/${id}/`),
+  porNoSprint: (id, pedido) => pedir(`/backlog/sprints/${id}/itens/`, { metodo: "POST", corpo: { pedido } }),
+  tirarDoSprint: (id, pedido) => pedir(`/backlog/sprints/${id}/itens/${pedido}/`, { metodo: "DELETE" }),
+  comecarSprint: (id) => pedir(`/backlog/sprints/${id}/comecar/`, { metodo: "POST" }),
+  fecharSprint: (id) => pedir(`/backlog/sprints/${id}/fechar/`, { metodo: "POST" }),
+  quadro: (id, equipa = "") => pedir(`/backlog/sprints/${id}/quadro/?` + new URLSearchParams(equipa ? { equipa } : {})),
 };
 
 export const ESTADOS = {
