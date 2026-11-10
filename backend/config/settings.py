@@ -28,6 +28,7 @@ INSTALLED_APPS = [
     "contas",
     "pedidos",
     "priorizacao",
+    "backlog",
 ]
 
 MIDDLEWARE = [

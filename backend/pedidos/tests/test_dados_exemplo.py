@@ -5,6 +5,7 @@ from io import StringIO
 from django.core.management import call_command
 from django.test import TestCase
 
+from backlog.models import Equipa, Sprint
 from contas.models import Papel, Utilizador
 from pedidos.models import Categoria, Estado, Pedido
 
@@ -27,6 +28,13 @@ class DadosExemplo(TestCase):
         self.assertEqual(exportacao.votos.count(), 3)
         self.assertEqual(exportacao.historico.count(), 2)
         self.assertEqual(sorted(exportacao.etiquetas.values_list("nome", flat=True)), ["exportar", "relatórios"])
+
+    def test_prepara_backlog_e_sprint_para_a_demonstracao(self):
+        self.correr()
+        self.assertEqual(Pedido.objects.filter(estado=Estado.APROVADO).count(), 3)
+        self.assertEqual(Equipa.objects.count(), 3)
+        sprint = Sprint.objects.get()
+        self.assertEqual((sprint.nome, sprint.capacidade, sprint.itens.count()), ("Sprint 4", 10, 1))
 
     def test_palavra_passe_e_o_nome_mais_123(self):
         self.correr()
