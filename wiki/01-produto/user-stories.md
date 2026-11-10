@@ -17,10 +17,10 @@ Nas user stories aparece "project manager"; na wiki e no código esse papel cham
 | US-07 | [EDS-115](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-115) | Votar | Priorização | Utilizador | Must | Base no Sprint 3 |
 | US-08 | [EDS-116](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-116) | Sugestão de prioridade com IA | Priorização | Product Owner | Should | Sprint 4 |
 | US-09 | [EDS-117](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-117) | Impacto e esforço | Priorização | Product Owner | Must | Sprint 4 |
-| US-10 | [EDS-118](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-118) | Product backlog | Backlog | Product Owner | Must |  |
-| US-11 | [EDS-119](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-119) | Sprint backlog | Backlog | Product Owner | Must |  |
+| US-10 | [EDS-118](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-118) | Product backlog | Backlog | Product Owner | Must | Sprint 4 |
+| US-11 | [EDS-119](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-119) | Sprint backlog | Backlog | Product Owner | Must | Sprint 4 |
 | US-12 | [EDS-120](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-120) | Estado de uma funcionalidade | Backlog | Programador | Must | Estados e histórico no Sprint 3 |
-| US-13 | [EDS-121](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-121) | Atribuir a equipas | Backlog | Gestor de projeto | Must |  |
+| US-13 | [EDS-121](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-121) | Atribuir a equipas | Backlog | Gestor de projeto | Must | Sprint 4 |
 | US-14 | [EDS-122](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-122) | Roadmap visual | Roadmap | Product manager | Must |  |
 | US-15 | [EDS-123](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-123) | Planear releases | Roadmap | Product manager | Must |  |
 | US-16 | [EDS-124](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-124) | Milestones | Roadmap | Product manager | Should |  |

@@ -19,6 +19,11 @@ backend/
     ia.py            sugestão de prioridade: Claude, ou regra local quando a IA falha
     api.py           endpoints /api/priorizacao/
     tests/           testes das regras, da IA (sem a chamar) e da API
+  backlog/           módulo Product backlog
+    models.py        Equipa, Sprint, ItemBacklog
+    servicos.py      regras: acrescentar ao backlog, criar, começar e fechar sprints, pôr no sprint, quadro, equipas
+    api.py           endpoints /api/backlog/
+    tests/           testes das regras e da API
 frontend/
   src/
     App.jsx          menu e rotas (mesma ordem dos wireframes)
@@ -49,6 +54,15 @@ frontend/
 | POST | `/api/priorizacao/ordem/` | Gravar a ordem com a razão (US-06) | Product Owner |
 | GET | `/api/priorizacao/historico/` | Últimas mudanças de ordem | Todos |
 | GET | `/api/priorizacao/sugestao/` | Sugestão de prioridade com razão (US-08) | Product Owner |
+| GET | `/api/backlog/` | Product backlog pela ordem do Product Owner (US-10) | Todos |
+| POST | `/api/backlog/` | Acrescentar um pedido aprovado ao backlog | Product Owner |
+| GET | `/api/backlog/equipas/` | Equipas | Todos |
+| PATCH | `/api/backlog/<pedido>/equipa/` | Atribuir a uma equipa (US-13) | Gestor de projeto e Product Owner |
+| GET, POST | `/api/backlog/sprints/` | Sprints por fechar; criar sprint com datas, objetivo e capacidade (US-11) | Todos; criar só o Product Owner |
+| GET | `/api/backlog/sprints/<id>/` | Sprint com os itens, os pontos e o aviso de capacidade | Todos |
+| POST, DELETE | `/api/backlog/sprints/<id>/itens/` | Pôr um item no sprint (só com estimativa) ou tirá-lo | Product Owner |
+| POST | `/api/backlog/sprints/<id>/comecar/` e `/fechar/` | Começar e fechar; ao fechar, o que não acabou volta ao backlog | Product Owner |
+| GET | `/api/backlog/sprints/<id>/quadro/?equipa=` | Quadro do sprint, uma coluna por estado (ecrã 07) | Todos |
 
 ## Ecrãs
 

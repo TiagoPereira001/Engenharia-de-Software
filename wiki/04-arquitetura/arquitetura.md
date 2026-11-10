@@ -52,5 +52,6 @@ flowchart LR
 ## Ver também
 
 - [Registo de decisões](decisoes.md)
+- [Desenho de software](desenho.md)
 - [Requisitos não funcionais](../02-requisitos/requisitos-nao-funcionais.md)
 - [Estrutura do código](../06-codigo/estrutura.md)

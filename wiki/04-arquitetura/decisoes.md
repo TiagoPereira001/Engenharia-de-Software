@@ -1,6 +1,6 @@
 # Registo de decisões
 
-[Índice](../README.md) · [← Arquitetura](arquitetura.md) · [Casos de uso →](../05-modelacao/casos-de-uso.md)
+[Índice](../README.md) · [← Arquitetura](arquitetura.md) · [Desenho de software →](desenho.md)
 
 Cada decisão importante fica aqui, com o contexto e as alternativas. Uma decisão nova acrescenta-se no fim; uma que mude não se apaga, marca-se como substituída.
 

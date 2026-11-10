@@ -29,6 +29,7 @@ Quem chega agora lê primeiro o [estado atual](currentstate.md). Quem vai mexer 
 
 - [Arquitetura](04-arquitetura/arquitetura.md)
 - [Registo de decisões](04-arquitetura/decisoes.md)
+- [Desenho de software](04-arquitetura/desenho.md)
 
 ## 5. Modelação
 

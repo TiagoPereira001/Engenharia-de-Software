@@ -1,6 +1,6 @@
 # Casos de uso
 
-[Índice](../README.md) · [← Registo de decisões](../04-arquitetura/decisoes.md) · [Diagrama de classes →](classes.md)
+[Índice](../README.md) · [← Desenho de software](../04-arquitetura/desenho.md) · [Diagrama de classes →](classes.md)
 
 Um diagrama por ator, a partir das [user stories](../01-produto/user-stories.md), dos [cenários](../01-produto/cenarios.md), dos [wireframes](../03-prototipo/wireframes.md) e da [arquitetura](../04-arquitetura/arquitetura.md). Cada caso diz de onde vem (US, cenário ou ecrã). Os mesmos diagramas estão no [FigJam](https://www.figma.com/board/czxBO7U14mX4uEDGr29P41) (diagramas 2a a 2e) e os ficheiros fonte em `docs/sprint-3/modelacao/02-casos-de-uso-*.mmd`.
 
