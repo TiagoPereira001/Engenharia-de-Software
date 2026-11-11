@@ -6,7 +6,7 @@ Cartão: [EDS-161](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-161). A [a
 
 ## Três camadas em cada módulo
 
-Cada módulo do back-end (`contas`, `pedidos`, `priorizacao`, `backlog`) é uma app Django com as mesmas três camadas:
+Cada módulo do back-end (`contas`, `pedidos`, `priorizacao`, `backlog`, `colaboracao`) é uma app Django com as mesmas três camadas:
 
 | Ficheiro | Faz | Não faz |
 |---|---|---|
@@ -24,14 +24,18 @@ flowchart LR
     pedidos["pedidos<br/>pedidos, estados, votos"]
     priorizacao["priorizacao<br/>impacto, esforço, ordem, IA"]
     backlog["backlog<br/>product backlog, sprints, equipas"]
+    colaboracao["colaboracao<br/>comentários, menções, notificações"]
     pedidos --> contas
     priorizacao --> pedidos
     backlog --> priorizacao
     backlog --> pedidos
+    colaboracao --> pedidos
+    pedidos -. "sinal: o estado mudou" .-> colaboracao
 ```
 
 - As setas só vão num sentido. `pedidos` não conhece a priorização nem o backlog; quem chega depois é que usa quem já existe.
 - Um módulo pode ler os dados de outro, mas não repete as regras dele. O backlog lê a ordem do Product Owner, que é da priorização, em vez de ter uma ordem sua.
+- Quando o estado de um pedido muda, `pedidos` não chama a colaboração: grava a mudança no histórico, o Django emite um sinal, e a colaboração ouve-o e avisa quem segue o pedido (`colaboracao/sinais.py`). A seta tracejada do diagrama é esse sinal. Assim `pedidos` continua sem depender de quem chega depois.
 - Os erros de regra são dois, definidos em `pedidos/servicos.py` e usados por todos: `RegraViolada` (a API responde 400) e `SemPermissao` (a API responde 403). A resposta de erro é sempre `{"erro": "frase para mostrar ao utilizador"}`.
 
 ## Padrões que usamos e porquê
@@ -42,6 +46,7 @@ flowchart LR
 | Tabela de regras | `QUEM_PODE` em `pedidos/servicos.py` | As passagens de estado e quem as faz leem-se como o diagrama de estados. As transições permitidas (`TRANSICOES`) saem da mesma tabela, para não haver duas listas a manter |
 | O servidor diz o que se pode fazer | `pode_mudar_para` no detalhe do pedido e nos cartões do quadro | O ecrã mostra só os botões que o papel pode usar, sem repetir as regras no front-end |
 | Adaptador com alternativa | `priorizacao/ia.py` | Só um ficheiro fala com o serviço de IA. Se falhar, usa-se a regra local e a priorização continua (decisão D4) |
+| Observador (sinais do Django) | `colaboracao/sinais.py` | Os avisos de mudança de estado não obrigam `pedidos` a conhecer a colaboração |
 | Uma só porta para o servidor | `frontend/src/api.js` | Os ecrãs não chamam `fetch`. O CSRF e os erros tratam-se num sítio |
 
 ## Refactoring feito no Sprint 4

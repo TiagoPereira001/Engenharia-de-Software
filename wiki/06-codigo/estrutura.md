@@ -24,11 +24,18 @@ backend/
     servicos.py      regras: acrescentar ao backlog, criar, começar e fechar sprints, pôr no sprint, quadro, equipas
     api.py           endpoints /api/backlog/
     tests/           testes das regras e da API
+  colaboracao/       módulo Colaboração
+    models.py        Comentario, Notificacao, Preferencias
+    servicos.py      regras: comentar, editar e apagar (só o autor), menções, quem segue um pedido, notificar
+    sinais.py        avisa quem segue um pedido quando o estado muda
+    api.py           endpoints /api/colaboracao/
+    tests/           testes das regras e da API
 frontend/
   src/
     App.jsx          menu e rotas (mesma ordem dos wireframes)
     api.js           única porta para o servidor
     paginas/         um ficheiro por ecrã dos wireframes
+    componentes/     peças usadas dentro dos ecrãs (por exemplo, a conversa do pedido)
     exemplo.jsx      dados de exemplo dos ecrãs que ainda não usam a API
     testes/          testes dos ecrãs
 ```
@@ -63,6 +70,12 @@ frontend/
 | POST, DELETE | `/api/backlog/sprints/<id>/itens/` | Pôr um item no sprint (só com estimativa) ou tirá-lo | Product Owner |
 | POST | `/api/backlog/sprints/<id>/comecar/` e `/fechar/` | Começar e fechar; ao fechar, o que não acabou volta ao backlog | Product Owner |
 | GET | `/api/backlog/sprints/<id>/quadro/?equipa=` | Quadro do sprint, uma coluna por estado (ecrã 07) | Todos |
+| GET, POST | `/api/colaboracao/pedidos/<id>/comentarios/` | Conversa de um pedido; comentar (US-21) | Ler: todos; comentar: autenticados |
+| PATCH, DELETE | `/api/colaboracao/comentarios/<id>/` | Editar ou apagar um comentário | Só o autor |
+| GET | `/api/colaboracao/pessoas/` | Nomes para as menções com @ (US-23) | Autenticados |
+| GET | `/api/colaboracao/notificacoes/` | As minhas notificações e quantas estão por ler (US-22) | Autenticados |
+| POST | `/api/colaboracao/notificacoes/lidas/` | Marcar como lidas (as dadas, ou todas) | Autenticados |
+| GET, PUT | `/api/colaboracao/preferencias/` | O que cada um quer receber, e se também por email | Autenticados |
 
 ## Ecrãs
 

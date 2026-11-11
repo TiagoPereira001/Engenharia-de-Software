@@ -19,7 +19,7 @@ Nas user stories aparece "project manager"; na wiki e no código esse papel cham
 | US-09 | [EDS-117](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-117) | Impacto e esforço | Priorização | Product Owner | Must | Sprint 4 |
 | US-10 | [EDS-118](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-118) | Product backlog | Backlog | Product Owner | Must | Sprint 4 |
 | US-11 | [EDS-119](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-119) | Sprint backlog | Backlog | Product Owner | Must | Sprint 4 |
-| US-12 | [EDS-120](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-120) | Estado de uma funcionalidade | Backlog | Programador | Must | Estados e histórico no Sprint 3 |
+| US-12 | [EDS-120](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-120) | Estado de uma funcionalidade | Backlog | Programador | Must | Estados e histórico no Sprint 3; quem pode fazer cada passagem e os avisos no Sprint 4 |
 | US-13 | [EDS-121](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-121) | Atribuir a equipas | Backlog | Gestor de projeto | Must | Sprint 4 |
 | US-14 | [EDS-122](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-122) | Roadmap visual | Roadmap | Product manager | Must |  |
 | US-15 | [EDS-123](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-123) | Planear releases | Roadmap | Product manager | Must |  |
@@ -27,9 +27,9 @@ Nas user stories aparece "project manager"; na wiki e no código esse papel cham
 | US-17 | [EDS-125](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-125) | Dependências | Roadmap | Programador | Should |  |
 | US-18 | [EDS-126](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-126) | Gerar user stories | Requisitos | Product Owner | Should |  |
 | US-19 | [EDS-127](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-127) | Rastreabilidade | Requisitos | Gestor de projeto | Should |  |
-| US-21 | [EDS-129](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-129) | Comentar | Colaboração | Utilizador | Must |  |
-| US-22 | [EDS-130](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-130) | Notificações | Colaboração | Utilizador | Should |  |
-| US-23 | [EDS-131](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-131) | Mencionar colegas | Colaboração | Programador | Should |  |
+| US-21 | [EDS-129](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-129) | Comentar | Colaboração | Utilizador | Must | Sprint 4 |
+| US-22 | [EDS-130](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-130) | Notificações | Colaboração | Utilizador | Should | Sprint 4 |
+| US-23 | [EDS-131](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-131) | Mencionar colegas | Colaboração | Programador | Should | Sprint 4 |
 | US-24 | [EDS-132](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-132) | Espaço por equipa | Colaboração | Gestor de projeto | Should |  |
 | US-25 | [EDS-133](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-133) | Submetidos, aprovados e rejeitados | Dashboards | Product manager | Should |  |
 | US-26 | [EDS-134](https://ubi-team-ebw5rr6y.atlassian.net/browse/EDS-134) | Funcionalidades por release | Dashboards | Product manager | Should |  |

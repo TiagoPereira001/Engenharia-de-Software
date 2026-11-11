@@ -41,7 +41,7 @@ cd backend
 
 ## O que já está testado
 
-**Back-end (82 testes):**
+**Back-end (99 testes):**
 
 - um pedido nasce Novo e fica no histórico;
 - o cliente não escolhe a origem; o product manager sim;
@@ -52,6 +52,7 @@ cd backend
 - priorização: só o Product Owner ordena e estima o impacto, o programador também estima o esforço, a escala é fixa, a ordem fica registada com autor e razão, a lista ordena por impacto, esforço, relação e votos, e avisa quando a ordem passa a capacidade (US-06, US-09);
 - backlog: só entram pedidos aprovados e pela ordem do Product Owner, o sprint tem datas e objetivo, sem estimativa não entra no sprint, avisa quando passa a capacidade, o que não acaba volta ao backlog, só há um sprint em curso, e o gestor de projeto atribui equipas (US-10, US-11, US-13);
 - dados de exemplo preparam um backlog e o Sprint 4 para a demonstração;
+- colaboração: comentários com autor e data, só o autor edita ou apaga, quem pediu, votou ou comentou é avisado quando o estado muda (com o motivo, se for rejeitado), a menção avisa a pessoa uma só vez, as preferências decidem o que chega e se vai também por email (US-21, US-22, US-23);
 - sugestão de IA: cada sugestão tem razão; sem chave nem se tenta a IA; se a IA falhar ou responder mal, usa-se a regra local (US-08). Nos testes a IA nunca é chamada a sério;
 - rejeitar exige motivo;
 - um voto por pessoa (também na base de dados) e votar outra vez retira o voto;
@@ -61,13 +62,14 @@ cd backend
 - dados de exemplo: um utilizador por papel, pedidos com histórico e votos, a palavra-passe é o nome mais 123, há um admin, e correr duas vezes não duplica;
 - origem do front-end: a API aceita os POST vindos de `localhost:5173` (o proxy do Vite, também no Docker) e recusa os de outra origem.
 
-**Front-end (36 testes):**
+**Front-end (42 testes):**
 
 - o menu tem os ecrãs dos wireframes;
 - Novo pedido mostra os parecidos com um botão de votar em cada um e não procura com menos de 4 letras;
 - o cliente não vê Origem nem etiquetas; o product manager vê Origem;
 - a lista mostra o total de votos e as etiquetas e, sem resultados, deixa limpar os filtros; quem tem conta pode ver só os seus pedidos;
 - no detalhe, os botões de mudar estado são os que o servidor manda, e só quem gere pedidos edita as etiquetas;
+- conversa e notificações: autor e data em cada comentário, só os meus têm editar e apagar, @ sugere nomes, sem conta lê-se mas não se comenta; as notificações dizem o pedido e o novo estado, quantas estão por ler, e cada um escolhe o que recebe; o menu mostra quantas estão por ler;
 - planear sprint e quadro: o item sem estimativa diz porque não entra, a capacidade usada aparece com o aviso, só o Product Owner planeia, começa e fecha o sprint, e no quadro cada cartão só tem os botões que o servidor deixa;
 - priorização: aviso de capacidade, só o Product Owner muda a ordem, o programador estima só o esforço, a sugestão mostra a razão e deixa manter a ordem, e guardar envia a ordem nova com a razão;
 - os ecrãs que ainda usam dados de exemplo abrem e avisam disso;

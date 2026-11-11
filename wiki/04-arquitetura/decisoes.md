@@ -43,6 +43,12 @@ Cada decisão importante fica aqui, com o contexto e as alternativas. Uma decis�
 - **Decisão:** impacto em três níveis (1 Baixo, 2 Médio, 3 Alto); esforço em pontos da sequência de Fibonacci (1, 2, 3, 5, 8, 13), a mesma escala do Jira. A relação impacto/esforço serve para ordenar.
 - **Consequência:** a capacidade do sprint passa a ser em pontos, e o aviso de capacidade (US-06) soma os pontos dos pedidos já ordenados. Os mockups do ecrã 05 passam a mostrar pontos.
 
+## D7. Quem segue um pedido e como chegam os avisos (Sprint 4)
+
+- **Contexto:** a US-22 fala em "pedidos que sigo", mas não há um botão de seguir nos wireframes, e a Sofia só quer saber do que pediu e do que votou.
+- **Decisão:** segue um pedido quem o pediu, quem votou nele e quem comentou. Os avisos de mudança de estado chegam por um sinal do Django, e não por uma chamada direta de `pedidos` à colaboração. O email usa as definições do Django; em desenvolvimento aparece no terminal do back-end.
+- **Consequência:** não é preciso guardar uma lista de seguidores. Se um dia houver um botão "seguir", acrescenta-se como mais uma fonte de seguidores em `colaboracao/servicos.py`.
+
 ## Ver também
 
 - [Arquitetura](arquitetura.md)
