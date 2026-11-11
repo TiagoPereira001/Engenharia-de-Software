@@ -29,6 +29,7 @@ INSTALLED_APPS = [
     "pedidos",
     "priorizacao",
     "backlog",
+    "colaboracao",
 ]
 
 MIDDLEWARE = [
@@ -108,6 +109,10 @@ CAPACIDADE_SPRINT = int(os.environ.get("CAPACIDADE_SPRINT", "15"))
 # Sugestão de prioridade: usa o Claude só se houver ANTHROPIC_API_KEY; senão, a regra local.
 IA_MODELO = os.environ.get("IA_MODELO", "claude-opus-5-5")
 IA_TEMPO_LIMITE = float(os.environ.get("IA_TEMPO_LIMITE", "20"))
+
+# Notificações por email (US-22). Em desenvolvimento, o email aparece no terminal do back-end.
+EMAIL_BACKEND = os.environ.get("DJANGO_EMAIL_BACKEND", "django.core.mail.backends.console.EmailBackend")
+DEFAULT_FROM_EMAIL = os.environ.get("DJANGO_EMAIL_REMETENTE", "pedidos@localhost")
 
 STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
