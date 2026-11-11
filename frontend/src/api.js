@@ -55,6 +55,15 @@ export const api = {
   tirarDoSprint: (id, pedido) => pedir(`/backlog/sprints/${id}/itens/${pedido}/`, { metodo: "DELETE" }),
   comecarSprint: (id) => pedir(`/backlog/sprints/${id}/comecar/`, { metodo: "POST" }),
   fecharSprint: (id) => pedir(`/backlog/sprints/${id}/fechar/`, { metodo: "POST" }),
+  comentarios: (pedido) => pedir(`/colaboracao/pedidos/${pedido}/comentarios/`),
+  comentar: (pedido, texto) => pedir(`/colaboracao/pedidos/${pedido}/comentarios/`, { metodo: "POST", corpo: { texto } }),
+  editarComentario: (id, texto) => pedir(`/colaboracao/comentarios/${id}/`, { metodo: "PATCH", corpo: { texto } }),
+  apagarComentario: (id) => pedir(`/colaboracao/comentarios/${id}/`, { metodo: "DELETE" }),
+  pessoas: () => pedir("/colaboracao/pessoas/"),
+  notificacoes: () => pedir("/colaboracao/notificacoes/"),
+  marcarLidas: (ids = []) => pedir("/colaboracao/notificacoes/lidas/", { metodo: "POST", corpo: { ids } }),
+  preferencias: () => pedir("/colaboracao/preferencias/"),
+  guardarPreferencias: (dados) => pedir("/colaboracao/preferencias/", { metodo: "PUT", corpo: dados }),
   quadro: (id, equipa = "") => pedir(`/backlog/sprints/${id}/quadro/?` + new URLSearchParams(equipa ? { equipa } : {})),
 };
 

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { api, ESTADOS } from "../api.js";
+import Conversa from "../componentes/Conversa.jsx";
 
 // Ecrã 04. Estado, etiquetas, votos (só o total) e histórico.
 // Os botões de mudar estado vêm do servidor (pode_mudar_para): o ecrã não repete as regras.
@@ -65,6 +66,7 @@ export default function DetalhePedido({ utilizador }) {
           {pedido.total_votos} votos{" "}
           {utilizador && <button onClick={votar}>{pedido.votei ? "Retirar voto" : "Votar"}</button>}
         </p>
+        <Conversa pedido={pedido.id} utilizador={utilizador} />
         {gere && (
           <form className="caixa" onSubmit={guardarEtiquetas}>
             <label htmlFor="etiquetas">Etiquetas (separadas por vírgulas)</label>

@@ -209,3 +209,14 @@ tr.fora td { background: var(--aviso-fundo); }
 .cartoes { list-style: none; padding: 0; margin: 8px 0; display: grid; gap: 8px; }
 .cartao { background: var(--superficie); border: 1px solid var(--linha); border-left: 3px solid #d0473d; border-radius: 2px; padding: 8px 10px; }
 .cartao button { margin-top: 6px; }
+
+/* Conversa e notificações (ecrãs 04 e 12) */
+.conversa, .notificacoes { list-style: none; padding: 0; margin: 8px 0; }
+.conversa li { padding: 8px 0; border-bottom: 1px solid var(--linha); }
+.conversa p { margin: 4px 0; }
+.sugestoes { display: flex; gap: 6px; flex-wrap: wrap; margin: 6px 0; }
+.notificacoes li { padding: 10px 12px; border-bottom: 1px solid var(--linha); background: var(--superficie); }
+.notificacoes li.por-ler { font-weight: 600; }
+.notificacoes li.por-ler::before { content: "●"; color: #e58a6b; margin-right: 8px; }
+.notificacoes li.lida { color: var(--texto-suave); }
+.contador { display: inline-block; margin-left: 6px; padding: 0 7px; border-radius: 99px; background: #e58a6b; color: #fff; font-size: 0.8em; }

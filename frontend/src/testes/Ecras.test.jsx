@@ -5,7 +5,6 @@ import Roadmap from "../paginas/Roadmap.jsx";
 import Release from "../paginas/Release.jsx";
 import GerarHistorias from "../paginas/GerarHistorias.jsx";
 import Rastreabilidade from "../paginas/Rastreabilidade.jsx";
-import Notificacoes from "../paginas/Notificacoes.jsx";
 import EspacoEquipa from "../paginas/EspacoEquipa.jsx";
 import Dashboard from "../paginas/Dashboard.jsx";
 import CargaEquipas from "../paginas/CargaEquipas.jsx";
@@ -17,7 +16,7 @@ const abrir = (Ecra) => render(<MemoryRouter><Ecra /></MemoryRouter>);
 describe("ecrãs com dados de exemplo", () => {
   const ECRAS = [
     [Roadmap, "Roadmap"], [Release, "Release 2.0"], [GerarHistorias, "Gerar user stories"],
-    [Rastreabilidade, "Rastreabilidade"], [Notificacoes, "Notificações"], [EspacoEquipa, "Espaço da equipa"],
+    [Rastreabilidade, "Rastreabilidade"], [EspacoEquipa, "Espaço da equipa"],
     [Dashboard, "Dashboard"], [CargaEquipas, "Carga das equipas"],
   ];
 

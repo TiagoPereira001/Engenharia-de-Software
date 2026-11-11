@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Link, NavLink, Navigate, Route, Routes } from "react-router-dom";
+import { Link, NavLink, Navigate, Route, Routes, useLocation } from "react-router-dom";
 import { api } from "./api.js";
 import Entrar from "./paginas/Entrar.jsx";
 import Pedidos from "./paginas/Pedidos.jsx";
@@ -30,10 +30,18 @@ export const AREAS = [
 
 export default function App() {
   const [utilizador, setUtilizador] = useState(null);
+  const [porLer, setPorLer] = useState(0);
+  const location = useLocation();
 
   useEffect(() => {
     api.eu().then((r) => setUtilizador(r.autenticado ? r.utilizador : null)).catch(() => {});
   }, []);
+
+  // O número de notificações por ler (ecrã 12) atualiza-se a cada mudança de ecrã.
+  useEffect(() => {
+    if (!utilizador) return setPorLer(0);
+    api.notificacoes().then((r) => setPorLer(r.por_ler)).catch(() => {});
+  }, [utilizador, location.pathname]);
 
   async function sair() {
     await api.sair();
@@ -55,6 +63,7 @@ export default function App() {
         <div className="rodape">
           {utilizador ? (
             <>
+              <NavLink to="/notificacoes">Notificações{porLer > 0 && <span className="contador">{porLer}</span>}</NavLink>
               <div>{utilizador.username} ({utilizador.papel})</div>
               <button onClick={sair}>Sair</button>
             </>
@@ -77,7 +86,7 @@ export default function App() {
           <Route path="/roadmap/release" element={<Release />} />
           <Route path="/requisitos/gerar" element={<GerarHistorias />} />
           <Route path="/requisitos/rastreabilidade" element={<Rastreabilidade />} />
-          <Route path="/notificacoes" element={<Notificacoes />} />
+          <Route path="/notificacoes" element={<Notificacoes utilizador={utilizador} />} />
           <Route path="/equipa" element={<EspacoEquipa />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/dashboard/carga" element={<CargaEquipas />} />

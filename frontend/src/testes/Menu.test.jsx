@@ -19,4 +19,14 @@ describe("menu", () => {
     // 13 no menu + Entrar + Detalhe do pedido (abre a partir da lista) = os 15 ecrãs do Figma
     expect(ecras.length + 2).toBe(15);
   });
+
+  it("com conta, mostra quantas notificações estão por ler", async () => {
+    simularApi({
+      "/contas/eu/": { autenticado: true, utilizador: { username: "sofia", papel: "cliente" } },
+      "/colaboracao/notificacoes/": { por_ler: 3, itens: [] },
+      "/categorias/": [], "/etiquetas/": [], "/pedidos/": { results: [] },
+    });
+    render(<MemoryRouter><App /></MemoryRouter>);
+    expect(await screen.findByText("3")).toBeTruthy();
+  });
 });
